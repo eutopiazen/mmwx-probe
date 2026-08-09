@@ -1,15 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * VisitorInfo — 通过公共 IP 服务获取访客地理 + 风险信息。
+ * VisitorInfo — 从本站 Worker 获取 Cloudflare 已附带的访客网络信息。
  *
- * 数据链(对应 PRTS 同款,改成 React hook):
- *   ipapi.co  → 主源(IP/城市/国家/坐标/ISP)
- *   ipwho.is  → fallback,主源失败时
- *   proxycheck.io → 风险评分 + VPN/proxy 检测(可选,失败不阻塞)
- *
- * 所有请求带 5s AbortController 超时;proxycheck 4s。
- * 加载失败返回最小可用对象 {ip:'UNKNOWN', risk:0, proxy:'no'}。
+ * 请求保持同源，不会把访客 IP 或位置转交给额外的第三方服务。
+ * Cloudflare 不提供代理风险评分，所以该字段明确保持未评分状态。
  */
 
 export interface VisitorInfo {
@@ -20,10 +15,10 @@ export interface VisitorInfo {
   isp?: string
   lat?: number
   lon?: number
-  /** proxycheck 返回的 risk 评分 0-100,未获取时 0 */
-  risk: number
-  /** proxycheck 判定 VPN/proxy: 'yes' | 'no' */
-  proxy: 'yes' | 'no'
+  /** 风险评分 0-100；本站未接入评分服务时为 null。 */
+  risk: number | null
+  /** VPN/proxy 判定；本站未接入评分服务时为 unknown。 */
+  proxy: 'yes' | 'no' | 'unknown'
   /** 链路类型(VPN/Tor/Hosting...);无信息时空串 */
   type?: string
 }
@@ -44,76 +39,16 @@ async function fetchWithTimeout(url: string, ms: number): Promise<Response> {
   }
 }
 
-async function fetchIpInfo(): Promise<Partial<VisitorInfo>> {
-  // 主源 ipapi.co
-  try {
-    const r = await fetchWithTimeout('https://ipapi.co/json/', 5000)
-    const j = await r.json() as {
-      ip?: string
-      city?: string
-      region?: string
-      country_name?: string
-      org?: string
-      latitude?: number
-      longitude?: number
-    }
-    if (j && j.ip) {
-      return {
-        ip: j.ip,
-        city: j.city || '',
-        region: j.region || '',
-        country: j.country_name || '',
-        isp: j.org || '',
-        lat: typeof j.latitude === 'number' ? j.latitude : undefined,
-        lon: typeof j.longitude === 'number' ? j.longitude : undefined,
-      }
-    }
-  } catch {
-    /* fall through */
-  }
-
-  // Fallback ipwho.is
-  try {
-    const r = await fetchWithTimeout('https://ipwho.is/', 5000)
-    const j = await r.json() as {
-      ip?: string
-      city?: string
-      region?: string
-      country?: string
-      connection?: { org?: string; isp?: string }
-      latitude?: number
-      longitude?: number
-    }
-    if (j && j.ip) {
-      return {
-        ip: j.ip,
-        city: j.city || '',
-        region: j.region || '',
-        country: j.country || '',
-        isp: j.connection?.org || j.connection?.isp || '',
-        lat: typeof j.latitude === 'number' ? j.latitude : undefined,
-        lon: typeof j.longitude === 'number' ? j.longitude : undefined,
-      }
-    }
-  } catch {
-    /* give up */
-  }
-
-  return { ip: 'UNKNOWN' }
-}
-
-async function fetchRisk(ip: string): Promise<{ risk: number; proxy: 'yes' | 'no'; type: string }> {
-  try {
-    const r = await fetchWithTimeout(`https://proxycheck.io/v2/${ip}?risk=1&vpn=1`, 4000)
-    const j = await r.json() as Record<string, { risk?: string | number; proxy?: string; type?: string }>
-    const info = j[ip] || {}
-    return {
-      risk: parseInt(String(info.risk ?? ''), 10) || 0,
-      proxy: info.proxy === 'yes' ? 'yes' : 'no',
-      type: info.type || '',
-    }
-  } catch {
-    return { risk: 0, proxy: 'no', type: '' }
+async function fetchVisitorInfo(): Promise<VisitorInfo> {
+  const response = await fetchWithTimeout('/api/visitor', 5000)
+  if (!response.ok) throw new Error(`visitor info: HTTP ${response.status}`)
+  const data = await response.json() as Partial<VisitorInfo>
+  return {
+    ...data,
+    ip: data.ip || 'UNKNOWN',
+    risk: typeof data.risk === 'number' ? data.risk : null,
+    proxy: data.proxy === 'yes' || data.proxy === 'no' ? data.proxy : 'unknown',
+    type: data.type || '',
   }
 }
 
@@ -130,19 +65,14 @@ export function useVisitorInfo(enabled: boolean): State {
     cancelled.current = false
 
     ;(async () => {
-      const base = await fetchIpInfo()
-      if (cancelled.current) return
-      const ip = base.ip || 'UNKNOWN'
-      const risk =
-        ip !== 'UNKNOWN'
-          ? await fetchRisk(ip)
-          : { risk: 0, proxy: 'no' as const, type: '' }
-      if (cancelled.current) return
-      setState({
-        data: { ...base, ip, ...risk } as VisitorInfo,
-        loading: false,
-        error: ip === 'UNKNOWN',
-      })
+      try {
+        const data = await fetchVisitorInfo()
+        if (cancelled.current) return
+        setState({ data, loading: false, error: data.ip === 'UNKNOWN' })
+      } catch {
+        if (cancelled.current) return
+        setState({ data: null, loading: false, error: true })
+      }
     })()
 
     return () => {
@@ -152,3 +82,4 @@ export function useVisitorInfo(enabled: boolean): State {
 
   return state
 }
+
