@@ -241,7 +241,7 @@ export function buildServerModel(server: ProbeServer, sourceIndex: number): Lumi
     id: `${sourceIndex}:${server.name || 'server'}`,
     sourceIndex,
     name,
-    region: server.region?.trim() || server.region_name?.trim() || '未分组',
+    region: regionDetail || server.region_name?.trim() || server.region?.trim() || '未分组',
     regionDetail: regionDetail || server.region?.trim() || '未提供详细地区',
     flag: hasLeadingFlag ? '' : regionFlag(server.region, server.region_country),
     online: server.online,
