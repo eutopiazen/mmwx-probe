@@ -1,0 +1,789 @@
+.lumina-app {
+  --lumina-bg: #f4f6f9;
+  --lumina-canvas-glow: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.07), transparent 36rem);
+  --lumina-surface: #ffffff;
+  --lumina-surface-raised: #ffffff;
+  --lumina-surface-muted: #f7f8fa;
+  --lumina-border: rgba(15, 23, 42, 0.09);
+  --lumina-border-strong: rgba(15, 23, 42, 0.15);
+  --lumina-text: #182033;
+  --lumina-text-secondary: #596579;
+  --lumina-text-tertiary: #667386;
+  --lumina-accent: #2563d4;
+  --lumina-accent-soft: rgba(53, 115, 232, 0.11);
+  --lumina-success: #187a3d;
+  --lumina-success-soft: rgba(53, 168, 95, 0.12);
+  --lumina-warning: #a95a06;
+  --lumina-warning-soft: rgba(223, 134, 36, 0.13);
+  --lumina-danger: #c53131;
+  --lumina-danger-soft: rgba(217, 75, 75, 0.12);
+  --lumina-track: #e9edf3;
+  --lumina-shadow: 0 1px 2px rgba(15, 23, 42, 0.03), 0 16px 36px -28px rgba(15, 23, 42, 0.32);
+  min-block-size: 100vh;
+  background: var(--lumina-canvas-glow), var(--lumina-bg);
+  color: var(--lumina-text);
+  font-variant-numeric: tabular-nums;
+}
+
+:root.dark .lumina-app {
+  --lumina-bg: #151a21;
+  --lumina-canvas-glow: radial-gradient(circle at 50% 0%, rgba(83, 155, 245, 0.09), transparent 38rem);
+  --lumina-surface: #222832;
+  --lumina-surface-raised: #282f3a;
+  --lumina-surface-muted: #1b2129;
+  --lumina-border: rgba(255, 255, 255, 0.09);
+  --lumina-border-strong: rgba(255, 255, 255, 0.16);
+  --lumina-text: #e7ebf1;
+  --lumina-text-secondary: #b8c0cc;
+  --lumina-text-tertiary: #8e98a7;
+  --lumina-accent: #6aa9f8;
+  --lumina-accent-soft: rgba(106, 169, 248, 0.14);
+  --lumina-success: #62bd76;
+  --lumina-success-soft: rgba(98, 189, 118, 0.15);
+  --lumina-warning: #e7a74e;
+  --lumina-warning-soft: rgba(231, 167, 78, 0.15);
+  --lumina-danger: #f07972;
+  --lumina-danger-soft: rgba(240, 121, 114, 0.15);
+  --lumina-track: #343c48;
+  --lumina-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 18px 42px -30px rgba(0, 0, 0, 0.72);
+}
+
+.lumina-app button,
+.lumina-app select {
+  font: inherit;
+}
+
+.lumina-skip-link {
+  position: fixed;
+  inset-block-start: 8px;
+  inset-inline-start: 8px;
+  z-index: 100;
+  translate: 0 -150%;
+  border-radius: 8px;
+  background: var(--lumina-text);
+  color: var(--lumina-surface);
+  padding: 10px 14px;
+}
+
+.lumina-skip-link:focus {
+  translate: 0;
+}
+
+.lumina-topbar {
+  width: min(1520px, calc(100% - 40px));
+  margin-inline: auto;
+  padding-block: max(22px, env(safe-area-inset-top, 0px)) 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.lumina-brand {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lumina-brand img {
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.dark .lumina-brand img {
+  outline-color: rgba(255, 255, 255, 0.1);
+}
+
+.lumina-brand h1,
+.lumina-brand p {
+  margin: 0;
+}
+
+.lumina-brand h1 {
+  overflow: hidden;
+  color: var(--lumina-text);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-brand p {
+  margin-block-start: 4px;
+  color: var(--lumina-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.lumina-legacy-link {
+  min-block-size: 40px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--lumina-border);
+  border-radius: 10px;
+  background: var(--lumina-surface);
+  box-shadow: var(--lumina-shadow);
+  color: var(--lumina-text-secondary);
+  padding-inline: 13px;
+  text-decoration: none;
+}
+
+.lumina-main {
+  width: min(1520px, calc(100% - 40px));
+  margin-inline: auto;
+  padding-block-end: max(54px, env(safe-area-inset-bottom, 0px));
+}
+
+.lumina-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 14px;
+}
+
+.lumina-overview-card,
+.lumina-toolbar,
+.lumina-server-card,
+.lumina-empty {
+  border: 1px solid var(--lumina-border);
+  background: var(--lumina-surface);
+  box-shadow: var(--lumina-shadow);
+}
+
+.lumina-overview-card {
+  min-block-size: 154px;
+  border-radius: 16px;
+  padding: 17px;
+}
+
+.lumina-overview-card header,
+.lumina-overview-card header > span,
+.lumina-overview-meta,
+.lumina-overview-speeds span {
+  display: flex;
+  align-items: center;
+}
+
+.lumina-overview-card header {
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--lumina-text-secondary);
+  font-size: 0.83rem;
+  font-weight: 650;
+}
+
+.lumina-overview-card header > span {
+  gap: 7px;
+  color: var(--lumina-text);
+}
+
+.lumina-overview-card header svg {
+  color: var(--lumina-accent);
+}
+
+.lumina-overview-card header small {
+  color: var(--lumina-text-tertiary);
+  font-weight: 500;
+}
+
+.lumina-overview-primary {
+  margin-block: 22px 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.lumina-overview-primary strong {
+  color: var(--lumina-text);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lumina-overview-primary span,
+.lumina-overview-meta {
+  color: var(--lumina-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.lumina-overview-primary.is-traffic strong {
+  font-size: clamp(1.08rem, 2vw, 1.42rem);
+}
+
+.lumina-overview-meta {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lumina-overview-meta span,
+.lumina-overview-speeds span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lumina-overview-meta .is-good,
+.lumina-overview-speeds .is-download {
+  color: var(--lumina-success);
+}
+
+.lumina-overview-meta .is-bad {
+  color: var(--lumina-danger);
+}
+
+.lumina-overview-meta .is-warn,
+.lumina-overview-speeds .is-upload {
+  color: var(--lumina-warning);
+}
+
+.lumina-overview-speeds {
+  margin-block-start: 24px;
+  display: grid;
+  gap: 13px;
+}
+
+.lumina-overview-speeds span {
+  display: grid;
+  grid-template-columns: auto minmax(4rem, 1fr) auto;
+}
+
+.lumina-overview-speeds small {
+  color: var(--lumina-text-tertiary);
+}
+
+.lumina-overview-speeds strong {
+  color: var(--lumina-text);
+  font-size: 0.95rem;
+}
+
+.lumina-toolbar {
+  margin-block-start: 18px;
+  min-block-size: 58px;
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.lumina-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.lumina-filter-group button,
+.lumina-region-filter {
+  min-block-size: 40px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--lumina-text-secondary);
+}
+
+.lumina-filter-group button {
+  background: transparent;
+  padding-inline: 13px;
+  cursor: pointer;
+}
+
+.lumina-filter-group button:hover {
+  background: var(--lumina-surface-muted);
+  color: var(--lumina-text);
+}
+
+.lumina-filter-group button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--lumina-accent) 24%, transparent);
+  background: var(--lumina-accent-soft);
+  color: var(--lumina-accent);
+  font-weight: 650;
+}
+
+.lumina-region-filter {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  border-color: var(--lumina-border);
+  background: var(--lumina-surface-muted);
+  padding-inline-start: 11px;
+}
+
+.lumina-region-filter svg {
+  color: var(--lumina-text-tertiary);
+  pointer-events: none;
+}
+
+.lumina-region-filter select {
+  min-block-size: 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--lumina-text-secondary);
+  padding-inline: 7px 28px;
+  cursor: pointer;
+}
+
+.lumina-result-status {
+  margin: 18px 2px 10px;
+  color: var(--lumina-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.lumina-server-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: 14px;
+}
+
+.lumina-server-card {
+  container-type: inline-size;
+  min-inline-size: 0;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.lumina-server-card[data-online="false"] {
+  opacity: 0.72;
+}
+
+.lumina-server-head {
+  min-block-size: 68px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-block-end: 1px solid var(--lumina-border);
+}
+
+.lumina-server-identity {
+  min-inline-size: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.lumina-status-dot {
+  inline-size: 10px;
+  block-size: 10px;
+  flex: 0 0 auto;
+  margin-block-start: 5px;
+  border-radius: 50%;
+  background: var(--lumina-danger);
+  box-shadow: 0 0 0 6px var(--lumina-danger-soft);
+}
+
+.lumina-server-card[data-online="true"] .lumina-status-dot {
+  background: var(--lumina-success);
+  box-shadow: 0 0 0 6px var(--lumina-success-soft);
+}
+
+.lumina-server-identity h2,
+.lumina-server-identity p {
+  margin: 0;
+}
+
+.lumina-server-identity h2 {
+  overflow: hidden;
+  color: var(--lumina-text);
+  font-size: 0.98rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-server-identity p {
+  margin-block-start: 4px;
+  color: var(--lumina-text-tertiary);
+  font-size: 0.7rem;
+}
+
+.lumina-os {
+  inline-size: 34px;
+  block-size: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--lumina-surface-muted);
+  color: var(--lumina-warning);
+}
+
+.lumina-card-body {
+  padding: 14px 15px 13px;
+}
+
+.lumina-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px 22px;
+}
+
+.lumina-metric {
+  min-inline-size: 0;
+}
+
+.lumina-metric-label {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--lumina-text-secondary);
+  font-size: 0.77rem;
+}
+
+.lumina-metric-label span {
+  min-inline-size: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.lumina-metric-label svg {
+  color: var(--lumina-text-tertiary);
+}
+
+.lumina-metric-label strong {
+  overflow: hidden;
+  color: var(--lumina-text);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-meter {
+  block-size: 7px;
+  margin-block-start: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--lumina-track);
+}
+
+.lumina-meter span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--lumina-warning);
+}
+
+.lumina-speed-row {
+  margin-block-start: 17px;
+  padding-block: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  border-block: 1px solid var(--lumina-border);
+}
+
+.lumina-speed-row > div {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  font-size: 0.73rem;
+}
+
+.lumina-speed-row span {
+  color: var(--lumina-text-tertiary);
+}
+
+.lumina-speed-row strong {
+  overflow: hidden;
+  text-align: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-speed-row .is-download {
+  color: var(--lumina-success);
+}
+
+.lumina-speed-row .is-upload {
+  color: var(--lumina-warning);
+}
+
+.lumina-ping {
+  padding-block-start: 13px;
+}
+
+.lumina-ping-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.lumina-ping-values > span {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  color: var(--lumina-text-secondary);
+  font-size: 0.75rem;
+}
+
+.lumina-ping-values svg {
+  color: var(--lumina-text-tertiary);
+}
+
+.lumina-ping-values strong {
+  overflow: hidden;
+  color: var(--lumina-text);
+  text-align: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-ping-buckets {
+  margin-block-start: 11px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9px, 1fr));
+  gap: 3px;
+}
+
+.lumina-ping-buckets i {
+  block-size: 18px;
+  border-radius: 3px;
+  background: var(--lumina-track);
+}
+
+.lumina-ping-buckets i[data-tone="good"] { background: #58bf6a; }
+.lumina-ping-buckets i[data-tone="warn"] { background: #efa63d; }
+.lumina-ping-buckets i[data-tone="bad"] { background: #df5b56; }
+
+.lumina-no-history {
+  margin: 11px 0 0;
+  color: var(--lumina-text-tertiary);
+  font-size: 0.72rem;
+}
+
+.lumina-server-footer {
+  min-block-size: 50px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-block-start: 1px solid var(--lumina-border);
+  background: color-mix(in srgb, var(--lumina-surface-muted) 66%, var(--lumina-surface));
+}
+
+.lumina-server-footer > span {
+  min-inline-size: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--lumina-text-secondary);
+  font-size: 0.74rem;
+}
+
+.lumina-server-footer > span[data-tone="warn"] { color: var(--lumina-warning); }
+.lumina-server-footer > span[data-tone="bad"] { color: var(--lumina-danger); }
+
+.lumina-renewal {
+  justify-content: flex-end;
+  overflow: hidden;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.lumina-renewal small {
+  overflow: hidden;
+  color: var(--lumina-text-tertiary);
+  text-overflow: ellipsis;
+}
+
+.lumina-empty {
+  min-block-size: 240px;
+  border-radius: 18px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  color: var(--lumina-text-tertiary);
+  text-align: center;
+}
+
+.lumina-empty strong {
+  color: var(--lumina-text);
+}
+
+.lumina-empty span {
+  font-size: 0.78rem;
+}
+
+.lumina-state {
+  min-block-size: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  background: #f4f6f9;
+  color: #687386;
+  text-align: center;
+}
+
+.lumina-state.is-error {
+  color: #c53f3f;
+}
+
+.lumina-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.lumina-app :is(a, button, select):focus-visible {
+  outline: 2px solid var(--lumina-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lumina-filter-group button,
+  .lumina-legacy-link {
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .lumina-filter-group button:active,
+  .lumina-legacy-link:active {
+    transform: scale(0.96);
+  }
+
+  .lumina-pulse {
+    animation: lumina-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes lumina-pulse {
+  50% { opacity: 0.35; }
+}
+
+@media (max-width: 720px) {
+  .lumina-topbar,
+  .lumina-main {
+    width: min(100% - 24px, 1520px);
+  }
+
+  .lumina-topbar {
+    align-items: flex-start;
+  }
+
+  .lumina-legacy-link {
+    inline-size: 40px;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .lumina-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lumina-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .lumina-overview-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .lumina-overview-card:nth-child(n + 2) {
+    min-block-size: 146px;
+    padding: 15px;
+  }
+
+  .lumina-overview-card:nth-child(n + 2) header small {
+    display: none;
+  }
+
+  .lumina-overview-card:nth-child(3) .lumina-overview-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .lumina-overview-primary.is-traffic {
+    margin-block: 24px 16px;
+  }
+
+  .lumina-overview-primary.is-traffic strong {
+    font-size: 0.96rem;
+  }
+
+  .lumina-overview-speeds span {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .lumina-overview-speeds small {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .lumina-overview-speeds strong {
+    font-size: 0.86rem;
+    text-align: end;
+    white-space: nowrap;
+  }
+
+  .lumina-resource-grid {
+    column-gap: 14px;
+  }
+
+  .lumina-metric-label strong {
+    font-size: 0.72rem;
+  }
+
+  .lumina-filter-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lumina-region-filter {
+    inline-size: 100%;
+  }
+
+  .lumina-region-filter select {
+    inline-size: 100%;
+  }
+}
+
+@container (max-width: 330px) {
+  .lumina-resource-grid,
+  .lumina-speed-row,
+  .lumina-ping-values {
+    grid-template-columns: 1fr;
+  }
+
+  .lumina-server-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lumina-renewal {
+    justify-content: flex-start;
+    text-align: start;
+  }
+}
+
+@media (forced-colors: active) {
+  .lumina-status-dot,
+  .lumina-ping-buckets i,
+  .lumina-meter span {
+    forced-color-adjust: none;
+  }
+}
