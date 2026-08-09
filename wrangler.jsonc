@@ -4,6 +4,9 @@
   "main": "worker/index.ts",
   "compatibility_date": "2026-07-31",
   "keep_vars": true,
+  "secrets": {
+    "required": ["PROBE_TOKEN"]
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
