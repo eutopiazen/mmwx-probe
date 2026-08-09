@@ -11,8 +11,8 @@ const routes: Record<string, string> = {
 }
 
 // Workers Builds preview versions do not receive the production runtime
-// bindings. Relay only API traffic through the last immutable preview that
-// has them; static assets still come from the newly built version.
+// bindings. Redirect only API traffic to the last immutable preview that has
+// them; static assets still come from the newly built version.
 const boundPreviewOrigin = 'https://5d7d439f-mmwx-probe.eutopiazen.workers.dev'
 
 function previewRelayURL(request: Request): URL | null {
@@ -46,12 +46,7 @@ export default {
 
     if (!env.MMWX_ORIGIN || !env.PROBE_TOKEN) {
       const relayTarget = previewRelayURL(request)
-      if (relayTarget) {
-        const relayHeaders = new Headers(request.headers)
-        relayHeaders.delete('cookie')
-        relayHeaders.delete('authorization')
-        return fetch(new Request(relayTarget, { method: 'GET', headers: relayHeaders }))
-      }
+      if (relayTarget) return Response.redirect(relayTarget.toString(), 307)
       return new Response('Probe access secret is not configured', { status: 503 })
     }
 

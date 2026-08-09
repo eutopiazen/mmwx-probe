@@ -2,6 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import type { ProbeAppearance, ProbePayload, ThemeName } from './types'
 
 const APPEARANCE_CACHE = 'mmwx-probe-appearance'
+const BOUND_PREVIEW_ORIGIN = 'https://5d7d439f-mmwx-probe.eutopiazen.workers.dev'
+
+function probeApiBase(): string {
+  if (typeof window === 'undefined') return ''
+  const host = window.location.hostname
+  return host.endsWith('.workers.dev') && host.includes('-mmwx-probe.')
+    ? BOUND_PREVIEW_ORIGIN
+    : ''
+}
 
 function normalizeTheme(value?: string): ThemeName {
   return value === 'anime' || value === 'flat' ? value : 'pixel'
@@ -45,7 +54,7 @@ export function useProbe(): { data?: ProbePayload; error?: string } {
     }
     const poll = async () => {
       try {
-        const response = await fetch('/api/probe', { cache: 'no-store' })
+        const response = await fetch(`${probeApiBase()}/api/probe`, { cache: 'no-store' })
         if (!response.ok) throw new Error(`HTTP ${response.status}`)
         accept(await response.json() as ProbePayload)
       } catch (cause) {
@@ -64,8 +73,11 @@ export function useProbe(): { data?: ProbePayload; error?: string } {
     // which otherwise freezes realtime speed at the first snapshot.
     startPolling()
     try {
-      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:'
-      ws = new WebSocket(`${protocol}//${location.host}/api/stream`)
+      const base = probeApiBase()
+      const streamUrl = base
+        ? `${base.replace(/^http/, 'ws')}/api/stream`
+        : `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/api/stream`
+      ws = new WebSocket(streamUrl)
       ws.onmessage = (event) => {
         try { accept(JSON.parse(event.data) as ProbePayload) } catch { /* wait for next frame */ }
       }
