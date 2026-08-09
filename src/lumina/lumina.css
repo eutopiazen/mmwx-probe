@@ -916,10 +916,6 @@
   text-decoration: underline;
 }
 
-.lumina-provider-link svg:last-child {
-  opacity: 0.58;
-}
-
 .lumina-renewal {
   justify-content: flex-end;
   overflow: hidden;

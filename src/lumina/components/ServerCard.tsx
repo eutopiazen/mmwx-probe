@@ -3,7 +3,6 @@ import {
   ArrowUp,
   Clock3,
   Cpu,
-  ExternalLink,
   HardDrive,
   MemoryStick,
   PanelRightOpen,
@@ -108,7 +107,7 @@ export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOp
               rel="noopener noreferrer"
               title={server.providerName ? `前往 ${server.providerName} 官网或续费` : '前往服务商官网或续费'}
             >
-              <Clock3 size={15} aria-hidden="true" />{server.expiry.label}<ExternalLink size={12} aria-hidden="true" />
+              <Clock3 size={15} aria-hidden="true" />{server.expiry.label}
             </a>
           ) : (
             <span data-tone={server.expiry.tone} title={`到期日：${server.expiry.date}`}>
