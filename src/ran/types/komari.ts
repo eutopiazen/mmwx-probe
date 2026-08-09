@@ -10,6 +10,13 @@
 
 export type NodeStatus = 'good' | 'warn' | 'bad'
 
+export interface NodeReturnRoute {
+  carrier: 'telecom' | 'unicom' | 'mobile'
+  region?: string
+  route_type: string
+  tested_at?: string
+}
+
 /** /api/nodes — node metadata */
 export interface KomariNode {
   uuid: string
@@ -56,6 +63,8 @@ export interface KomariNode {
   /** VPS / hosting provider name — Hetzner, Vultr, OVH, etc. May not be in Komari yet. */
   provider?: string
   provider_url?: string
+  telecom_paid_peer?: boolean
+  return_routes?: NodeReturnRoute[]
   daily_traffic?: Array<{
     date: string
     uplink: number

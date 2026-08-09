@@ -73,6 +73,8 @@ export interface ProbeReturnRoute {
 
 export interface ProbePayload {
   enabled: boolean
+  block_login?: boolean
+  show_name?: boolean
   show_globe?: boolean
   title?: string
   logo?: string

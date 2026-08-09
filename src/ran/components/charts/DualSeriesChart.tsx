@@ -23,6 +23,8 @@ interface Props {
   yMin?: number
   yMax: number
   times?: number[]
+  /** Optional fixed time domain; positions partial history inside the selected window. */
+  xDomain?: readonly [number, number]
   /** Tooltip value formatter; defaults to bytes-short style. */
   formatValue?: (v: number) => string
   /** Y-axis label formatter; defaults to bytes-short style. */
@@ -51,6 +53,7 @@ function DualSeriesChart_({
   yMin = 0,
   yMax,
   times,
+  xDomain,
   formatValue,
   formatY,
 }: Props) {
@@ -62,16 +65,33 @@ function DualSeriesChart_({
   const range = yMax - yMin || 1
   const len = series[0]?.data.length ?? 0
   const stepX = len > 1 ? innerW / (len - 1) : 0
+  const useTimedX =
+    Boolean(xDomain) &&
+    xDomain![1] > xDomain![0] &&
+    times?.length === len &&
+    times.every(Number.isFinite)
+  const pointXs = Array.from({ length: len }, (_, i) => {
+    if (!useTimedX) return pad.left + i * stepX
+    const fraction = (times![i] - xDomain![0]) / (xDomain![1] - xDomain![0])
+    return pad.left + Math.max(0, Math.min(1, fraction)) * innerW
+  })
 
   const fmtV = formatValue ?? ((v: number) => `${bytesShort(v)}/s`)
   const fmtY = formatY ?? bytesShort
 
   const resolve = useCallback(
     (svgX: number, svgY: number): TooltipPoint | null => {
-      if (len === 0 || stepX === 0) return null
-      const localX = svgX - pad.left
-      const idx = Math.max(0, Math.min(len - 1, Math.round(localX / stepX)))
-      const cx = pad.left + idx * stepX
+      if (len === 0) return null
+      let idx = 0
+      let bestDx = Infinity
+      for (let i = 0; i < pointXs.length; i++) {
+        const dx = Math.abs(svgX - pointXs[i])
+        if (dx < bestDx) {
+          bestDx = dx
+          idx = i
+        }
+      }
+      const cx = pointXs[idx]
       // pick series whose Y is closest to cursor
       let bestSi = 0
       let bestDy = Infinity
@@ -99,7 +119,7 @@ function DualSeriesChart_({
         subText: t ? formatTipTime(t) : undefined,
       }
     },
-    [len, stepX, pad.left, pad.top, innerH, yMin, yMax, range, series, times, fmtV],
+    [len, pointXs, pad.top, innerH, yMin, yMax, range, series, times, fmtV],
   )
 
   const tooltip = useChartTooltip({
@@ -137,7 +157,7 @@ function DualSeriesChart_({
     const pts = s.data.map(
       (d, i) =>
         [
-          pad.left + i * stepX,
+          pointXs[i],
           pad.top +
             innerH -
             ((Math.max(yMin, Math.min(yMax, d)) - yMin) / range) * innerH,
@@ -146,7 +166,7 @@ function DualSeriesChart_({
     const line = pts
       .map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`))
       .join(' ')
-    const fill = `${line} L${pad.left + innerW},${pad.top + innerH} L${pad.left},${pad.top + innerH} Z`
+    const fill = `${line} L${pts[pts.length - 1][0]},${pad.top + innerH} L${pts[0][0]},${pad.top + innerH} Z`
     return { line, fill, last: pts[pts.length - 1], color: s.color, gradId: s.formatGradId }
   })
 

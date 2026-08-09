@@ -26,6 +26,8 @@ interface Props {
   formatY?: (v: number) => string
   /** Optional per-point unix-ms timestamps; enables hover tooltip with time. */
   times?: number[]
+  /** Optional fixed time domain; positions partial history inside the selected window. */
+  xDomain?: readonly [number, number]
   /** Optional formatter for the tooltip value (gets units etc). Defaults to v.toFixed(1). */
   formatValue?: (v: number) => string
 }
@@ -48,6 +50,7 @@ function AreaChart_({
   gradientId,
   formatY,
   times,
+  xDomain,
   formatValue,
 }: Props) {
   const [wrapRef, w] = useElementWidth<HTMLDivElement>(initialWidth)
@@ -57,6 +60,16 @@ function AreaChart_({
   const innerH = height - pad.top - pad.bottom
   const range = yMax - yMin || 1
   const stepX = data.length > 1 ? innerW / (data.length - 1) : 0
+  const useTimedX =
+    Boolean(xDomain) &&
+    xDomain![1] > xDomain![0] &&
+    times?.length === data.length &&
+    times.every(Number.isFinite)
+  const pointXs = data.map((_, i) => {
+    if (!useTimedX) return pad.left + i * stepX
+    const fraction = (times![i] - xDomain![0]) / (xDomain![1] - xDomain![0])
+    return pad.left + Math.max(0, Math.min(1, fraction)) * innerW
+  })
 
   const id = gradientId ?? `grad-${Math.random().toString(36).slice(2, 8)}`
 
@@ -64,11 +77,18 @@ function AreaChart_({
 
   const resolve = useCallback(
     (svgX: number): TooltipPoint | null => {
-      if (data.length === 0 || stepX === 0) return null
-      const localX = svgX - pad.left
-      const idx = Math.max(0, Math.min(data.length - 1, Math.round(localX / stepX)))
+      if (data.length === 0) return null
+      let idx = 0
+      let bestDx = Infinity
+      for (let i = 0; i < pointXs.length; i++) {
+        const dx = Math.abs(svgX - pointXs[i])
+        if (dx < bestDx) {
+          bestDx = dx
+          idx = i
+        }
+      }
       const v = data[idx]
-      const cx = pad.left + idx * stepX
+      const cx = pointXs[idx]
       const cy =
         pad.top + innerH - ((Math.max(yMin, Math.min(yMax, v)) - yMin) / range) * innerH
       const t = times?.[idx]
@@ -80,7 +100,7 @@ function AreaChart_({
         subText: t ? formatTipTime(t) : undefined,
       }
     },
-    [data, stepX, pad.left, pad.top, innerH, yMin, yMax, range, times, color, fmt],
+    [data, pointXs, pad.top, innerH, yMin, yMax, range, times, color, fmt],
   )
 
   const tooltip = useChartTooltip({
@@ -111,14 +131,14 @@ function AreaChart_({
   const pts = data.map(
     (d, i) =>
       [
-        pad.left + i * stepX,
+        pointXs[i],
         pad.top + innerH - ((Math.max(yMin, Math.min(yMax, d)) - yMin) / range) * innerH,
       ] as [number, number],
   )
   const path = pts
     .map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`))
     .join(' ')
-  const fillPath = `${path} L${pad.left + innerW},${pad.top + innerH} L${pad.left},${pad.top + innerH} Z`
+  const fillPath = `${path} L${pts[pts.length - 1][0]},${pad.top + innerH} L${pts[0][0]},${pad.top + innerH} Z`
 
   const formatLabel = formatY ?? ((v: number) => v.toFixed(0))
 

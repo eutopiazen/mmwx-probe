@@ -195,6 +195,39 @@ export function TrafficPage({
     return { total, totalTx, totalRx, liveBps, avgBps, online, splitKnown }
   }, [nodeTraffic])
 
+  // MMWX exposes real per-day traffic for the current reset cycle. Aggregate
+  // by date across nodes; do not derive it from instantaneous throughput.
+  const dailyTraffic = useMemo(() => {
+    const byDate = new Map<string, { uplink: number; downlink: number; total: number }>()
+    for (const node of nodes) {
+      for (const day of node.daily_traffic ?? []) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(day.date)) continue
+        const current = byDate.get(day.date) ?? { uplink: 0, downlink: 0, total: 0 }
+        current.uplink += Number.isFinite(day.uplink) ? day.uplink : 0
+        current.downlink += Number.isFinite(day.downlink) ? day.downlink : 0
+        current.total += Number.isFinite(day.total) ? day.total : 0
+        byDate.set(day.date, current)
+      }
+    }
+    return [...byDate.entries()]
+      .map(([date, values]) => ({ date, ...values }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(-31)
+  }, [nodes])
+
+  const dailyTrafficTotals = useMemo(
+    () =>
+      dailyTraffic.reduce(
+        (sum, day) => ({
+          uplink: sum.uplink + day.uplink,
+          downlink: sum.downlink + day.downlink,
+          total: sum.total + day.total,
+        }),
+        { uplink: 0, downlink: 0, total: 0 },
+      ),
+    [dailyTraffic],
+  )
+
   // Hero stats — sparklines are derived from the global 1H history aggregate.
   const heroStats = useMemo(() => {
     const totalStr = formatBytes(stats.total).split(' ')
@@ -350,6 +383,41 @@ export function TrafficPage({
               formatValue={(v) => `${formatBps(v)}`}
             />
           </CardFrame>
+
+          {dailyTraffic.length > 0 && (
+            <CardFrame
+              title="本周期每日流量"
+              code="T · 07"
+              action={<Etch>{dailyTraffic.length} DAYS · API REPORTED</Etch>}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <BarChart
+                  data={dailyTraffic.map((day) => day.total)}
+                  width={1000}
+                  height={150}
+                  color="var(--signal-info)"
+                  labels={dailyTraffic.map((day, index) =>
+                    index === 0 || index === dailyTraffic.length - 1 || index % 5 === 0
+                      ? day.date.slice(5)
+                      : '',
+                  )}
+                />
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                    gap: 10,
+                    paddingTop: 10,
+                    borderTop: '1px solid var(--edge-engrave)',
+                  }}
+                >
+                  <TrafficSummary label="上传" value={dailyTrafficTotals.uplink} color="var(--accent-bright)" />
+                  <TrafficSummary label="下载" value={dailyTrafficTotals.downlink} color="var(--signal-good)" />
+                  <TrafficSummary label="合计" value={dailyTrafficTotals.total} color="var(--signal-info)" />
+                </div>
+              </div>
+            </CardFrame>
+          )}
 
           {/* Top Talkers */}
           <CardFrame
@@ -517,6 +585,20 @@ export function TrafficPage({
 
         <Footer config={config} />
       </div>
+    </div>
+  )
+}
+
+function TrafficSummary({ label, value, color }: { label: string; value: number; color: string }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Etch>{label}</Etch>
+      <span
+        className="mono tnum"
+        style={{ color, fontSize: contentFs(15), fontWeight: 600, letterSpacing: '-0.02em' }}
+      >
+        {formatBytes(value)}
+      </span>
     </div>
   )
 }

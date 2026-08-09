@@ -14,6 +14,83 @@ export interface LoadSeries {
   load: number[]
 }
 
+export interface TimedLoadSeries {
+  data: number[]
+  times: number[]
+}
+
+export interface TimedNetworkSeries {
+  netIn: number[]
+  netOut: number[]
+  times: number[]
+  hasIn: boolean
+  hasOut: boolean
+}
+
+export type LoadMetric = 'cpu' | 'ram' | 'disk' | 'netIn' | 'netOut' | 'load'
+
+function metricValue(record: LoadRecord, metric: LoadMetric): number | undefined {
+  if (metric === 'cpu') return record.cpu
+  if (metric === 'netIn') return record.net_in
+  if (metric === 'netOut') return record.net_out
+  if (metric === 'load') return record.load
+  if (metric === 'ram') {
+    if (record.ram == null) return undefined
+    if (record.ram_total && record.ram_total > 0) return (record.ram / record.ram_total) * 100
+    return record.ram <= 100 ? record.ram : undefined
+  }
+  if (record.disk == null) return undefined
+  if (record.disk_total && record.disk_total > 0) return (record.disk / record.disk_total) * 100
+  return record.disk <= 100 ? record.disk : undefined
+}
+
+/**
+ * Preserve the timestamps actually returned by the backend. This is used by
+ * detail charts so an unfilled 6H/24H window starts where collection really
+ * started instead of manufacturing leading zero samples.
+ */
+export function timedLoadMetric(history: LoadHistory, metric: LoadMetric): TimedLoadSeries {
+  const points = (history?.records ?? [])
+    .map((record) => ({
+      time: new Date(record.time).getTime(),
+      value: metricValue(record, metric),
+    }))
+    .filter(
+      (point): point is { time: number; value: number } =>
+        Number.isFinite(point.time) && point.value != null && Number.isFinite(point.value),
+    )
+    .sort((a, b) => a.time - b.time)
+  return {
+    data: points.map((point) => point.value),
+    times: points.map((point) => point.time),
+  }
+}
+
+/** Network metrics share timestamps in MMWX system-series responses. */
+export function timedNetwork(history: LoadHistory): TimedNetworkSeries {
+  const records = (history?.records ?? [])
+    .map((record) => ({
+      time: new Date(record.time).getTime(),
+      netIn: record.net_in,
+      netOut: record.net_out,
+    }))
+    .filter(
+      (record) =>
+        Number.isFinite(record.time) &&
+        (Number.isFinite(record.netIn) || Number.isFinite(record.netOut)),
+    )
+    .sort((a, b) => a.time - b.time)
+  const hasIn = records.some((record) => Number.isFinite(record.netIn))
+  const hasOut = records.some((record) => Number.isFinite(record.netOut))
+  return {
+    times: records.map((record) => record.time),
+    netIn: records.map((record) => (Number.isFinite(record.netIn) ? record.netIn! : 0)),
+    netOut: records.map((record) => (Number.isFinite(record.netOut) ? record.netOut! : 0)),
+    hasIn,
+    hasOut,
+  }
+}
+
 export function bucketLoadHistory(
   history: LoadHistory,
   buckets = 60,

@@ -36,7 +36,7 @@ import {
   daysUntil,
   resolveRamPercent,
 } from '@/utils/format'
-import { bucketLoadHistory } from '@/utils/load'
+import { timedLoadMetric } from '@/utils/load'
 import { aggregatePingByTarget, hasPingData } from '@/utils/ping'
 import { contentFs } from '@/utils/fontScale'
 import { filterWindowsByRetention, getRecordRetentionHours } from '@/utils/retention'
@@ -875,10 +875,13 @@ export function HubPage({
   const online = record?.online === true
 
   const windowMs = HOURS * 60 * 60 * 1000
-  const buckets = useMemo(
-    () => bucketLoadHistory(history.load, BUCKETS, windowMs),
-    [history.load, BUCKETS, windowMs],
-  )
+  const cpuHistory = useMemo(() => timedLoadMetric(history.load, 'cpu'), [history.load])
+  const memoryHistory = useMemo(() => timedLoadMetric(history.load, 'ram'), [history.load])
+  const netHistory = useMemo(() => timedLoadMetric(history.load, 'netIn'), [history.load])
+  const historyDomain = useMemo<readonly [number, number]>(() => {
+    const end = Date.now()
+    return [end - windowMs, end]
+  }, [history.load, windowMs])
   const bucketTimes = useMemo(() => {
     const start = Date.now() - windowMs
     const bucketMs = windowMs / BUCKETS
@@ -1386,9 +1389,10 @@ export function HubPage({
                 >
                   <div style={{ padding: '8px 12px 12px' }}>
                     <AreaChart
-                      data={buckets.cpu}
+                      data={cpuHistory.data}
                       height={120}
-                      times={bucketTimes}
+                      times={cpuHistory.times}
+                      xDomain={historyDomain}
                       formatValue={formatPctValue}
                       yMax={100}
                       threshold={80}
@@ -1414,9 +1418,10 @@ export function HubPage({
                 >
                   <div style={{ padding: '8px 12px 12px' }}>
                     <AreaChart
-                      data={buckets.ram}
+                      data={memoryHistory.data}
                       height={120}
-                      times={bucketTimes}
+                      times={memoryHistory.times}
+                      xDomain={historyDomain}
                       formatValue={formatPctValue}
                       yMax={100}
                       threshold={80}
@@ -1444,13 +1449,14 @@ export function HubPage({
                 >
                   <div style={{ padding: '8px 12px 12px' }}>
                     <AreaChart
-                      data={buckets.netIn}
+                      data={netHistory.data}
                       height={120}
                       color="var(--signal-info)"
-                      times={bucketTimes}
+                      times={netHistory.times}
+                      xDomain={historyDomain}
                       formatValue={(v) => formatBps(v)}
                       formatY={formatBytesAxis}
-                      yMax={Math.max(1, ...buckets.netIn) * 1.2 || 1}
+                      yMax={Math.max(1, ...netHistory.data) * 1.2 || 1}
                     />
                   </div>
                 </CardFrame>

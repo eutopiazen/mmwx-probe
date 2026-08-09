@@ -23,7 +23,7 @@ import {
   daysUntil,
   resolveRamPercent,
 } from '@/utils/format'
-import { bucketLoadHistory, hasLoadData } from '@/utils/load'
+import { timedLoadMetric, timedNetwork } from '@/utils/load'
 import { aggregatePingByTarget, hasPingData } from '@/utils/ping'
 import type { PingTask } from '@/api/client'
 import { getRecordRetentionHours } from '@/utils/retention'
@@ -132,11 +132,16 @@ export function NodeDetailPage({
   const labels = node ? parseLabels(node.tags) : { raw: [] }
 
   const windowMs = windowSpec.hours * 60 * 60 * 1000
-  // Bucketed real history (zero-filled when there's no data yet).
-  const buckets = useMemo(
-    () => bucketLoadHistory(history.load, windowSpec.buckets, windowMs),
-    [history.load, windowSpec.buckets, windowMs],
-  )
+  // Keep the backend's real timestamps. An incomplete 6H/24H window must not
+  // be padded with synthetic zeroes before collection actually started.
+  const cpuHistory = useMemo(() => timedLoadMetric(history.load, 'cpu'), [history.load])
+  const memoryHistory = useMemo(() => timedLoadMetric(history.load, 'ram'), [history.load])
+  const diskHistory = useMemo(() => timedLoadMetric(history.load, 'disk'), [history.load])
+  const networkHistory = useMemo(() => timedNetwork(history.load), [history.load])
+  const historyDomain = useMemo<readonly [number, number]>(() => {
+    const end = Date.now()
+    return [end - windowMs, end]
+  }, [history.load, windowMs])
   // Per-point timestamps for chart tooltips. Same scheme as bucketLoadHistory:
   // bucketMs * (i + 0.5) gives the slot midpoint.
   const bucketTimes = useMemo(() => {
@@ -269,12 +274,11 @@ export function NodeDetailPage({
 
   const subtitle = `${node.region ?? '—'} · ${node.ip ?? '—'} · UP ${online ? formatUptime(record?.uptime) : '—'}`
 
-  const haveLoadHistory = hasLoadData(history.load)
-  const haveDiskHistory = history.load.records.some((item) => item.disk != null)
-  const cpuHist = buckets.cpu
-  const memHist = buckets.ram
-  const netUpHist = buckets.netOut
-  const netDownHist = buckets.netIn
+  const haveCpuHistory = cpuHistory.data.length > 0
+  const haveMemoryHistory = memoryHistory.data.length > 0
+  const haveDiskHistory = diskHistory.data.length > 0
+  const haveNetworkHistory = networkHistory.hasIn || networkHistory.hasOut
+  const hasConnectionData = record?.tcp != null || record?.udp != null || record?.process != null
 
   // Specs strip
   // Try to extract kernel from os string (e.g. "Debian GNU/Linux 13 · 6.1.0-26 · amd64").
@@ -673,18 +677,19 @@ export function NodeDetailPage({
                   code="C · 01"
                   action={
                     <Etch>
-                      {haveLoadHistory
-                        ? `${history.load.count} SAMPLES`
+                      {haveCpuHistory
+                        ? `${cpuHistory.data.length} SAMPLES`
                         : history.loading
                           ? 'LOADING'
                           : 'NO DATA'}
                     </Etch>
                   }
                 >
-                  <ChartOrEmpty empty={!haveLoadHistory}>
+                  <ChartOrEmpty empty={!haveCpuHistory}>
                     <AreaChart
-                      data={cpuHist}
-                      times={bucketTimes}
+                      data={cpuHistory.data}
+                      times={cpuHistory.times}
+                      xDomain={historyDomain}
                       formatValue={(v) => `${v.toFixed(1)}%`}
                       width={400}
                       height={150}
@@ -696,11 +701,16 @@ export function NodeDetailPage({
                     />
                   </ChartOrEmpty>
                 </CardFrame>
-                <CardFrame title={`Memory · ${windowSpec.titleSuffix}`} code="C · 02">
-                  <ChartOrEmpty empty={!haveLoadHistory}>
+                <CardFrame
+                  title={`Memory · ${windowSpec.titleSuffix}`}
+                  code="C · 02"
+                  action={<Etch>{haveMemoryHistory ? `${memoryHistory.data.length} SAMPLES` : 'NO DATA'}</Etch>}
+                >
+                  <ChartOrEmpty empty={!haveMemoryHistory}>
                     <AreaChart
-                      data={memHist}
-                      times={bucketTimes}
+                      data={memoryHistory.data}
+                      times={memoryHistory.times}
+                      xDomain={historyDomain}
                       formatValue={(v) => `${v.toFixed(1)}%`}
                       width={400}
                       height={150}
@@ -715,12 +725,13 @@ export function NodeDetailPage({
                 <CardFrame
                   title={`Disk · ${windowSpec.titleSuffix}`}
                   code="C · 03"
-                  action={<Etch>USAGE %</Etch>}
+                  action={<Etch>{haveDiskHistory ? `${diskHistory.data.length} SAMPLES` : 'CURRENT ONLY'}</Etch>}
                 >
-                  <ChartOrEmpty empty={!haveDiskHistory}>
+                  <ChartOrEmpty empty={!haveDiskHistory} label="CURRENT VALUE ONLY · NO HISTORY API">
                     <AreaChart
-                      data={buckets.disk}
-                      times={bucketTimes}
+                      data={diskHistory.data}
+                      times={diskHistory.times}
+                      xDomain={historyDomain}
                       formatValue={(v) => `${v.toFixed(1)}%`}
                       width={400}
                       height={150}
@@ -735,10 +746,17 @@ export function NodeDetailPage({
                 <CardFrame
                   title={`Network · ${windowSpec.titleSuffix}`}
                   code="C · 04"
-                  action={<Etch>↑ / ↓ BYTES/S</Etch>}
+                  action={<Etch>{haveNetworkHistory ? `${networkHistory.times.length} SAMPLES` : 'NO DATA'}</Etch>}
                 >
-                  <ChartOrEmpty empty={!haveLoadHistory}>
-                    <DualNetChart up={netUpHist} down={netDownHist} times={bucketTimes} />
+                  <ChartOrEmpty empty={!haveNetworkHistory}>
+                    <DualNetChart
+                      up={networkHistory.netOut}
+                      down={networkHistory.netIn}
+                      times={networkHistory.times}
+                      xDomain={historyDomain}
+                      hasUp={networkHistory.hasOut}
+                      hasDown={networkHistory.hasIn}
+                    />
                   </ChartOrEmpty>
                 </CardFrame>
               </div>
@@ -751,7 +769,12 @@ export function NodeDetailPage({
                   gap: 16,
                 }}
               >
-                <CardFrame title="Connections" code="P · 11" action={<Etch>BY KIND</Etch>}>
+                <CardFrame
+                  title="Connections"
+                  code="P · 11"
+                  action={<Etch>{hasConnectionData ? 'BY KIND' : 'NOT EXPOSED'}</Etch>}
+                >
+                  {hasConnectionData ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                     {[
                       {
@@ -804,6 +827,9 @@ export function NodeDetailPage({
                       />
                     </div>
                   </div>
+                  ) : (
+                    <FeatureUnavailable text="CURRENT PROBE API DOES NOT EXPOSE CONNECTION OR PROCESS COUNTS" />
+                  )}
                 </CardFrame>
 
                 <CardFrame title="Traffic" code="T · 11" action={<Etch>REPORTED TOTAL</Etch>}>
@@ -883,6 +909,58 @@ export function NodeDetailPage({
                     </div>
                   </div>
                 </CardFrame>
+
+                {!!node.return_routes?.length && (
+                  <CardFrame
+                    title="Return Routes"
+                    code="R · 11"
+                    action={<Etch>{node.telecom_paid_peer ? '163 PAID PEER' : 'LATEST TEST'}</Etch>}
+                  >
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {node.return_routes.map((route, index) => (
+                        <div
+                          key={`${route.carrier}-${index}`}
+                          style={{
+                            display: 'grid',
+                            gridTemplateColumns: '76px minmax(0, 1fr)',
+                            gap: 10,
+                            alignItems: 'baseline',
+                            padding: '6px 0',
+                            borderBottom:
+                              index < node.return_routes!.length - 1
+                                ? '1px solid var(--edge-engrave)'
+                                : 'none',
+                          }}
+                        >
+                          <Etch>{routeCarrierLabel(route.carrier)}</Etch>
+                          <div style={{ minWidth: 0 }}>
+                            <div
+                              style={{
+                                color: 'var(--fg-0)',
+                                fontSize: contentFs(12),
+                                fontWeight: 600,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                              }}
+                              title={route.route_type}
+                            >
+                              {route.route_type}
+                            </div>
+                            {(route.region || route.tested_at) && (
+                              <div
+                                className="mono"
+                                style={{ marginTop: 2, color: 'var(--fg-3)', fontSize: contentFs(9) }}
+                              >
+                                {[route.region, formatRouteTime(route.tested_at)].filter(Boolean).join(' · ')}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardFrame>
+                )}
               </div>
             </>
           )}
@@ -972,7 +1050,15 @@ export function NodeDetailPage({
   )
 }
 
-function ChartOrEmpty({ empty, children }: { empty: boolean; children: React.ReactNode }) {
+function ChartOrEmpty({
+  empty,
+  children,
+  label = 'NO HISTORY DATA',
+}: {
+  empty: boolean
+  children: React.ReactNode
+  label?: string
+}) {
   if (empty) {
     return (
       <div
@@ -991,7 +1077,7 @@ function ChartOrEmpty({ empty, children }: { empty: boolean; children: React.Rea
           borderRadius: 2,
         }}
       >
-        NO HISTORY DATA
+        {label}
       </div>
     )
   }
@@ -1003,23 +1089,35 @@ function DualNetChart({
   up,
   down,
   times,
+  xDomain,
+  hasUp,
+  hasDown,
 }: {
   up: number[]
   down: number[]
   times?: number[]
+  xDomain?: readonly [number, number]
+  hasUp: boolean
+  hasDown: boolean
 }) {
   // Use PingChart's multi-series machinery — it already handles tooltip-picks-
   // closest-series. We just relabel the units (B/s instead of ms).
-  const maxV = Math.max(...up, ...down, 1)
+  const maxV = Math.max(...(hasUp ? up : []), ...(hasDown ? down : []), 1)
   const yMax = maxV * 1.2 || 1
+  const series = [
+    ...(hasUp
+      ? [{ data: up, label: '↑ TX', color: 'var(--accent-bright)', formatGradId: 'ndt-netup' }]
+      : []),
+    ...(hasDown
+      ? [{ data: down, label: '↓ RX', color: 'var(--signal-good)', formatGradId: 'ndt-netdown' }]
+      : []),
+  ]
   return (
     <div style={{ position: 'relative' }}>
       <DualSeriesChart
-        series={[
-          { data: up, label: '↑ TX', color: 'var(--accent-bright)', formatGradId: 'ndt-netup' },
-          { data: down, label: '↓ RX', color: 'var(--signal-good)', formatGradId: 'ndt-netdown' },
-        ]}
+        series={series}
         times={times}
+        xDomain={xDomain}
         yMax={yMax}
       />
       {/* Legend */}
@@ -1042,7 +1140,7 @@ function DualNetChart({
           pointerEvents: 'none',
         }}
       >
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          {hasUp && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
           <span
             style={{
               width: 8,
@@ -1052,8 +1150,8 @@ function DualNetChart({
             }}
           />
           ↑ TX
-        </span>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          </span>}
+          {hasDown && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
           <span
             style={{
               width: 8,
@@ -1063,7 +1161,7 @@ function DualNetChart({
             }}
           />
           ↓ RX
-        </span>
+        </span>}
       </div>
     </div>
   )
@@ -1191,6 +1289,47 @@ function PingTargetCard({
       </div>
     </div>
   )
+}
+
+function FeatureUnavailable({ text }: { text: string }) {
+  return (
+    <div
+      style={{
+        minHeight: 118,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '14px 18px',
+        textAlign: 'center',
+        color: 'var(--fg-3)',
+        background: 'var(--bg-inset)',
+        border: '1px solid var(--edge-engrave)',
+        borderRadius: 2,
+        fontFamily: 'var(--font-mono)',
+        fontSize: contentFs(9),
+        letterSpacing: '0.12em',
+        lineHeight: 1.7,
+      }}
+    >
+      {text}
+    </div>
+  )
+}
+
+function routeCarrierLabel(carrier: 'telecom' | 'unicom' | 'mobile') {
+  return carrier === 'telecom' ? '电信' : carrier === 'unicom' ? '联通' : '移动'
+}
+
+function formatRouteTime(value?: string) {
+  if (!value) return ''
+  const time = new Date(value)
+  if (!Number.isFinite(time.getTime())) return ''
+  return time.toLocaleString('zh-CN', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
 function ConnRow({ label, value }: { label: string; value: string | number }) {

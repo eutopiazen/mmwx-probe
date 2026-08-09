@@ -80,6 +80,8 @@ function toNode(server: ProbeServer, index: number): KomariNode {
     traffic_limit_type: 'sum',
     provider: server.provider_name,
     provider_url: server.provider_url,
+    telecom_paid_peer: server.telecom_paid_peer,
+    return_routes: server.return_routes,
     weight: index,
     hidden: false,
     flag: countryCode(server),
