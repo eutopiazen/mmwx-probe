@@ -448,4 +448,635 @@ body {
 
 /* .engrave â€” utility class for "stamped/cut into surface" effect on large
    text only. Apply to card titles, section headers, large status labels
-   (â‰¥14px). NOT for small labels (â‰¤11p×^=¶‰žËkºwµçiô4(4(¼¨Q¥¬Í…±”ƒŠPÙ•ÉÑ¥…°½È¡½É¥é½¹Ñ…°ÉÕ±•È€¨¼4(¹Ñ¥¬µÍ…±”ì4(€‰…­É½Õ¹µ¥µ…”èÉ•Á•…Ñ¥¹œµ±¥¹•…ÈµÉ…‘¥•¹Ð 4(€€€€äÁ‘•œ°4(€€€Ù…È ´µ™œ´Ì¤€À°4(€€€Ù…È ´µ™œ´Ì¤€ÅÁà°4(€€€ÑÉ…¹ÍÁ…É•¹Ð€ÅÁà°4(€€€ÑÉ…¹ÍÁ…É•¹Ð€áÁà4(€€¤ì4(€¡•¥¡Ðè€ÙÁàì4(€½Á…¥Ñäè€À¸Ôì4)ô4(4(¼¨!…É‘Ý…É”Í•…´ƒŠPÍÕ‰Ñ±”¡½É¥é½¹Ñ…°‘¥Ù¥‘•ÈÝ¥Ñ •¹Ñ•È…À€¨¼4(¹Í•…´ì4(€¡•¥¡Ðè€ÅÁàì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð 4(€€€€äÁ‘•œ°4(€€€ÑÉ…¹ÍÁ…É•¹Ð€À°4(€€€Ù…È ´µ•‘”µ‘••À¤€áÁà°4(€€€Ù…È ´µ•‘”µ‘••À¤…±Œ ÄÀÀ”€´€áÁà¤°4(€€€ÑÉ…¹ÍÁ…É•¹Ð€ÄÀÀ”4(€€¤ì4(€‰½É‘•Èµ‰½ÑÑ½´è€ÅÁàÍ½±¥Ù…È ´µ•‘”µ‰É¥¡Ð¤ì4)ô4(4(¼¨MÉ½±±‰…ÈƒŠPÍÕ‰Ñ±”€¨¼4(èèµÝ•‰­¥ÐµÍÉ½±±‰…Èì4(€Ý¥‘Ñ è€ÄÁÁàì4(€¡•¥¡Ðè€ÄÁÁàì4)ô4(4(èèµÝ•‰­¥ÐµÍÉ½±±‰…ÈµÑÉ…¬ì4(€‰…­É½Õ¹èÙ…È ´µ‰œ´Ä¤ì4)ô4(4(èèµÝ•‰­¥ÐµÍÉ½±±‰…ÈµÑ¡Õµˆì4(€‰…­É½Õ¹èÙ…È ´µ‰œ´Ì¤ì4(€‰½É‘•Èè€ÉÁàÍ½±¥Ù…È ´µ‰œ´Ä¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ÕÁàì4)ô4(4(èèµÝ•‰­¥ÐµÍÉ½±±‰…ÈµÑ¡Õµˆé¡½Ù•Èì4(€‰…­É½Õ¹èÙ…È ´µ‰œ´Ð¤ì4)ô4(4(¼¨M•±•Ñ¥½¸€¨¼4(èéÍ•±•Ñ¥½¸ì4(€‰…­É½Õ¹èÙ…È ´µ…•¹Ðµ‘¥´¤ì4(€½±½ÈèÙ…È ´µ™œµµ…É¬¤ì4)ô4(4(¼¨ƒŠRŠRŠR ¹¥µ…Ñ¥½¹Ì€¡ATµ½µÁ½Í¥Ñ•°ù™É•”¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)­•å™É…µ•ÌÉ…¸µÁÕ±Í”ì4(€€À”ì4(€€€ÑÉ…¹Í™½É´èÍ…±” À¸Ø¤ì4(€€€½Á…¥Ñäè€À¸Üì4(€ô4(€€ÄÀÀ”ì4(€€€ÑÉ…¹Í™½É´èÍ…±” Ä¸à¤ì4(€€€½Á…¥Ñäè€Àì4(€ô4)ô4(4)­•å™É…µ•ÌÉ…¸µÍÝ••Àì4(€€À”ì4(€€€ÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•` ´ÄÀÀ”¤ì4(€ô4(€€ÄÀÀ”ì4(€€€ÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•` ÈÀÀ”¤ì4(€ô4)ô4(4)­•å™É…µ•ÌÉ…¸µ‰±¥¹¬ì4(€€À”°4(€€ÔÀ”ì4(€€€½Á…¥Ñäè€Äì4(€ô4(€€ÔÀ¸ÀÄ”°4(€€ÄÀÀ”ì4(€€€½Á…¥Ñäè€À¸Èì4(€ô4)ô4(4(¼¨ƒŠRŠR É…¸µÑ½µ…Ð€¡ÍÑ••°‰±Õ”µÉ•ä¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µÑ½µ…Ðtì4(€€´µ‰œ´Àè€ŒÉ„ÌàÐàì4(€€´µ‰œ´Äè€ŒÌÈÐÈÔÈì4(€€´µ‰œ´Èè€ŒÍ„ÑÕ”ì4(€€´µ‰œ´Ìè€ŒÐØÔäÙŒì4(€€´µ‰œ´Ðè€ŒÔÈØØÜÜì4(€€´µ‰œµ¥¹Í•Ðè€ŒÅ”É”ÍŒì4(4(€€´µ™œ´Àè€”á••˜Ðì4(€€´µ™œ´Äè€‰ŒáÐì4(€€´µ™œ´Èè€ŒàØå……”ì4(€€´µ™œ´Ìè€ŒÕ”ÜÈàØì4(€€´µ™œµµ…É¬è€™™™™™˜ì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ À°€À°€À°€À¸Ô¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÄÀ°€ÈÈÐ°€ÈÌà°€À¸ÄÀ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÄÀ°€ÈÈÐ°€ÈÌà°€À¸ÀÔ¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ À°€À°€À°€À¸ÔÀ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ À°€À°€À°€À¸Ìà¤ì4(4(€€´µ…•¹Ðè€”á„ÐÔàì4(€€´µ…•¹Ðµ‘¥´è€ŒÐàÈÍ„ì4(€€´µ…•¹Ðµ‰É¥¡Ðè€˜Á‰ŒÜàì4(4(€€´µÍ¥¹…°µ½½è€Œàáˆá„àì4(€€´µÍ¥¹…°µÝ…É¸è€Ñ„àÐÀì4(€€´µÍ¥¹…°µ‰…è€àØÀÔÀì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÙ„å™Àì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸ÈÔ¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸ÌÀ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ðì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ ÈÄÀ°€ÈÈÐ°€ÈÌà°€À¸ÀØ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ ÈÄÀ°€ÈÈÐ°€ÈÌà°€À¸ÄÈ¤ì4)ô4(4(¼¨ƒŠRŠR É…¸µÑ•…°€¡‘••ÀÑ•…°¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µÑ•…°tì4(€€´µ‰œ´Àè€ŒÅ˜ÌÔÌÜì4(€€´µ‰œ´Äè€ŒÈÐÍÍ˜ì4(€€´µ‰œ´Èè€ŒÉ„ÐÔÐàì4(€€´µ‰œ´Ìè€ŒÌÈÑ˜ÔÌì4(€€´µ‰œ´Ðè€ŒÍ„Õ„Õ”ì4(€€´µ‰œµ¥¹Í•Ðè€ŒÄØÉ„ÉŒì4(4(€€´µ™œ´Àè€”á˜Á•”ì4(€€´µ™œ´Äè€‰ŒáŒÔì4(€€´µ™œ´Èè€ŒàÈäÌá˜ì4(€€´µ™œ´Ìè€ŒÕ„ÙˆØÜì4(€€´µ™œµµ…É¬è€™™™™™˜ì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ À°€À°€À°€À¸Ô¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÈÀ°€ÈÐÀ°€ÈÌÐ°€À¸ÄÀ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÈÀ°€ÈÐÀ°€ÈÌÐ°€À¸ÀÔ¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ À°€À°€À°€À¸ÔÈ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ À°€À°€À°€À¸ÐÈ¤ì4(4(€€´µ…•¹Ðè€”á„ÐÔàì4(€€´µ…•¹Ðµ‘¥´è€ŒÐàÈÍ„ì4(€€´µ…•¹Ðµ‰É¥¡Ðè€˜Á‰ŒÜàì4(4(€€´µÍ¥¹…°µ½½è€ŒÝ•ŒÁ„Àì4(€€´µÍ¥¹…°µÝ…É¸è€Ñ„àÐÀì4(€€´µÍ¥¹…°µ‰…è€àØÀÔÀì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÕ„å•ŒÀì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸Èà¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸ÌÈ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ðì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ ÈÈÀ°€ÈÐÀ°€ÈÌÐ°€À¸ÀØ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ ÈÈÀ°€ÈÐÀ°€ÈÌÐ°€À¸ÄÈ¤ì4)ô4(4(¼¨ƒŠRŠR É…¸µµ¥‘¹¥¡Ð€¡‘••À¹…Ùä¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µµ¥‘¹¥¡Ðtì4(€€´µ‰œ´Àè€ŒÁŒÄÐÈÈì4(€€´µ‰œ´Äè€ŒÄÀÅ„ÉŒì4(€€´µ‰œ´Èè€ŒÄØÈÀÌàì4(€€´µ‰œ´Ìè€ŒÅŒÈàÐÐì4(€€´µ‰œ´Ðè€ŒÈÐÌÀÔÀì4(€€´µ‰œµ¥¹Í•Ðè€ŒÀàÁ”Äàì4(4(€€´µ™œ´Àè€”á••˜àì4(€€´µ™œ´Äè€‰Œá‘Œì4(€€´µ™œ´Èè€ŒÝ„á…„àì4(€€´µ™œ´Ìè€ŒÑ”ÕŒÜàì4(€€´µ™œµµ…É¬è€™™™™™˜ì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ À°€À°€À°€À¸Ø¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÀÀ°€ÈÈÀ°€ÈÔÔ°€À¸ÄÀ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÀÀ°€ÈÈÀ°€ÈÔÔ°€À¸ÀÔ¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ À°€À°€À°€À¸ØÈ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ À°€À°€À°€À¸ÔÀ¤ì4(4(€€´µ…•¹Ðè€”Á„ÔÕ„ì4(€€´µ…•¹Ðµ‘¥´è€‰ŒàÐÌàì4(€€´µ…•¹Ðµ‰É¥¡Ðè€˜Á‰”Üàì4(4(€€´µÍ¥¹…°µ½½è€ŒÕ…ˆÀààì4(€€´µÍ¥¹…°µÝ…É¸è€Ñ„àÐÀì4(€€´µÍ¥¹…°µ‰…è€àØÀÔÀì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÕ„á•Œàì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸ÌÔ¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€À¸ÐÀ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ðì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ ÈÀÀ°€ÈÈÀ°€ÈÔÔ°€À¸ÀØ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ ÈÀÀ°€ÈÈÀ°€ÈÔÔ°€À¸ÄÈ¤ì4)ô4(4(¼¨ƒŠRŠR É…¸µµ¥¹Ð€¡Á…±”µ¥¹Ð¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µµ¥¹Ðtì4(€€´µ‰œ´Àè€‘••”Ôì4(€€´µ‰œ´Äè€”É˜Å•„ì4(€€´µ‰œ´Èè€”á˜Ñ•˜ì4(€€´µ‰œ´Ìè€••˜Ý˜Ìì4(€€´µ‰œ´Ðè€˜Ñ™…˜Üì4(€€´µ‰œµ¥¹Í•Ðè€”Ù‘„ì4(4(€€´µ™œ´Àè€ŒÁ”É„ÈÈì4(€€´µ™œ´Äè€ŒÅŒÐÐÌàì4(€€´µ™œ´Èè€ŒÑ”ÜØÙ„ì4(€€´µ™œ´Ìè€ŒàÉ„ÈäÐì4(€€´µ™œµµ…É¬è€ŒÀÀÀÀÀÀì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸ØÔ¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸ÜÔ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸Ð¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸ÈÈ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸ÄÐ¤ì4(4(€€´µ…•¹Ðè€ŒÉ”ààÜÀì4(€€´µ…•¹Ðµ‘¥´è€ŒÅ”ØàÔàì4(€€´µ…•¹Ðµ‰É¥¡Ðè€ŒÍ…„àààì4(4(€€´µÍ¥¹…°µ½½è€ŒÍ„äÀØÀì4(€€´µÍ¥¹…°µÝ…É¸è€„ÀÜÀÄàì4(€€´µÍ¥¹…°µ‰…è€ŒÀÌàÈàì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÉ„Øàäàì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸Àà¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸ÄÈ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ðì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸ÀÜ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ ÈÀ°€ÜÀ°€ÔÔ°€À¸ÄÐ¤ì4)ô4(4(¼¨ƒŠRŠR É…¸µ‰ÕÑÑ•È€¡Ý…É´É•…´¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µ‰ÕÑÑ•Ètì4(€€´µ‰œ´Àè€˜Ù•Œàì4(€€´µ‰œ´Äè€˜á•™Èì4(€€´µ‰œ´Èè€™…˜É‘Œì4(€€´µ‰œ´Ìè€™˜Ù”Øì4(€€´µ‰œ´Ðè€™•™…˜Èì4(€€´µ‰œµ¥¹Í•Ðè€•‘”ÁˆÀì4(4(€€´µ™œ´Àè€ŒÍ„ÉŒÁŒì4(€€´µ™œ´Äè€ŒÕ”ÐàÄàì4(€€´µ™œ´Èè€Œá”ÜÐÌàì4(€€´µ™œ´Ìè€ˆÕ„ÀÙŒì4(€€´µ™œµµ…É¬è€ŒÀÀÀÀÀÀì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸ØÔ¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸ÜÔ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸Ð¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸ÈÈ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸ÄÐ¤ì4(4(€€´µ…•¹Ðè€ŒÐààÅŒì4(€€´µ…•¹Ðµ‘¥´è€„ÀÙ„ÄÀì4(€€´µ…•¹Ðµ‰É¥¡Ðè€‘•„ÀÌÀì4(4(€€´µÍ¥¹…°µ½½è€ŒÝ„åŒÐÀì4(€€´µÍ¥¹…°µÝ…É¸è€ŒÀÜàÄàì4(€€´µÍ¥¹…°µ‰…è€ŒÀÌàÈàì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÉ„Øàäàì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸Àà¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸ÄÈ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ðì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸ÀÜ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ àÀ°€ÔÔ°€ÄÀ°€À¸ÄÐ¤ì4)ô4(4(¼¨ƒŠRŠR É…¸µ©¤€£¦rƒŠP±•…ÈµÍ­äÝ¡¥Ñ”°‰±Õ”…•¹Ð¤ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR 4(€€AÕÉ”½½°Ý¡¥Ñ”¸I…¥¸µ±•…É•µÍ­äÁ…±•ÑÑ”è¹•ÕÑÉ…°Ý¡¥Ñ”É½Õ¹‘Ì°4(€€‰±Õ”…•¹Ð¸½½±•È€˜Ý¡¥Ñ•ÈÑ¡…¸É…¸µµ¥ÍÐ€¡Ý¡¥ ¥ÌÝ…É´Á½É•±…¥¸¤¸4(€€™œÁÕ±±•Ñ½Ý…É¹•…Èµ‰±…¬™½È½¹ÑÉ…ÍÐ½¸Ý¡¥Ñ”¸€¨¼4)m‘…Ñ„µÑ¡•µ”ôÉ…¸µ©¤tì4(€€´µ‰œ´Àè€˜Ñ˜Ù˜àì4(€€´µ‰œ´Äè€˜å™…™ˆì4(€€´µ‰œ´Èè€™™‘™”ì4(€€´µ‰œ´Ìè€™™™™™˜ì4(€€´µ‰œ´Ðè€™™™™™˜ì4(€€´µ‰œµ¥¹Í•Ðè€”á•‰•˜ì4(4(€€´µ™œ´Àè€ŒÄÀÄÔÅŒì4(€€´µ™œ´Äè€ŒÅ˜ÈÔÌÀì4(€€´µ™œ´Èè€ŒÑ„ÔÄØÀì4(€€´µ™œ´Ìè€ŒÝ„àÄá”ì4(€€´µ™œµµ…É¬è€ŒÀÀÀÀÀÀì4(4(€€´µÑáÐµ•¹É…Ù”è€À€ÅÁà€ÅÁàÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸à¤ì4(4(€€´µ•‘”µ‰É¥¡ÐèÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸äÔ¤ì4(€€´µ•‘”µµ¥èÉ‰„ ÈÔÔ°€ÈÔÔ°€ÈÔÔ°€À¸Ø¤ì4(€€´µ•‘”µ‘••ÀèÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÄØ¤ì4(€€´µ•‘”µ•¹É…Ù”èÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÄÀ¤ì4(4(€€´µ…•¹Ðè€ŒÉ˜Ù™Øì4(€€´µ…•¹Ðµ‘¥´è€ŒÈÌÔáˆÀì4(€€´µ…•¹Ðµ‰É¥¡Ðè€ŒÑ„àÙ”àì4(4(€€´µÍ¥¹…°µ½½è€ŒÍ˜åŒÙ„ì4(€€´µÍ¥¹…°µÝ…É¸è€ŒÀàÐÈÀì4(€€´µÍ¥¹…°µ‰…è€˜Ñ„Í”ì4(€€´µÍ¥¹…°µ¥¹™¼è€ŒÍ˜Ù™ˆÀì4(4(€€´µÍ¡…‘½Üµ…Éè4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÍÁàÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÀÜ¤ì4(€€´µÍ¡…‘½Üµ¥¹Í•Ðè4(€€€¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤°4(€€€¥¹Í•Ð€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤°4(€€€¥¹Í•Ð€À€ÅÁà€ÍÁàÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÄÀ¤ì4(€€´µÍ¡…‘½Üµ‰ÕÑÑ½¸è4(€€€€À€ÅÁà€ÀÙ…È ´µ•‘”µ‰É¥¡Ð¤¥¹Í•Ð°4(€€€€À€´ÅÁà€ÀÙ…È ´µ•‘”µ‘••À¤¥¹Í•Ð°4(€€€€À€ÅÁà€ÉÁàÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸Àà¤ì4(4(€€´µÉ¥µ±¥¹”èÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÀÔ¤ì4(€€´µÉ¥µ±¥¹”µÍÑÉ½¹œèÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸Àä¤ì4(4(€€¼¨5…ÀµÍÁ•¥™¥ŒƒŠP½½°Ý¡¥Ñ”±…¹°‰±Õ”µÉ…ä‰½É‘•ÉÌ¸€¨¼4(€€´µµ…Àµ±…¹è€••˜Å˜Ôì4(€€´µµ…Àµ±…¹µ¡½Ù•Èè€”É”Ý•”ì4(€€´µµ…Àµ‰½É‘•ÈèÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸ÌÀ¤ì4(€€´µµ…ÀµÉ…Ñ¥Õ±”èÉ‰„ ÌÀ°€ÐÀ°€ÔÔ°€À¸Àä¤ì4)ô4(4)µ•‘¥„€¡ÁÉ•™•ÉÌµÉ•‘Õ•µµ½Ñ¥½¸èÉ•‘Õ”¤ì4(€€¨°4(€€¨èé‰•™½É”°4(€€¨èé…™Ñ•Èì4(€€€…¹¥µ…Ñ¥½¸µ‘ÕÉ…Ñ¥½¸è€À¸ÀÅµÌ€…¥µÁ½ÉÑ…¹Ðì4(€€€…¹¥µ…Ñ¥½¸µ¥Ñ•É…Ñ¥½¸µ½Õ¹Ðè€Ä€…¥µÁ½ÉÑ…¹Ðì4(€€€ÑÉ…¹Í¥Ñ¥½¸µ‘ÕÉ…Ñ¥½¸è€À¸ÀÅµÌ€…¥µÁ½ÉÑ…¹Ðì4(€ô4)ô4(4(¼¨€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô4(€€I•ÍÁ½¹Í¥Ù”ƒŠPÉÕ¹Ñ¥µ”ML½¹±ä¸)Lµ‘É¥Ù•¸±…å½ÕÐÕÍ•Ì4(€€ÕÍ•%Í5½‰¥±”½Q…‰±•Ð¡½½­ÌìÑ¡¥ÌÍ•Ñ¥½¸½Ù•ÉÌ…Í•ÌÑ¡…Ð…É”4(€€•…Í¥•È•áÁÉ•ÍÍ•‘•±…É…Ñ¥Ù•±ä€¡MLµÙ…Èµ‘É¥Ù•¸É¥½±Õµ¹Ì°4(€€‰½É‘•ÉI¥¡Ð±•…¹ÕÀ…ÐÉ½Ü•‘•Ì°•ÑŒ¸¤¸4(€€€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô€¨¼4(4(¼¨!ÕˆQ•±•µ•ÑÉå	…Èè€àµ•±°ÍÑÉ¥ÀƒŠH€Ð½±Ì½¸µ½‰¥±”€ Ó\ÈÉ¥¤¸4(€€Q¡”½µÁ½¹•¹ÐÍ•ÑÌ€´µÑ•±•µ•ÑÉäµ½±Ì¥¹±¥¹”µ‘•™…Õ±Ð€àìÝ”½Ù•ÉÉ¥‘”4(€€‰•±½Üµ¸¹Ñ µ¡¥±ÉÕ±•Ì±•…¸ÕÀÑ¡”É½Üµ•‘”‰½É‘•ÉÌÍ¼Ñ¡”ÍÑÉ¥À4(€€±½½­Ì±¥­”„½¡•É•¹Ð€Ó\ÈÉ¥É…Ñ¡•ÈÑ¡…¸ÑÝ¼ÍÑ…­•€ÐµÁ¥••ÌÝ¥Ñ 4(€€ÍÑÉ…äÙ•ÉÑ¥…°±¥¹•Ì½¸Ñ¡”ÝÉ½¹œ•±±Ì¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹¡ÕˆµÑ•±•µ•ÑÉäµ‰…Èì4(€€€€´µÑ•±•µ•ÑÉäµ½±Ìè€Ðì4(€ô4(€€¼¨•±°€Ð€ Äµ¥¹‘•á•¤¹½ÜÍ¥ÑÌ…ÐÑ¡”É¥¡Ð•‘”½˜É½Ü€Ä°Í¼­¥±°¥ÑÌ4(€€€€‰½É‘•ÉI¥¡Ð•Ù•¸Ñ¡½Õ ¥¹±¥¹”ÍÑå±”¡…¥ÐÍ•Ð¸€¨¼4(€€¹¡ÕˆµÑ•±•µ•ÑÉäµ‰…È€¹¡ÕˆµÑ•±•µ•ÑÉäµ•±°é¹Ñ µ¡¥± Ð¤ì4(€€€‰½É‘•ÈµÉ¥¡Ðè¹½¹”€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¼¨•±±Ì€Ô¸¸à…É”Ñ¡”Í•½¹É½Üì¥Ù”Ñ¡•´„Ñ½À‰½É‘•ÈÍ¼Ñ¡”É½Ü4(€€€€‰É•…¬É•…‘ÌÙ¥ÍÕ…±±ä¸€¨¼4(€€¹¡ÕˆµÑ•±•µ•ÑÉäµ‰…È€¹¡ÕˆµÑ•±•µ•ÑÉäµ•±°é¹Ñ µ¡¥±¡¸€¬€Ô¤ì4(€€€‰½É‘•ÈµÑ½Àè€ÅÁàÍ½±¥Ù…È ´µ•‘”µ•¹É…Ù”¤ì4(€ô4(€€¼¨M±¥¡Ñ±äÑ¥¡Ñ•ÈÁ…‘‘¥¹œÍ¼€Ð•±±Ì™¥Ð„€ÌàÁÁàÙ¥•ÝÁ½ÉÐ¸€¨¼4(€€¹¡ÕˆµÑ•±•µ•ÑÉäµ‰…È€¹¡ÕˆµÑ•±•µ•ÑÉäµ•±°ì4(€€€Á…‘‘¥¹œè€ÝÁà€ÄÁÁàì4(€ô4)ô4(4(¼¨9½‘•Q…‰±”É¥è€ÐÈÁÁà™±½½È‰É•…­Ì½¸Á¡½¹•Ì€¡™½É•Ì¡½É¥é½¹Ñ…°½Ù•É™±½Ü¤¸4(€€É½ÀÑ¡”™±½½È‰•±½ÜµÍ¼„Í¥¹±”…É™¥±±ÌÑ¡”Ù¥•ÝÁ½ÉÐÝ¥‘Ñ ¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹¹½‘•Ñ…‰±”µÉ¥ì4(€€€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìèµ¥¹µ…à À°€Å™È¤€…¥µÁ½ÉÑ…¹Ðì4(€ô4)ô4(4(¼¨QÉ…™™¥ŒQ½ÀQ…±­•ÉÌÑ…‰±”è€Ø™¥á•½±Õµ¹Ì‰±½Ü½ÕÐ½¸Á¡½¹•Ì¸4(€€5½‰¥±”É•™±½Üè4(€€€´É…¹¬€ Œ¤…¹M!I‰…È‘¥Í…ÁÁ•…È€¡±•ÍÌÉ¥Ñ¥…°°Í…Ù”¡½É¥é½¹Ñ…°ÍÁ…”¤4(€€€´9=¹…µ”Ñ…­•ÌÑ¡”™Õ±°™¥ÉÍÐÉ½Ü4(€€€´I%=8Á¥±°…¹Q`½I`…ÁÁ•…È½¸Ñ¡”Í•½¹É½Ü…Ì„ÅÕ¥¬µ±…¹”ÍÑÉ¥À4(€€€´Q¡”É¥‰•½µ•Ì„€ÈµÉ½ÜÙ¥ÍÕ…°‰±½¬Á•È•¹ÑÉä¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµ¡•…‘•Èì4(€€€€¼¨!•…‘•Èè©ÕÍÐÑÝ¼½±Õµ¹Ì°€‰9=ˆ…¹€‰Q`½I`ˆ¡¥¹Ð€¨¼4(€€€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼€…¥µÁ½ÉÑ…¹Ðì4(€€€…Àè€áÁà€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµ¡•…‘•È€¹ÑÉ…™™¥Œµ½°µÉ…¹¬°4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµ¡•…‘•È€¹ÑÉ…™™¥Œµ½°µÉ•¥½¸°4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµ¡•…‘•È€¹ÑÉ…™™¥Œµ½°µÍ¡…É”ì4(€€€‘¥ÍÁ±…äè¹½¹”€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¼¨!•…‘•È±…å½ÕÐè¡•…‘•È¡…Ì€Ø¡¥±‘É•¸¸]¥Ñ É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ì4(€€€€€Å™È…ÕÑ¼°Ñ¡”Ù¥Í¥‰±”€Ì€¡9=°Q`°I`¤¹•••áÁ±¥¥ÐÉ¥µ½±Õµ¸Ñ¼4(€€€€¹½Ð…ÕÑ¼µÁ±…”¥¹Ñ¼€Ð•±±Ì¸]”ÁÕÐ9=¥¸½°€Ä…¹µ•É”Q`­I`4(€€€€¥¹Ñ¼„Í¥¹±”É¥¡Ðµ…±¥¹•¡¥¹ÐÙ¥„„ÑÉ¥¬è¡¥‘”Q`°­••ÀI`4(€€€€ÍÁ…¹¹¥¹œÑ¡”É¥¡ÐÍ±½Ð¸M¥µÁ±•ÍÐè©ÕÍÐ½Ù•ÉÉ¥‘”Ù¥„‘¥É•ÐÍ¥‰±¥¹œ4(€€€€ÉÕ±•ÌƒŠP¡¥±‘É•¸€Ð€£ŠEQ`¤…¹€Ô€£ŠMI`¤­••À…ÕÑ¼µÁ±…•µ•¹Ðì¡¥±‘É•¸4(€€€€€Ä¼Ì¼Ø¡¥‘‘•¸¸I•ÍÕ±Ðè9=€¬I`Í¡½Ý¸¸€¨¼4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµ¡•…‘•È€ø€é¹Ñ µ¡¥± Ð¤ì4(€€€‘¥ÍÁ±…äè¹½¹”€…¥µÁ½ÉÑ…¹Ðì4(€ô4(4(€€¼¨… É½Üè€Èµ½±Õµ¸É¥Ý¡•É”9=ÍÁ…¹ÌÑ¡”™Õ±°Ý¥‘Ñ ½¸Ñ¡”™¥ÉÍÐ4(€€€€±¥¹”…¹Q`½I`Í¥Ð½¸„Í•½¹±¥¹”¸UÍ”É¥µÑ•µÁ±…Ñ”µ…É•…Ì™½È4(€€€€±…É¥Ñä¸€¨¼4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Üì4(€€€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼…ÕÑ¼€…¥µÁ½ÉÑ…¹Ðì4(€€€É¥µÑ•µÁ±…Ñ”µ…É•…Ìè4(€€€€€€¹½‘”¹½‘”¹½‘”œ4(€€€€€€ÑàÑàÉàœ€…¥µÁ½ÉÑ…¹Ðì4(€€€…Àè€ÑÁà€ÄÉÁà€…¥µÁ½ÉÑ…¹Ðì4(€€€Á…‘‘¥¹œè€ÄÁÁà€ÄÑÁà€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÉ…¹¬°4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÉ•¥½¸°4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÍ¡…É”ì4(€€€‘¥ÍÁ±…äè¹½¹”€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µ¹½‘”ì4(€€€É¥µ…É•„è¹½‘”ì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÑàì4(€€€É¥µ…É•„èÑàì4(€€€Ñ•áÐµ…±¥¸è±•™Ð€…¥µÁ½ÉÑ…¹Ðì4(€€€™½¹ÐµÍ¥é”è€ÄÅÁà€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÉàì4(€€€É¥µ…É•„èÉàì4(€€€Ñ•áÐµ…±¥¸èÉ¥¡Ð€…¥µÁ½ÉÑ…¹Ðì4(€€€™½¹ÐµÍ¥é”è€ÄÅÁà€…¥µÁ½ÉÑ…¹Ðì4(€ô4(€€¼¨‘ƒŠD¿ŠL±åÁ¡ÌÑ¼Q`½I`½¸µ½‰¥±”Ñ¼½µÁ•¹Í…Ñ”™½ÈÑ¡”µ¥ÍÍ¥¹œ¡•…‘•È€¨¼4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÑàèé‰•™½É”ì4(€€€½¹Ñ•¹Ðè€ŸŠD€œì4(€€€½±½ÈèÙ…È ´µ™œ´Ì¤ì4(€€€™½¹ÐµÝ•¥¡Ðè¹½Éµ…°ì4(€ô4(€€¹ÑÉ…™™¥ŒµÑ…±­•ÉÌµÉ½Ü€¹ÑÉ…™™¥Œµ½°µÉàèé‰•™½É”ì4(€€€½¹Ñ•¹Ðè€ŸŠL€œì4(€€€½±½ÈèÙ…È ´µ™œ´Ì¤ì4(€€€™½¹ÐµÝ•¥¡Ðè¹½Éµ…°ì4(€ô4)ô4(4(¼¨	¥±±¥¹œèÑÝ¼€Èµ½°‰±½­Ì€¡I•¹•Ý…°Q¥µ•±¥¹”€¼É¥Ñ¥…°´ÜÁ…¹•°°4(€€…¹½ÍÑQÉ•¹€¼½¹Ñ¥¹•¹ÐÍÁ•¹¤½±±…ÁÍ”Ñ¼Í¥¹±”½±Õµ¸½¸µ½‰¥±”¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹‰¥±±¥¹œ´É½°µÉ•¹•Ý…°°4(€€¹‰¥±±¥¹œ´É½°µÑÉ•¹ì4(€€€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È€…¥µÁ½ÉÑ…¹Ðì4(€ô4)ô4(4(¼¨A…”µ…¥¸Á…‘‘¥¹œÑ¥¡Ñ•¹Ì½¸µ½‰¥±”¸%¹±¥¹”ÍÑå±”Í•ÑÌ‘•Í­Ñ½ÀÁ…‘‘¥¹œ4(€€€¡ÑåÁ¥…±±ä€ÈÀ½È€ÄØ¤ìÑ¡”€…¥µÁ½ÉÑ…¹Ð½Ù•ÉÉ¥‘”‰•±½Ü­¥­Ì¥¸‰•±½Üµ¸4(€€]”…±Í¼¡½¹½È¥=LÍ…™”µ…É•„™½È±…¹‘Í…Á”Ý¥Ñ „¹½Ñ …¹Ñ¡”¡½µ”´4(€€¥¹‘¥…Ñ½È•ÍÑÕÉ”‰…È…ÐÑ¡”‰½ÑÑ½´¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹…ÁÀµµ…¥¸ì4(€€€Á…‘‘¥¹œè€ÄÉÁà€ÄÉÁà€ÄÙÁà€…¥µÁ½ÉÑ…¹Ðì4(€€€Á…‘‘¥¹œµ±•™Ðèµ…à ÄÉÁà°•¹Ø¡Í…™”µ…É•„µ¥¹Í•Ðµ±•™Ð¤¤€…¥µÁ½ÉÑ…¹Ðì4(€€€Á…‘‘¥¹œµÉ¥¡Ðèµ…à ÄÉÁà°•¹Ø¡Í…™”µ…É•„µ¥¹Í•ÐµÉ¥¡Ð¤¤€…¥µÁ½ÉÑ…¹Ðì4(€€€Á…‘‘¥¹œµ‰½ÑÑ½´èµ…à ÄÙÁà°•¹Ø¡Í…™”µ…É•„µ¥¹Í•Ðµ‰½ÑÑ½´¤¤€…¥µÁ½ÉÑ…¹Ðì4(€ô4)ô4(4(¼¨5…ÁÁÀ‰½ÑÑ½´É¥€¡±••ÐMÑ…ÑÌ€¬9½‘•Ì‰äI•¥½¸¤½±±…ÁÍ•ÌÑ¼Í¥¹±”4(€€½±Õµ¸½¸µ½‰¥±”¸€¨¼4)µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ÜØÝÁà¤ì4(€€¹µ…Àµ‰½ÑÑ½´µÉ¥ì4(€€€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È€…¥µÁ½ÉÑ…¹Ðì4(€ô4)ô4(
+   (â‰¥14px). NOT for small labels (â‰¤11px) â€” shadow blurs at that size. */
+.engrave {
+  text-shadow: var(--txt-engrave);
+}
+
+/* Precision card â€” outer chamfer + inner stroke.
+   Raised: lit from above, so the face carries a top-down gradient, the top
+   edge takes a highlight and the bottom edge a shadow (see --shadow-card). */
+.precision-card {
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: var(--hairline) solid var(--edge-mid);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  /* transform only. Animating box-shadow re-rasterises the blur on every frame
+     â€” across a grid of cards that is a repaint storm for no visible gain, so
+     the shadow swaps instantly while the lift itself is what the eye follows. */
+  transition: transform 0.16s ease;
+}
+
+/* Lift on hover â€” the plate rises off the sheet and its shadow lengthens,
+   which is what sells the depth. Opt in with .precision-card.liftable so
+   static panels don't wobble under the cursor. */
+.precision-card.liftable:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 10px 26px rgba(50, 40, 25, 0.16);
+  border-color: var(--edge-deep);
+}
+
+/* Status sweep â€” a hairline of the node's own status colour across the top
+   edge of a card, brightest at centre. Reads as light catching a machined
+   bevel, and encodes state without spending a single pixel on a badge. */
+.status-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Text pressed into the metal: a single light line beneath each glyph. On the
+   dark variants --txt-engrave inverts to a shadow, so this reads correctly in
+   both. Defined per theme; it was never actually applied anywhere until now. */
+.engraved {
+  text-shadow: var(--txt-engrave);
+}
+
+/* Sunken display â€” for screens, charts, value readouts.
+   Recessed: the same light source, so the shading inverts â€” shadow along the
+   TOP inner edge, highlight along the bottom (see --shadow-inset). Getting
+   this backwards is what makes a slot look painted on rather than milled. */
+.precision-inset {
+  background: var(--bg-inset);
+  border: var(--hairline) solid var(--edge-engrave);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-inset);
+}
+
+/* Selected nav item: the plate is pressed IN (inverted shading) and a raised
+   tab juts from its left edge â€” the physical vocabulary of a latched switch,
+   rather than a coloured background. */
+.nav-selected {
+  position: relative;
+  background: var(--bg-inset);
+  box-shadow: var(--shadow-inset);
+}
+
+.nav-selected::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--accent);
+}
+
+/* The double-stroke effect â€” outer bright, inner deep */
+.machined-edge {
+  position: relative;
+  border-radius: var(--radius-md);
+}
+
+.machined-edge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--hairline) solid var(--edge-bright);
+  pointer-events: none;
+}
+
+.machined-edge::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: calc(var(--radius-md) - 1px);
+  border: var(--hairline) solid var(--edge-deep);
+  pointer-events: none;
+}
+
+/* Tick scale â€” vertical or horizontal ruler */
+.tick-scale {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--fg-3) 0,
+    var(--fg-3) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  height: 6px;
+  opacity: 0.5;
+}
+
+/* Hardware seam â€” subtle horizontal divider with center cap */
+.seam {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--edge-deep) 8px,
+    var(--edge-deep) calc(100% - 8px),
+    transparent 100%
+  );
+  border-bottom: 1px solid var(--edge-bright);
+}
+
+/* Scrollbar â€” subtle */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-3);
+  border: 2px solid var(--bg-1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-4);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-dim);
+  color: var(--fg-mark);
+}
+
+/* â”€â”€â”€ Animations (GPU-composited, ~free) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@keyframes ran-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes ran-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes ran-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* â”€â”€ ran-tomcat (steel blue-grey) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-theme='ran-tomcat'] {
+  --bg-0: #2a3848;
+  --bg-1: #324252;
+  --bg-2: #3a4d5e;
+  --bg-3: #46596c;
+  --bg-4: #526677;
+  --bg-inset: #1e2e3c;
+
+  --fg-0: #e8eef4;
+  --fg-1: #bcc8d4;
+  --fg-2: #869aae;
+  --fg-3: #5e7286;
+  --fg-mark: #ffffff;
+
+  --txt-engrave: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+  --edge-bright: rgba(210, 224, 238, 0.10);
+  --edge-mid: rgba(210, 224, 238, 0.05);
+  --edge-deep: rgba(0, 0, 0, 0.50);
+  --edge-engrave: rgba(0, 0, 0, 0.38);
+
+  --accent: #e8a458;
+  --accent-dim: #c4823a;
+  --accent-bright: #f0bc78;
+
+  --signal-good: #88b8a8;
+  --signal-warn: #d4a840;
+  --signal-bad: #d86050;
+  --signal-info: #6a9fd0;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset;
+
+  --grid-line: rgba(210, 224, 238, 0.06);
+  --grid-line-strong: rgba(210, 224, 238, 0.12);
+}
+
+/* â”€â”€ ran-teal (deep teal) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-theme='ran-teal'] {
+  --bg-0: #1f3537;
+  --bg-1: #243d3f;
+  --bg-2: #2a4548;
+  --bg-3: #324f53;
+  --bg-4: #3a5a5e;
+  --bg-inset: #162a2c;
+
+  --fg-0: #e8f0ee;
+  --fg-1: #bcc8c5;
+  --fg-2: #82938f;
+  --fg-3: #5a6b67;
+  --fg-mark: #ffffff;
+
+  --txt-engrave: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+  --edge-bright: rgba(220, 240, 234, 0.10);
+  --edge-mid: rgba(220, 240, 234, 0.05);
+  --edge-deep: rgba(0, 0, 0, 0.52);
+  --edge-engrave: rgba(0, 0, 0, 0.42);
+
+  --accent: #e8a458;
+  --accent-dim: #c4823a;
+  --accent-bright: #f0bc78;
+
+  --signal-good: #7ec0a0;
+  --signal-warn: #d4a840;
+  --signal-bad: #d86050;
+  --signal-info: #5a9ec0;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(0, 0, 0, 0.28);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(0, 0, 0, 0.32);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset;
+
+  --grid-line: rgba(220, 240, 234, 0.06);
+  --grid-line-strong: rgba(220, 240, 234, 0.12);
+}
+
+/* â”€â”€ ran-midnight (deep navy) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-theme='ran-midnight'] {
+  --bg-0: #0c1422;
+  --bg-1: #101a2c;
+  --bg-2: #162038;
+  --bg-3: #1c2844;
+  --bg-4: #243050;
+  --bg-inset: #080e18;
+
+  --fg-0: #e8eef8;
+  --fg-1: #bcc8dc;
+  --fg-2: #7a8aa8;
+  --fg-3: #4e5c78;
+  --fg-mark: #ffffff;
+
+  --txt-engrave: 0 1px 1px rgba(0, 0, 0, 0.6);
+
+  --edge-bright: rgba(200, 220, 255, 0.10);
+  --edge-mid: rgba(200, 220, 255, 0.05);
+  --edge-deep: rgba(0, 0, 0, 0.62);
+  --edge-engrave: rgba(0, 0, 0, 0.50);
+
+  --accent: #e0a55a;
+  --accent-dim: #bc8438;
+  --accent-bright: #f0be78;
+
+  --signal-good: #5ab088;
+  --signal-warn: #d4a840;
+  --signal-bad: #d86050;
+  --signal-info: #5a8ec8;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset;
+
+  --grid-line: rgba(200, 220, 255, 0.06);
+  --grid-line-strong: rgba(200, 220, 255, 0.12);
+}
+
+/* â”€â”€ ran-mint (pale mint) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-theme='ran-mint'] {
+  --bg-0: #dceee5;
+  --bg-1: #e2f1ea;
+  --bg-2: #e8f4ef;
+  --bg-3: #eef7f3;
+  --bg-4: #f4faf7;
+  --bg-inset: #cce6da;
+
+  --fg-0: #0e2a22;
+  --fg-1: #1c4438;
+  --fg-2: #4e766a;
+  --fg-3: #82a294;
+  --fg-mark: #000000;
+
+  --txt-engrave: 0 1px 1px rgba(255, 255, 255, 0.65);
+
+  --edge-bright: rgba(255, 255, 255, 0.75);
+  --edge-mid: rgba(255, 255, 255, 0.4);
+  --edge-deep: rgba(20, 70, 55, 0.22);
+  --edge-engrave: rgba(20, 70, 55, 0.14);
+
+  --accent: #2e8870;
+  --accent-dim: #1e6858;
+  --accent-bright: #3aa888;
+
+  --signal-good: #3a9060;
+  --signal-warn: #a07018;
+  --signal-bad: #c03828;
+  --signal-info: #2a6898;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(20, 70, 55, 0.08);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(20, 70, 55, 0.12);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset;
+
+  --grid-line: rgba(20, 70, 55, 0.07);
+  --grid-line-strong: rgba(20, 70, 55, 0.14);
+}
+
+/* â”€â”€ ran-butter (warm cream) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-theme='ran-butter'] {
+  --bg-0: #f6ecc8;
+  --bg-1: #f8efd2;
+  --bg-2: #faf2dc;
+  --bg-3: #fcf6e6;
+  --bg-4: #fefaf2;
+  --bg-inset: #ede0b0;
+
+  --fg-0: #3a2c0c;
+  --fg-1: #5e4818;
+  --fg-2: #8e7438;
+  --fg-3: #b5a06c;
+  --fg-mark: #000000;
+
+  --txt-engrave: 0 1px 1px rgba(255, 255, 255, 0.65);
+
+  --edge-bright: rgba(255, 255, 255, 0.75);
+  --edge-mid: rgba(255, 255, 255, 0.4);
+  --edge-deep: rgba(80, 55, 10, 0.22);
+  --edge-engrave: rgba(80, 55, 10, 0.14);
+
+  --accent: #c4881c;
+  --accent-dim: #a06a10;
+  --accent-bright: #dea030;
+
+  --signal-good: #7a9c40;
+  --signal-warn: #c07818;
+  --signal-bad: #c03828;
+  --signal-info: #2a6898;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(80, 55, 10, 0.08);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(80, 55, 10, 0.12);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset;
+
+  --grid-line: rgba(80, 55, 10, 0.07);
+  --grid-line-strong: rgba(80, 55, 10, 0.14);
+}
+
+/* â”€â”€ ran-ji (éœ â€” clear-sky white, blue accent) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Pure cool white. Rain-cleared-sky palette: neutral white grounds,
+   blue accent. Cooler & whiter than ran-mist (which is warm porcelain).
+   fg pulled toward near-black for AA contrast on white. */
+[data-theme='ran-ji'] {
+  --bg-0: #f4f6f8;
+  --bg-1: #f9fafb;
+  --bg-2: #fcfdfe;
+  --bg-3: #ffffff;
+  --bg-4: #ffffff;
+  --bg-inset: #e8ebef;
+
+  --fg-0: #10151c;
+  --fg-1: #1f2530;
+  --fg-2: #4a5160;
+  --fg-3: #7a818e;
+  --fg-mark: #000000;
+
+  --txt-engrave: 0 1px 1px rgba(255, 255, 255, 0.8);
+
+  --edge-bright: rgba(255, 255, 255, 0.95);
+  --edge-mid: rgba(255, 255, 255, 0.6);
+  --edge-deep: rgba(30, 40, 55, 0.16);
+  --edge-engrave: rgba(30, 40, 55, 0.10);
+
+  --accent: #2f6fd6;
+  --accent-dim: #2358b0;
+  --accent-bright: #4a86e8;
+
+  --signal-good: #3f9c6a;
+  --signal-warn: #c08420;
+  --signal-bad: #cf4a3e;
+  --signal-info: #3f6fb0;
+
+  --shadow-card:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 3px rgba(30, 40, 55, 0.07);
+  --shadow-inset:
+    inset 0 1px 0 var(--edge-deep),
+    inset 0 -1px 0 var(--edge-bright),
+    inset 0 1px 3px rgba(30, 40, 55, 0.10);
+  --shadow-button:
+    0 1px 0 var(--edge-bright) inset,
+    0 -1px 0 var(--edge-deep) inset,
+    0 1px 2px rgba(30, 40, 55, 0.08);
+
+  --grid-line: rgba(30, 40, 55, 0.05);
+  --grid-line-strong: rgba(30, 40, 55, 0.09);
+
+  /* Map-specific â€” cool white land, blue-gray borders. */
+  --map-land: #eef1f5;
+  --map-land-hover: #e2e7ee;
+  --map-border: rgba(30, 40, 55, 0.30);
+  --map-graticule: rgba(30, 40, 55, 0.09);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Responsive â€” runtime CSS only. JS-driven layout uses
+   useIsMobile/Tablet hooks; this section covers cases that are
+   easier expressed declaratively (CSS-var-driven grid columns,
+   borderRight cleanup at row edges, etc.).
+   ============================================================ */
+
+/* Hub TelemetryBar: 8-cell strip â†’ 4 cols on mobile (4Ã—2 grid).
+   The component sets --telemetry-cols inline-default 8; we override
+   below md. nth-child rules clean up the row-edge borders so the strip
+   looks like a coherent 4Ã—2 grid rather than two stacked 4-pieces with
+   stray vertical lines on the wrong cells. */
+@media (max-width: 767px) {
+  .hub-telemetry-bar {
+    --telemetry-cols: 4;
+  }
+  /* Cell 4 (1-indexed) now sits at the right edge of row 1, so kill its
+     borderRight even though inline style had it set. */
+  .hub-telemetry-bar .hub-telemetry-cell:nth-child(4) {
+    border-right: none !important;
+  }
+  /* Cells 5..8 are the second row; give them a top border so the row
+     break reads visually. */
+  .hub-telemetry-bar .hub-telemetry-cell:nth-child(n + 5) {
+    border-top: 1px solid var(--edge-engrave);
+  }
+  /* Slightly tighter padding so 4 cells fit a 380px viewport. */
+  .hub-telemetry-bar .hub-telemetry-cell {
+    padding: 7px 10px;
+  }
+}
+
+/* NodeTable grid: 420px floor breaks on phones (forces horizontal overflow).
+   Drop the floor below md so a single card fills the viewport width. */
+@media (max-width: 767px) {
+  .nodetable-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Traffic Top Talkers table: 6 fixed columns blow out on phones.
+   Mobile reflow:
+   - rank (#) and SHARE bar disappear (less critical, save horizontal space)
+   - NODE name takes the full first row
+   - REGION pill and TX/RX appear on the second row as a quick-glance strip
+   - The grid becomes a 2-row visual block per entry. */
+@media (max-width: 767px) {
+  .traffic-talkers-header {
+    /* Header: just two columns, "NODE" and "TX/RX" hint */
+    grid-template-columns: 1fr auto !important;
+    gap: 8px !important;
+  }
+  .traffic-talkers-header .traffic-col-rank,
+  .traffic-talkers-header .traffic-col-region,
+  .traffic-talkers-header .traffic-col-share {
+    display: none !important;
+  }
+  /* Header layout: header has 6 children. With grid-template-columns
+     1fr auto, the visible 3 (NODE, TX, RX) need explicit grid-column to
+     not auto-place into 4 cells. We put NODE in col 1 and merge TX+RX
+     into a single right-aligned hint via a trick: hide TX, keep RX
+     spanning the right slot. Simplest: just override via direct sibling
+     rules â€” children 4 (â†‘TX) and 5 (â†“RX) keep auto-placement; children
+     1/3/6 hidden. Result: NODE + RX shown. */
+  .traffic-talkers-header > :nth-child(4) {
+    display: none !important;
+  }
+
+  /* Each row: 2-column grid where NODE spans the full width on the first
+     line and TX/RX sit on a second line. Use grid-template-areas for
+     clarity. */
+  .traffic-talkers-row {
+    grid-template-columns: 1fr auto auto !important;
+    grid-template-areas:
+      'node node node'
+      'tx tx rx' !important;
+    gap: 4px 12px !important;
+    padding: 10px 14px !important;
+  }
+  .traffic-talkers-row .traffic-col-rank,
+  .traffic-talkers-row .traffic-col-region,
+  .traffic-talkers-row .traffic-col-share {
+    display: none !important;
+  }
+  .traffic-talkers-row .traffic-col-node {
+    grid-area: node;
+  }
+  .traffic-talkers-row .traffic-col-tx {
+    grid-area: tx;
+    text-align: left !important;
+    font-size: 11px !important;
+  }
+  .traffic-talkers-row .traffic-col-rx {
+    grid-area: rx;
+    text-align: right !important;
+    font-size: 11px !important;
+  }
+  /* Add â†‘/â†“ glyphs to TX/RX on mobile to compensate for the missing header */
+  .traffic-talkers-row .traffic-col-tx::before {
+    content: 'â†‘ ';
+    color: var(--fg-3);
+    font-weight: normal;
+  }
+  .traffic-talkers-row .traffic-col-rx::before {
+    content: 'â†“ ';
+    color: var(--fg-3);
+    font-weight: normal;
+  }
+}
+
+/* Billing: two 2-col blocks (Renewal Timeline / Critical-7 panel,
+   and CostTrend / continent spend) collapse to single column on mobile. */
+@media (max-width: 767px) {
+  .billing-2col-renewal,
+  .billing-2col-trend {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Page main padding tightens on mobile. Inline style sets desktop padding
+   (typically 20 or 16); the !important override below kicks in below md.
+   We also honor iOS safe-area for landscape with a notch and the home-
+   indicator gesture bar at the bottom. */
+@media (max-width: 767px) {
+  .app-main {
+    padding: 12px 12px 16px !important;
+    padding-left: max(12px, env(safe-area-inset-left)) !important;
+    padding-right: max(12px, env(safe-area-inset-right)) !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* MapApp bottom grid (Fleet Stats + Nodes by Region) collapses to single
+   column on mobile. */
+@media (max-width: 767px) {
+  .map-bottom-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

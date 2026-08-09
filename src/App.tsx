@@ -552,9 +552,1032 @@ function TrendDialog({
   const rows = useMemo(
     () =>
       Array.from({ length: series[0]?.buckets.length || 0 }, (_, index) => {
-        const row: Record<string, string | number | null> = ë}y¶‰Ëkºwµç@€€€€€€€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÉÉ½İ½İ¸Í¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€€€€€€€€€€íÍÁ••¡Í•ÉÙ•È¹‘½İ¹±½…‘}ÍÁ••¥ô(€€€€€€€€€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€ğ½Ñø(€€€€€€€€€€€€€€€€€€ñÑø(€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ…‰±”µÑÉ…™™¥Œˆø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€íÍ•ÉÙ•È¹ÑÉ…™™¥}±¥µ¥Ğ(€€€€€€€€€€€€€€€€€€€€€€€€€€ü€‘í‰åÑ•Ì¡Í•ÉÙ•È¹ÑÉ…™™¥}ÕÍ•°™…±Í”¥ô€¼€‘í‰åÑ•Ì¡Í•ÉÙ•È¹ÑÉ…™™¥}±¥µ¥Ğ°™…±Í”¥õ€(€€€€€€€€€€€€€€€€€€€€€€€€€€è‰åÑ•Ì¡Í•ÉÙ•È¹ÑÉ…™™¥}ÕÍ•°™…±Í”¥ô(€€€€€€€€€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€ì„…Í•ÉÙ•È¹ÑÉ…™™¥}±¥µ¥Ğ€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰µ•Ñ•Èˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñ¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€ÍÑå±”õíì(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€İ¥‘Ñ è€‘íÁĞ¡Í•ÉÙ•È¹ÑÉ…™™¥}ÕÍ•°Í•ÉÙ•È¹ÑÉ…™™¥}±¥µ¥Ğ¥ô•€°(€€€€€€€€€€€€€€€€€€€€€€€€€€€õô(€€€€€€€€€€€€€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€ğ½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€ğ½‘¥Øø(€€€€€€€€€€€€€€€€€€ğ½Ñø(€€€€€€€€€€€€€€€€€€ñÑø(€€€€€€€€€€€€€€€€€€€€ñQ…‰±•A¥¹œÁ¥¹œõíÍ•ÉÙ•È¹Á¥¹ôÍ•ÉÙ•É%¹‘•àõí¥¹‘•áô€¼ø(€€€€€€€€€€€€€€€€€€ğ½Ñø(€€€€€€€€€€€€€€€€ğ½ÑÈø(€€€€€€€€€€€€€€¤ì(€€€€€€€€€€€ô¥ô(€€€€€€€€€€ğ½Ñ‰½‘äø(€€€€€€€€ğ½Ñ…‰±”ø(€€€€€€ğ½‘¥Øø(€€€€ğ½Í•Ñ¥½¸ø(€€¤ì)ô()™Õ¹Ñ¥½¸AÉ½‰•1¥•¹Í•9…µ•Á±…Ñ”¡ì(€¹…µ”°(€‘¥ÍÁ±…å9…µ”°)ôèì(€¹…µ”üèÍÑÉ¥¹œì(€‘¥ÍÁ±…å9…µ”üèÍÑÉ¥¹œì)ô¤ì(€½¹ÍĞ±…‰•°€ôm¹…µ”ü¹ÑÉ¥´ ¤°‘¥ÍÁ±…å9…µ”ü¹ÑÉ¥´ ¥t¹™¥±Ñ•È¡	½½±•…¸¤¹©½¥¸ ˆƒ
-Ü€ˆ¤ì(€½¹ÍĞÁ±…Ñ•I•˜€ôÕÍ•I•˜ñ!Q51MÁ…¹±•µ•¹Ğø¡¹Õ±°¤ì(€½¹ÍĞÑ•áÑI•˜€ôÕÍ•I•˜ñ!Q51MÁ…¹±•µ•¹Ğø¡¹Õ±°¤ì(€½¹ÍĞÍÑ…ÉÍI•˜€ôÕÍ•I•˜ñ!Q51MÁ…¹±•µ•¹Ğø¡¹Õ±°¤ì(€½¹ÍĞÍ¡¥¹•I•˜€ôÕÍ•I•˜ñ!Q51MÁ…¹±•µ•¹Ğø¡¹Õ±°¤ì((€ÕÍ•™™•Ğ  ¤€ôøì(€€€½¹ÍĞÁ±…Ñ”€ôÁ±…Ñ•I•˜¹ÕÉÉ•¹Ğì(€€€½¹ÍĞÑ•áĞ€ôÑ•áÑI•˜¹ÕÉÉ•¹Ğì(€€€½¹ÍĞÍÑ…ÉÌ€ôÍÑ…ÉÍI•˜¹ÕÉÉ•¹Ğì(€€€½¹ÍĞÍ¡¥¹”€ôÍ¡¥¹•I•˜¹ÕÉÉ•¹Ğì(€€€¥˜€ …Á±…Ñ”ñğ€…Ñ•áĞñğ€…ÍÑ…ÉÌñğ€…Í¡¥¹”¤É•ÑÕÉ¸ì((€€€½¹ÍĞÁ…±•ÑÑ”€ôlˆ˜å„áĞˆ°€ˆ˜ĞÜÉˆØˆ°€ˆ•ŒĞàääˆ°€ˆ™‰™”àˆ°€ˆ™˜á™ŒÜ‰tì(€€€½¹ÍĞÉ…¹‘½´€ô€¡µ¥¸è¹Õµ‰•È°µ…àè¹Õµ‰•È¤€ôøµ¥¸€¬5…Ñ ¹É…¹‘½´ ¤€¨€¡µ…à€´µ¥¸¤ì(€€€½¹ÍĞ±…µÀ€ô€¡Ù…±Õ”è¹Õµ‰•È°µ¥¸è¹Õµ‰•È°µ…àè¹Õµ‰•È¤€ôø5…Ñ ¹µ…à¡µ¥¸°5…Ñ ¹µ¥¸¡µ…à°Ù…±Õ”¤¤ì(€€€½¹ÍĞ•…Í•=ÕÑ	…¬€ô€¡Ù…±Õ”è¹Õµ‰•È¤€ôøì(€€€€€½¹ÍĞŒÄ€ô€Ä¸ÜÀÄÔàì(€€€€€½¹ÍĞŒÌ€ôŒÄ€¬€Äì(€€€€€É•ÑÕÉ¸€Ä€¬ŒÌ€¨5…Ñ ¹Á½Ü¡Ù…±Õ”€´€Ä°€Ì¤€¬ŒÄ€¨5…Ñ ¹Á½Ü¡Ù…±Õ”€´€Ä°€È¤ì(€€€ôì(€€€½¹ÍĞ•…Í•%¹	…¬€ô€¡Ù…±Õ”è¹Õµ‰•È¤€ôøì(€€€€€½¹ÍĞŒÄ€ô€Ä¸ÜÀÄÔàì(€€€€€É•ÑÕÉ¸€¡ŒÄ€¬€Ä¤€¨Ù…±Õ”€¨Ù…±Õ”€¨Ù…±Õ”€´ŒÄ€¨Ù…±Õ”€¨Ù…±Õ”ì(€€€ôì((€€€ÍÑ…ÉÌ¹¥¹¹•É!Q50€ô€ˆˆì(€€€½¹ÍĞ¡•¥¡Ğ€ôÍÑ…ÉÌ¹±¥•¹Ñ!•¥¡Ğñğ€ÈĞì(€€€½¹ÍĞµ…­•MÑ…È€ô€¡Ñ½Á½Èè€¡Í¥é”è¹Õµ‰•È¤€ôø¹Õµ‰•È¤€ôøì(€€€€€½¹ÍĞÍÑ…È€ô‘½Õµ•¹Ğ¹É•…Ñ•±•µ•¹Ğ ‰¤ˆ¤ì(€€€€€ÍÑ…È¹±…ÍÍ9…µ”€ô€‰ÍÁ…É¬ˆì(€€€€€ÍÑ…È¹ÍÑå±”¹½±½È€ôÁ…±•ÑÑ•m5…Ñ ¹™±½½È¡5…Ñ ¹É…¹‘½´ ¤€¨Á…±•ÑÑ”¹±•¹Ñ ¥tì(€€€€€½¹ÍĞÍ¥é”€ô5…Ñ ¹É½Õ¹¡É…¹‘½´ à°€ÄÌ¤¤ì(€€€€€ÍÑ…È¹ÍÑå±”¹İ¥‘Ñ €ô€‘íÍ¥é•õÁá€ì(€€€€€ÍÑ…È¹ÍÑå±”¹¡•¥¡Ğ€ô€‘íÍ¥é•õÁá€ì(€€€€€ÍÑ…È¹ÍÑå±”¹Ñ½À€ô€‘í5…Ñ ¹É½Õ¹¡Ñ½Á½È¡Í¥é”¤¥õÁá€ì(€€€€€ÍÑ…È¹ÍÑå±”¹±•™Ğ€ô€‘í5…Ñ ¹É½Õ¹¡É…¹‘½´ À°€ÄÈ¤¥õÁá€ì(€€€€€ÍÑ…ÉÌ¹…ÁÁ•¹‘¡¥±¡ÍÑ…È¤ì(€€€ôì(€€€™½È€¡±•Ğ¥¹‘•à€ô€Àì¥¹‘•à€ğ€Ôì¥¹‘•à¬¬¤µ…­•MÑ…È ¡Í¥é”¤€ôøÉ…¹‘½´ À°5…Ñ ¹µ…à À°¡•¥¡Ğ€´Í¥é”¤¤¤ì(€€€µ…­•MÑ…È ¡Í¥é”¤€ôø€µÍ¥é”€¨€À¸Ø¤ì(€€€µ…­•MÑ…È ¡Í¥é”¤€ôø¡•¥¡Ğ€´Í¥é”€¨€À¸Ğ¤ì((€€€±•Ğİ¥‘Ñ €ôÁ±…Ñ”¹½™™Í•Ñ]¥‘Ñ ì(€€€½¹ÍĞÕÁ‘…Ñ•]¥‘Ñ €ô€ ¤€ôøìİ¥‘Ñ €ôÁ±…Ñ”¹½™™Í•Ñ]¥‘Ñ ìôì(€€€İ¥¹‘½Ü¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ‰É•Í¥é”ˆ°ÕÁ‘…Ñ•]¥‘Ñ ¤ì(€€€±•Ğ™É…µ•%€ô€Àì(€€€½¹ÍĞÍÑ…ÉĞ€ôÁ•É™½Éµ…¹”¹¹½Ü ¤ì(€€€½¹ÍĞ™É…µ”€ô€¡¹½Üè¹Õµ‰•È¤€ôøì(€€€€€½¹ÍĞÁÉ½É•ÍÌ€ô€ ¡¹½Ü€´ÍÑ…ÉĞ¤€”€ÔÔÀÀ¤€¼€ÔÔÀÀì(€€€€€½¹ÍĞÉ•Ù•…°€ô±…µÀ¡ÁÉ½É•ÍÌ€¼€À¸ÌØ°€À°€Ä¤ì(€€€€€±•ĞÉ½Ñ…Ñ•`€ô€Àì(€€€€€±•ĞÍ…±”€ô€Äì(€€€€€±•Ğ½Á…¥Ñä€ô€Äì(€€€€€¥˜€¡ÁÉ½É•ÍÌ€ğ€À¸Àà¤ì(€€€€€€€½¹ÍĞ…µ½Õ¹Ğ€ôÁÉ½É•ÍÌ€¼€À¸Ààì(€€€€€€€½¹ÍĞ•…Í•€ô•…Í•=ÕÑ	…¬¡…µ½Õ¹Ğ¤ì(€€€€€€€É½Ñ…Ñ•`€ô€´äÈ€¨€ Ä€´•…Í•¤ì(€€€€€€€Í…±”€ô€À¸àØ€¬€À¸ÄĞ€¨•…Í•ì(€€€€€€€½Á…¥Ñä€ô±…µÀ¡…µ½Õ¹Ğ€¨€È¸È°€À°€Ä¤ì(€€€€€ô•±Í”¥˜€¡ÁÉ½É•ÍÌ€ø€À¸àÔ¤ì(€€€€€€€½¹ÍĞ…µ½Õ¹Ğ€ô€¡ÁÉ½É•ÍÌ€´€À¸àÔ¤€¼€À¸ÄÔì(€€€€€€€½¹ÍĞ•…Í•€ô•…Í•%¹	…¬¡…µ½Õ¹Ğ¤ì(€€€€€€€É½Ñ…Ñ•`€ô€àĞ€¨•…Í•ì(€€€€€€€Í…±”€ô€Ä€´€À¸ÄĞ€¨•…Í•ì(€€€€€€€½Á…¥Ñä€ô±…µÀ Ä€´…µ½Õ¹Ğ€¨€Ä¸Ô°€À°€Ä¤ì(€€€€€ô(€€€€€½¹ÍĞÍÑ…É=Á…¥Ñä€ôÁÉ½É•ÍÌ€ğ€À¸ÀĞ€üÁÉ½É•ÍÌ€¼€À¸ÀĞ€èÁÉ½É•ÍÌ€ğ€À¸ÌÈ€ü€Ä€èÁÉ½É•ÍÌ€ğ€À¸ÌÜ€ü±…µÀ Ä€´€¡ÁÉ½É•ÍÌ€´€À¸ÌÈ¤€¼€À¸ÀÔ°€À°€Ä¤€è€Àì(€€€€€½¹ÍĞÍ¡¥¹•AÉ½É•ÍÌ€ô±…µÀ ¡ÁÉ½É•ÍÌ€´€À¸ĞÈ¤€¼€À¸Èà°€À°€Ä¤ì(€€€€€½¹ÍĞÍ¡¥¹•Ñ¥Ù”€ôÁÉ½É•ÍÌ€øô€À¸ĞÈ€˜˜ÁÉ½É•ÍÌ€ğô€À¸Üì(€€€€€½¹ÍĞÍ¡¥¹•=Á…¥Ñä€ôÍ¡¥¹•Ñ¥Ù”€ü€¡Í¡¥¹•AÉ½É•ÍÌ€ğ€À¸Ä€üÍ¡¥¹•AÉ½É•ÍÌ€¼€À¸Ä€èÍ¡¥¹•AÉ½É•ÍÌ€ø€À¸àÔ€ü±…µÀ  Ä€´Í¡¥¹•AÉ½É•ÍÌ¤€¼€À¸ÄÔ°€À°€Ä¤€è€Ä¤€è€Àì((€€€€€Á±…Ñ”¹ÍÑå±”¹½Á…¥Ñä€ôMÑÉ¥¹œ¡½Á…¥Ñä¤ì(€€€€€Á±…Ñ”¹ÍÑå±”¹ÑÉ…¹Í™½É´€ôÁ•ÉÍÁ•Ñ¥Ù” ÌĞÁÁà¤É½Ñ…Ñ•` ‘íÉ½Ñ…Ñ•`¹Ñ½¥á• È¥õ‘•œ¤Í…±” ‘íÍ…±”¹Ñ½¥á• Ì¥ô¥€ì(€€€€€Ñ•áĞ¹ÍÑå±”¹±¥ÁA…Ñ €ô¥¹Í•Ğ À€‘ì  Ä€´É•Ù•…°¤€¨€ÄÀÀ¤¹Ñ½¥á• È¥ô”€À€À¥€ì(€€€€€ÍÑ…ÉÌ¹ÍÑå±”¹ÑÉ…¹Í™½É´€ôÑÉ…¹Í±…Ñ•` ‘ì ÄÌ€¬É•Ù•…°€¨€¡İ¥‘Ñ €´€ÈØ¤¤¹Ñ½¥á• Ä¥õÁà¥€ì(€€€€€ÍÑ…ÉÌ¹ÍÑå±”¹½Á…¥Ñä€ôMÑÉ¥¹œ¡ÍÑ…É=Á…¥Ñä¤ì(€€€€€Í¡¥¹”¹ÍÑå±”¹ÑÉ…¹Í™½É´€ôÑÉ…¹Í±…Ñ•` ‘ì   ´ÔÔ€¬Í¡¥¹•AÉ½É•ÍÌ€¨€ÄØÔ¤€¼€ÄÀÀ¤€¨İ¥‘Ñ ¤¹Ñ½¥á• Ä¥õÁà¤Í­•İ` ´ÄÙ‘•œ¥€ì(€€€€€Í¡¥¹”¹ÍÑå±”¹½Á…¥Ñä€ôMÑÉ¥¹œ¡Í¡¥¹•=Á…¥Ñä¤ì(€€€€€™É…µ•%€ôÉ•ÅÕ•ÍÑ¹¥µ…Ñ¥½¹É…µ”¡™É…µ”¤ì(€€€ôì(€€€™É…µ•%€ôÉ•ÅÕ•ÍÑ¹¥µ…Ñ¥½¹É…µ”¡™É…µ”¤ì(€€€É•ÑÕÉ¸€ ¤€ôøì(€€€€€…¹•±¹¥µ…Ñ¥½¹É…µ”¡™É…µ•%¤ì(€€€€€İ¥¹‘½Ü¹É•µ½Ù•Ù•¹Ñ1¥ÍÑ•¹•È ‰É•Í¥é”ˆ°ÕÁ‘…Ñ•]¥‘Ñ ¤ì(€€€ôì(€ô°mt¤ì((€¥˜€ …±…‰•°¤É•ÑÕÉ¸¹Õ±°ì(€É•ÑÕÉ¸€ (€€€€ñÍÁ…¸É•˜õíÁ±…Ñ•I•™ô±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µ¹…µ•Á±…Ñ”ˆø(€€€€€€ñÍÑÉ½¹œÉ•˜õíÑ•áÑI•™ô±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µÑ•áĞˆùí±…‰•±ôğ½ÍÑÉ½¹œø(€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µÍ¡¥¹”µ±¥Àˆ…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆø(€€€€€€€€ñÍÁ…¸É•˜õíÍ¡¥¹•I•™ô±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µÍ¡¥¹”ˆ€¼ø(€€€€€€ğ½ÍÁ…¸ø(€€€€€€ñÍÁ…¸É•˜õíÍÑ…ÉÍI•™ô±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µÍÑ…ÉÌˆ…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆ€¼ø(€€€€ğ½ÍÁ…¸ø(€€¤ì)ô()•áÁ½ÉĞ™Õ¹Ñ¥½¸ÁÀ ¤ì(€½¹ÍĞì‘…Ñ„°•ÉÉ½Èô€ôÕÍ•AÉ½‰” ¤ì(€½¹ÍĞmÙ¥•Ü°Í•ÑY¥•İt€ôÕÍ•MÑ…Ñ”ğ‰…Éˆğ€‰±¥ÍĞˆø (€€€€ ¤€ôø€¡±½…±MÑ½É…”¹•Ñ%Ñ•´ ‰ÁÉ½‰”µÙ¥•Üˆ¤…Ì€‰…Éˆğ€‰±¥ÍĞˆ¤ñğ€‰…Éˆ°(€€¤ì(€½¹ÍĞm™¥±Ñ•È°Í•Ñ¥±Ñ•Ét€ôÕÍ•MÑ…Ñ”ğ(€€€€‰…±°ˆğ€‰½¹±¥¹”ˆğ€‰½™™±¥¹”ˆğ€‰•áÁ¥É¥¹œˆğ€‰•áÁ¥É•ˆğ€‰É•¹•İ…°ˆ(€€ø ‰…±°ˆ¤ì(€½¹ÍĞmÉ•¥½¸°Í•ÑI•¥½¹t€ôÕÍ•MÑ…Ñ” ‰…±°ˆ¤ì(€½¹ÍĞm±½‰•=Á•¸°Í•Ñ±½‰•=Á•¹t€ôÕÍ•MÑ…Ñ”¡™…±Í”¤ì(€½¹ÍĞÍ•Ñ5½‘”€ô€¡¹•áĞè€‰…Éˆğ€‰±¥ÍĞˆ¤€ôøì(€€€Í•ÑY¥•Ü¡¹•áĞ¤ì(€€€±½…±MÑ½É…”¹Í•Ñ%Ñ•´ ‰ÁÉ½‰”µÙ¥•Üˆ°¹•áĞ¤ì(€ôì(€¥˜€ …‘…Ñ„€˜˜€…•ÉÉ½È¤(€€€É•ÑÕÉ¸€ (€€€€€€ñµ…¥¸±…ÍÍ9…µ”ô‰•¹Ñ•Èˆø(€€€€€€€€ñÑ¥Ù¥Ñä±…ÍÍ9…µ”ô‰ÁÕ±Í”ˆ€¼ø(€€€€€€€ƒš¶–r£¢ş{š:—’âïš:ŸŠ˜(€€€€€€ğ½µ…¥¸ø(€€€€¤ì(€¥˜€¡•ÉÉ½È€˜˜€…‘…Ñ„¤(€€€É•ÑÕÉ¸€ (€€€€€€ñµ…¥¸±…ÍÍ9…µ”ô‰•¹Ñ•È•ÉÉ½Èˆø(€€€€€€€ƒ’âïš:Ÿšjš^Û’â7–>¿R (€€€€€€€€ñ‰È€¼ø(€€€€€€€€ñÍµ…±°ùí•ÉÉ½Éôğ½Íµ…±°ø(€€€€€€ğ½µ…¥¸ø(€€€€¤ì(€¥˜€ …‘…Ñ„ü¹•¹…‰±•¤É•ÑÕÉ¸€ñµ…¥¸±…ÍÍ9…µ”ô‰•¹Ñ•Èˆûš:‹¦J#–Âkšr«–B¿R ğ½µ…¥¸øì(€½¹ÍĞÑ¥Ñ±”€ô‘…Ñ„¹Ñ¥Ñ±”ü¹ÑÉ¥´ ¤ñğ€‹šr7–*‡–f£*Ûšˆì(€½¹ÍĞÍ•ÉÙ•ÉÌ€ô‘…Ñ„¹Í•ÉÙ•ÉÌñğmtì(€½¹ÍĞ½¹±¥¹•½Õ¹Ğ€ôÍ•ÉÙ•ÉÌ¹™¥±Ñ•È ¡Í•ÉÙ•È¤€ôøÍ•ÉÙ•È¹½¹±¥¹”¤¹±•¹Ñ ì(€½¹ÍĞ•áÁ¥É¥¹½Õ¹Ğ€ôÍ•ÉÙ•ÉÌ¹™¥±Ñ•È¡•áÁ¥É¥¹œ¤¹±•¹Ñ ì(€½¹ÍĞ•áÁ¥É•‘½Õ¹Ğ€ôÍ•ÉÙ•ÉÌ¹™¥±Ñ•È¡•áÁ¥É•¤¹±•¹Ñ ì(€½¹ÍĞÉ•¹•İ…±½Õ¹Ğ€ôÍ•ÉÙ•ÉÌ¹™¥±Ñ•È (€€€€¡Í•ÉÙ•È¤€ôø•áÁ¥É¥¹œ¡Í•ÉÙ•È¤ñğ•áÁ¥É•¡Í•ÉÙ•È¤°(€€¤¹±•¹Ñ ì(€½¹ÍĞÉ•¥½¹Ì€ôl(€€€€¸¸¹¹•ÜM•Ğ (€€€€€Í•ÉÙ•ÉÌ(€€€€€€€€¹µ…À ¡Í•ÉÙ•È¤€ôøÍ•ÉÙ•È¹É•¥½¸ü¹ÑÉ¥´ ¤¤(€€€€€€€€¹™¥±Ñ•È ¡Ù…±Õ”¤èÙ…±Õ”¥ÌÍÑÉ¥¹œ€ôø€„…Ù…±Õ”¤°(€€€€¤°(€t¹Í½ÉĞ ¡„°ˆ¤€ôø„¹±½…±•½µÁ…É”¡ˆ°€‰é µ8ˆ¤¤ì(€½¹ÍĞ¡…ÍáÁ¥Éä€ôÍ•ÉÙ•ÉÌ¹Í½µ” ¡Í•ÉÙ•È¤€ôø€„…Í•ÉÙ•È¹•áÁ¥É•Í}…Ğ¤ì(€½¹ÍĞÙ¥Í¥‰±”€ôÍ•ÉÙ•ÉÌ¹™¥±Ñ•È ¡Í•ÉÙ•È¤€ôøì(€€€½¹ÍĞµ…Ñ¡•ÍMÑ…ÑÕÌ€ô(€€€€€™¥±Ñ•È€ôôô€‰…±°ˆñğ(€€€€€€¡™¥±Ñ•È€ôôô€‰½¹±¥¹”ˆ€˜˜Í•ÉÙ•È¹½¹±¥¹”¤ñğ(€€€€€€¡™¥±Ñ•È€ôôô€‰½™™±¥¹”ˆ€˜˜€…Í•ÉÙ•È¹½¹±¥¹”¤ñğ(€€€€€€¡™¥±Ñ•È€ôôô€‰•áÁ¥É¥¹œˆ€˜˜•áÁ¥É¥¹œ¡Í•ÉÙ•È¤¤ñğ(€€€€€€¡™¥±Ñ•È€ôôô€‰•áÁ¥É•ˆ€˜˜•áÁ¥É•¡Í•ÉÙ•È¤¤ñğ(€€€€€€¡™¥±Ñ•È€ôôô€‰É•¹•İ…°ˆ€˜˜€¡•áÁ¥É¥¹œ¡Í•ÉÙ•È¤ñğ•áÁ¥É•¡Í•ÉÙ•È¤¤¤ì(€€€É•ÑÕÉ¸€ (€€€€€µ…Ñ¡•ÍMÑ…ÑÕÌ€˜˜€¡É•¥½¸€ôôô€‰…±°ˆñğÍ•ÉÙ•È¹É•¥½¸ü¹ÑÉ¥´ ¤€ôôôÉ•¥½¸¤(€€€€¤ì(€ô¤ì(€½¹ÍĞ¡…ÍMÁ••€ôÍ•ÉÙ•ÉÌ¹Í½µ” (€€€€¡Í•ÉÙ•È¤€ôø(€€€€€Í•ÉÙ•È¹ÕÁ±½…‘}ÍÁ••€„ôôÕ¹‘•™¥¹•ñğÍ•ÉÙ•È¹‘½İ¹±½…‘}ÍÁ••€„ôôÕ¹‘•™¥¹•°(€€¤ì(€½¹ÍĞÑ½Ñ…±UÁ±½…€ôÍ•ÉÙ•ÉÌ¹É•‘Õ” (€€€€¡ÍÕ´°Í•ÉÙ•È¤€ôøÍÕ´€¬€¡Í•ÉÙ•È¹ÕÁ±½…‘}ÍÁ••ñğ€À¤°(€€€€À°(€€¤ì(€½¹ÍĞÑ½Ñ…±½İ¹±½…€ôÍ•ÉÙ•ÉÌ¹É•‘Õ” (€€€€¡ÍÕ´°Í•ÉÙ•È¤€ôøÍÕ´€¬€¡Í•ÉÙ•È¹‘½İ¹±½…‘}ÍÁ••ñğ€À¤°(€€€€À°(€€¤ì(€É•ÑÕÉ¸€ (€€€€ñ‘¥Ø(€€€€€±…ÍÍ9…µ”õì(€€€€€€€‘…Ñ„¹±¥•¹Í•}‰…‘”€ü€‰…ÁÀµÍ¡•±°¡…Ìµ±¥•¹Í”µ™½½Ñ•Èˆ€è€‰…ÁÀµÍ¡•±°ˆ(€€€€€ô(€€€€ø(€€€€€€ñ¡•…‘•È±…ÍÍ9…µ”ô‰Ñ½Á‰…Èˆø(€€€€€€€€ñ‘¥Øø(€€€€€€€€€í‘…Ñ„¹±½¼€˜˜€ñ¥µœÍÉŒõí‘…Ñ„¹±½½ô…±Ğôˆˆ€¼ùô(€€€€€€€€€€ñ ÄùíÑ¥Ñ±•ôğ½ Äø(€€€€€€€€ğ½‘¥Øø(€€€€€€€€ñ¹…Øø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€…É¥„µ±…‰•°ô‹–6‡&¢–nøˆ(€€€€€€€€€€€Ñ¥Ñ±”ô‹–6‡&¢–nøˆ(€€€€€€€€€€€±…ÍÍ9…µ”õíÙ¥•Ü€ôôô€‰…Éˆ€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ5½‘” ‰…Éˆ¥ô(€€€€€€€€€€ø(€€€€€€€€€€€€ñ1…å½ÕÑÉ¥Í¥é”õìÄáô€¼ø(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€…É¥„µ±…‰•°ô‹–"_¢†£¢–nøˆ(€€€€€€€€€€€Ñ¥Ñ±”ô‹–"_¢†£¢–nøˆ(€€€€€€€€€€€±…ÍÍ9…µ”õíÙ¥•Ü€ôôô€‰±¥ÍĞˆ€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ5½‘” ‰±¥ÍĞˆ¥ô(€€€€€€€€€€ø(€€€€€€€€€€€€ñ1¥ÍĞÍ¥é”õìÄáô€¼ø(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€ğ½¹…Øø(€€€€€€ğ½¡•…‘•Èø(€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰‘…Í¡‰½…ÉµÍÕµµ…Éäˆø(€€€€€€€€ñ…ÉÑ¥±”±…ÍÍ9…µ”ô‰ÍÕµµ…Éäµ…Éˆø(€€€€€€€€€€ñ¡•…‘•Èø(€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€ñM•ÉÙ•ÈÍ¥é”õìÄáô€¼ø(€€€€€€€€€€€€€ƒ¢*
-çš–Ô(€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€í¡…ÍáÁ¥Éä€˜˜€ (€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰•áÁ¥ÉäµÍ¡½ÉÑÕĞˆ(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰É•¹•İ…°ˆ¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€ñ…±•¹‘…É±½¬Í¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€€ƒ–úî·¢Òä€ñˆùíÉ•¹•İ…±½Õ¹Ñôğ½ˆø(€€€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€¥ô(€€€€€€€€€€ğ½¡•…‘•Èø(€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¹½‘”µÍÑ…ÑÌˆø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰…±°ˆ¥ôø(€€€€€€€€€€€€€€ñÍÑÉ½¹œùíÍ•ÉÙ•ÉÌ¹±•¹Ñ¡ôğ½ÍÑÉ½¹œø(€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€ñM•ÉÙ•ÈÍ¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€€ƒšï¢*
-ä(€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰½¹±¥¹”ˆ¥ô±…ÍÍ9…µ”ô‰½¹±¥¹”ˆø(€€€€€€€€€€€€€€ñÍÑÉ½¹œùí½¹±¥¹•½Õ¹Ñôğ½ÍÑÉ½¹œø(€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€ñ¡•­¥É±”ÈÍ¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€€ƒ–r£êÿ¢*
-ä(€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰½™™±¥¹”ˆ¥ô±…ÍÍ9…µ”ô‰½™™±¥¹”ˆø(€€€€€€€€€€€€€€ñÍÑÉ½¹œùíÍ•ÉÙ•ÉÌ¹±•¹Ñ €´½¹±¥¹•½Õ¹Ñôğ½ÍÑÉ½¹œø(€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€ña¥É±”Í¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€€ƒšïêÿ¢*
-ä(€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€ğ½‘¥Øø(€€€€€€€€ğ½…ÉÑ¥±”ø(€€€€€€€í¡…ÍMÁ••€˜˜€ (€€€€€€€€€€ñ…ÉÑ¥±”±…ÍÍ9…µ”ô‰ÍÕµµ…Éäµ…Éˆø(€€€€€€€€€€€€ñ¡•…‘•Èø(€€€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€€€ñ…Õ”Í¥é”õìÄáô€¼ø(€€€€€€€€€€€€€€€ƒöGîsš–Ô(€€€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€€€ñÍµ…±°û–º{š^ÛšÆšìğ½Íµ…±°ø(€€€€€€€€€€€€ğ½¡•…‘•Èø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¹•Ñİ½É¬µÍÑ…ÑÌˆø(€€€€€€€€€€€€€€ñMÁ••‘MÕµµ…Éä(€€€€€€€€€€€€€€€±…‰•°ô‹šï’â/¢†3öG¦|ˆ(€€€€€€€€€€€€€€€Ù…±Õ”õíÑ½Ñ…±½İ¹±½…‘ô(€€€€€€€€€€€€€€€‘¥É•Ñ¥½¸ô‰‘½İ¸ˆ(€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€€€ñMÁ••‘MÕµµ…Éä(€€€€€€€€€€€€€€€±…‰•°ô‹šï’â+¢†3öG¦|ˆ(€€€€€€€€€€€€€€€Ù…±Õ”õíÑ½Ñ…±UÁ±½…‘ô(€€€€€€€€€€€€€€€‘¥É•Ñ¥½¸ô‰ÕÀˆ(€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€ğ½‘¥Øø(€€€€€€€€€€ğ½…ÉÑ¥±”ø(€€€€€€€€¥ô(€€€€€€ğ½Í•Ñ¥½¸ø(€€€€€í‘…Ñ„¹Í¡½İ}±½‰”€˜˜É•¥½¹Ì¹±•¹Ñ €ø€À€˜˜€ (€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”õí±½‰”µ…É€‘í±½‰•=Á•¸€ü€‰½Á•¸ˆ€è€ˆ‰õôø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€±…ÍÍ9…µ”ô‰±½‰”µÑ½±”ˆ(€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€…É¥„µ•áÁ…¹‘•õí±½‰•=Á•¹ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ±½‰•=Á•¸ ¡Ù…±Õ”¤€ôø€…Ù…±Õ”¥ô(€€€€€€€€€€ø(€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€€ñ±½‰”ÈÍ¥é”õìÄáô€¼ø(€€€€€€€€€€€€€ƒ–rÃ–2ë–"–â(€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€€€ñÍÁ…¸ø(€€€€€€€€€€€€€íÉ•¥½¹Ì¹±•¹Ñ¡ôƒ’â«–rÃ–2è(€€€€€€€€€€€€€€ñ¡•ÙÉ½¹½İ¸Í¥é”õìÄİô€¼ø(€€€€€€€€€€€€ğ½ÍÁ…¸ø(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€í±½‰•=Á•¸€˜˜€ (€€€€€€€€€€€€ñMÕÍÁ•¹Í”(€€€€€€€€€€€€€™…±±‰…¬õìñ‘¥Ø±…ÍÍ9…µ”ô‰±½‰”µ±½…‘¥¹œˆûš¶–r£–*ƒ¢ö÷–n÷V3šVÃš6»Š˜ğ½‘¥Øùô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€€ñI•¥½¹±½‰”(€€€€€€€€€€€€€€€É•¥½¹ÌõíÍ•ÉÙ•ÉÌ(€€€€€€€€€€€€€€€€€€¹µ…À ¡Í•ÉÙ•È¤€ôøÍ•ÉÙ•È¹É•¥½¸ñğ€ˆˆ¤(€€€€€€€€€€€€€€€€€€¹™¥±Ñ•È¡	½½±•…¸¥ô(€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€ğ½MÕÍÁ•¹Í”ø(€€€€€€€€€€¥ô(€€€€€€€€ğ½Í•Ñ¥½¸ø(€€€€€€¥ô(€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰ÁÉ½‰”µÑ½½±‰…Èˆø(€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰™¥±Ñ•ÉÌˆø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰…±°ˆ€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰…±°ˆ¥ô(€€€€€€€€€€ø(€€€€€€€€€€€ƒ–£¦ íÍ•ÉÙ•ÉÌ¹±•¹Ñ¡ô(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰½¹±¥¹”ˆ€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰½¹±¥¹”ˆ¥ô(€€€€€€€€€€ø(€€€€€€€€€€€ƒ–r£êüí½¹±¥¹•½Õ¹Ñô(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰½™™±¥¹”ˆ€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰½™™±¥¹”ˆ¥ô(€€€€€€€€€€ø(€€€€€€€€€€€ƒšïêüíÍ•ÉÙ•ÉÌ¹±•¹Ñ €´½¹±¥¹•½Õ¹Ñô(€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€í¡…ÍáÁ¥Éä€˜˜€ (€€€€€€€€€€€€ğø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰É•¹•İ…°ˆ€ü€‰…Ñ¥Ù”İ…É¹¥¹œˆ€è€‰İ…É¹¥¹œ‰ô(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰É•¹•İ…°ˆ¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€ƒ–úî·¢ÒäíÉ•¹•İ…±½Õ¹Ñô(€€€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰•áÁ¥É¥¹œˆ€ü€‰…Ñ¥Ù”İ…É¹¥¹œˆ€è€‰İ…É¹¥¹œ‰ô(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰•áÁ¥É¥¹œˆ¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€ƒ–6Ï–Â–"Ãšr|í•áÁ¥É¥¹½Õ¹Ñô(€€€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€±…ÍÍ9…µ”õí™¥±Ñ•È€ôôô€‰•áÁ¥É•ˆ€ü€‰…Ñ¥Ù”‘…¹•Èˆ€è€‰‘…¹•È‰ô(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ¥±Ñ•È ‰•áÁ¥É•ˆ¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€ƒ–ŞË–"Ãšr|í•áÁ¥É•‘½Õ¹Ñô(€€€€€€€€€€€€€€ğ½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ğ¼ø(€€€€€€€€€€¥ô(€€€€€€€€€íÉ•¥½¹Ì¹±•¹Ñ €ø€À€˜˜€ (€€€€€€€€€€€€ñ±…‰•°±…ÍÍ9…µ”ô‰É•¥½¸µ™¥±Ñ•Èˆø(€€€€€€€€€€€€€€ñ5…ÁA¥¸Í¥é”õìÄÑô€¼ø(€€€€€€€€€€€€€€ñÍ•±•Ğ(€€€€€€€€€€€€€€€…É¥„µ±…‰•°ô‹–rÃ–2ë¶o¦$ˆ(€€€€€€€€€€€€€€€Ù…±Õ”õíÉ•¥½¹ô(€€€€€€€€€€€€€€€½¹¡…¹”õì¡•Ù•¹Ğ¤€ôøÍ•ÑI•¥½¸¡•Ù•¹Ğ¹Ñ…É•Ğ¹Ù…±Õ”¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€ñ½ÁÑ¥½¸Ù…±Õ”ô‰…±°ˆû–£¦£–rÃ–2èğ½½ÁÑ¥½¸ø(€€€€€€€€€€€€€€€íÉ•¥½¹Ì¹µ…À ¡¥Ñ•´¤€ôø€ (€€€€€€€€€€€€€€€€€€ñ½ÁÑ¥½¸Ù…±Õ”õí¥Ñ•µô­•äõí¥Ñ•µôø(€€€€€€€€€€€€€€€€€€€í¥Ñ•µô(€€€€€€€€€€€€€€€€€€ğ½½ÁÑ¥½¸ø(€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€ğ½Í•±•Ğø(€€€€€€€€€€€€ğ½±…‰•°ø(€€€€€€€€€€¥ô(€€€€€€€€ğ½‘¥Øø(€€€€€€ğ½Í•Ñ¥½¸ø(€€€€€€ñµ…¥¸±…ÍÍ9…µ”õíÍ•ÉÙ•ÉÌ€‘íÙ¥•İõôø(€€€€€€€íÙ¥Í¥‰±”¹±•¹Ñ €ü€ (€€€€€€€€€Ù¥•Ü€ôôô€‰…Éˆ€ü€ (€€€€€€€€€€€Ù¥Í¥‰±”¹µ…À ¡Í•ÉÙ•È¤€ôø€ (€€€€€€€€€€€€€€ñM•ÉÙ•É…É(€€€€€€€€€€€€€€€­•äõíÍ•ÉÙ•È¹¹…µ•ô(€€€€€€€€€€€€€€€Í•ÉÙ•ÈõíÍ•ÉÙ•Éô(€€€€€€€€€€€€€€€¥¹‘•àõíÍ•ÉÙ•ÉÌ¹¥¹‘•á=˜¡Í•ÉÙ•È¥ô(€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€¤¤(€€€€€€€€€€¤€è€ (€€€€€€€€€€€€ñM•ÉÙ•ÉQ…‰±”Í•ÉÙ•ÉÌõíÙ¥Í¥‰±•ô€¼ø(€€€€€€€€€€¤(€€€€€€€€¤€è€ (€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰•µÁÑäˆûšjš^ƒ²›–B#šv‡’îÛjšr7–*‡–f ğ½‘¥Øø(€€€€€€€€¥ô(€€€€€€ğ½µ…¥¸ø(€€€€€€ñ™½½Ñ•Èø(€€€€€€€A½İ•É•‰åìˆ€‰ô(€€€€€€€€ñ„(€€€€€€€€€¡É•˜ô‰¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½µµİàµÉ½ÕÀˆ(€€€€€€€€€Ñ…É•Ğô‰}‰±…¹¬ˆ(€€€€€€€€€É•°ô‰¹½É•™•ÉÉ•Èˆ(€€€€€€€€ø(€€€€€€€€€55]`É½ÕÀ(€€€€€€€€ğ½„ø(€€€€€€ğ½™½½Ñ•Èø(€€€€€í‘…Ñ„¹±¥•¹Í•}‰…‘”€˜˜€ (€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÁÉ½‰”µ±¥•¹Í”µ™½½Ñ•Èˆø(€€€€€€€€€€ñAÉ½‰•1¥•¹Í•9…µ•Á±…Ñ”(€€€€€€€€€€€¹…µ”õí‘…Ñ„¹±¥•¹Í•}‰…‘”¹¹…µ•ô(€€€€€€€€€€€‘¥ÍÁ±…å9…µ”õí‘…Ñ„¹±¥•¹Í•}‰…‘”¹‘¥ÍÁ±…å}¹…µ•ô(€€€€€€€€€€¼ø(€€€€€€€€ğ½‘¥Øø(€€€€€€¥ô(€€€€ğ½‘¥Øø(€€¤ì)ô(
+        const row: Record<string, string | number | null> = {
+          time: formatAxisDateTime(
+            timeMeta.generatedAt -
+              (timeMeta.generatedAt % timeMeta.bucketSec) -
+              ((series[0]?.buckets.length || 0) - 1 - index) *
+                timeMeta.bucketSec,
+          ),
+        };
+        for (const item of series) {
+          const bucket = item.buckets[index];
+          const value = mode === "loss" ? bucket?.loss : bucket?.ms;
+          row[item.key || item.label] =
+            value !== undefined && value >= 0 ? value : null;
+        }
+        return row;
+      }),
+    [series, mode, timeMeta],
+  );
+  const dynamicLossScale = useMemo(() => lossScale(rows), [rows]);
+
+  return createPortal(
+    <div className="modal-backdrop" role="presentation" onMouseDown={close}>
+      <section
+        className="modal"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <header>
+          <h2>
+            {title} Â· {mode === "loss" ? "ä¸¢åŒ…ç‡è¶‹åŠ¿" : "å»¶è¿Ÿè¶‹åŠ¿"}
+          </h2>
+          <button aria-label="å…³é—­" onClick={close}>
+            Ã—
+          </button>
+        </header>
+        <div className="ranges">
+          {ranges.map((item) => (
+            <button
+              type="button"
+              className={range === item.key ? "active" : ""}
+              onClick={() => setRange(item.key)}
+              key={item.key}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <div className="chart">
+          {loading && <div className="loading-overlay">åŠ è½½ä¸­â€¦</div>}
+          <HorizontalChart width={Math.max(760, rows.length * 82)}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={rows}
+                margin={{ top: 8, right: 12, bottom: 0, left: 0 }}
+              >
+                <XAxis
+                  dataKey="time"
+                  tick={{ fontSize: 10 }}
+                  axisLine={false}
+                  tickLine={false}
+                  interval={0}
+                  minTickGap={28}
+                />
+                <YAxis
+                  width={52}
+                  tick={{ fontSize: 10 }}
+                  axisLine={false}
+                  tickLine={false}
+                  unit={mode === "loss" ? undefined : "ms"}
+                  domain={mode === "loss" ? [0, dynamicLossScale.max] : undefined}
+                  ticks={mode === "loss" ? dynamicLossScale.ticks : undefined}
+                  tickFormatter={mode === "loss" ? (value) => formatLossTick(Number(value)) : undefined}
+                />
+                <Tooltip
+                  contentStyle={{ fontSize: 11, borderRadius: 8 }}
+                  formatter={(value, _name, item) => [
+                    `${Number(value).toFixed(mode === "loss" ? 1 : 0)}${mode === "loss" ? "%" : "ms"}`,
+                    series.find(
+                      (line) => (line.key || line.label) === item.dataKey,
+                    )?.label || String(item.dataKey),
+                  ]}
+                />
+                {series.map((item, index) => {
+                  const key = item.key || item.label;
+                  const active = key === targetKey;
+                  return (
+                    <Line
+                      key={key}
+                      type="monotone"
+                      dataKey={key}
+                      name={item.label}
+                      stroke={
+                        key === "__avg__"
+                          ? "var(--foreground, #2f2350)"
+                          : colors[index % colors.length]
+                      }
+                      strokeWidth={active ? 2.5 : 1}
+                      strokeOpacity={active ? 1 : 0.45}
+                      dot={false}
+                      connectNulls={false}
+                      isAnimationActive={false}
+                    />
+                  );
+                })}
+              </LineChart>
+            </ResponsiveContainer>
+          </HorizontalChart>
+        </div>
+        {series.length > 1 && (
+          <div className="legend">
+            {series.map((item, index) => {
+              const key = item.key || item.label;
+              return (
+                <span className={key === targetKey ? "active" : ""} key={key}>
+                  <i
+                    style={{
+                      background:
+                        key === "__avg__"
+                          ? "var(--foreground, #2f2350)"
+                          : colors[index % colors.length],
+                    }}
+                  />
+                  {item.label}
+                </span>
+              );
+            })}
+          </div>
+        )}
+      </section>
+    </div>,
+    document.body,
+  );
+}
+
+function PingPanel({
+  ping,
+  serverIndex,
+}: {
+  ping: ProbePingSeries[];
+  serverIndex: number;
+}) {
+  const [mode, setMode] = useState<"latency" | "loss" | null>(null);
+  const [selected, setSelected] = useState("__avg__");
+  const average = averagePing(ping);
+  const lines = [{ ...average, key: "__avg__" }, ...ping];
+  const current =
+    selected === "__avg__"
+      ? average
+      : ping.find((item) => (item.key || item.label) === selected) || average;
+  const blocks = (kind: "latency" | "loss") =>
+    current.buckets.map((bucket, index) => {
+      const value = kind === "loss" ? bucket.loss : bucket.ms;
+      const level =
+        value < 0
+          ? "none"
+          : kind === "loss"
+            ? value >= 20
+              ? "bad"
+              : value > 0
+                ? "warn"
+                : "good"
+            : value >= 200
+              ? "warn"
+              : "good";
+      return <i key={index} className={level} />;
+    });
+  return (
+    <>
+      <div className="ping-grid">
+        <div className="ping-head">
+          <span>
+            <Clock size={14} />
+            <select
+              value={selected}
+              onChange={(event) => setSelected(event.target.value)}
+            >
+              <option value="__avg__">å¹³å‡</option>
+              {ping.map((item) => (
+                <option
+                  key={item.key || item.label}
+                  value={item.key || item.label}
+                >
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </span>
+          <strong>
+            {current.current_ms < 0
+              ? "è¶…æ—¶"
+              : `${current.current_ms.toFixed(0)} ms`}
+          </strong>
+        </div>
+        <div className="ping-head">
+          <span>
+            <Wifi size={14} />
+            ä¸¢åŒ…ç‡
+          </span>
+          <strong className={current.loss_pct > 0 ? "warning" : ""}>
+            {current.loss_pct.toFixed(1)}%
+          </strong>
+        </div>
+        <button
+          className="ping-blocks"
+          type="button"
+          aria-label="æŸ¥çœ‹å»¶è¿Ÿè¶‹åŠ¿"
+          onClick={() => setMode("latency")}
+        >
+          {blocks("latency")}
+        </button>
+        <button
+          className="ping-blocks"
+          type="button"
+          aria-label="æŸ¥çœ‹ä¸¢åŒ…ç‡è¶‹åŠ¿"
+          onClick={() => setMode("loss")}
+        >
+          {blocks("loss")}
+        </button>
+      </div>
+      {mode && (
+        <TrendDialog
+          serverIndex={serverIndex}
+          initial={lines}
+          targetKey={selected}
+          title={current.label}
+          mode={mode}
+          close={() => setMode(null)}
+        />
+      )}
+    </>
+  );
+}
+
+const routeCarrierLabels = {
+  telecom: "ç”µä¿¡",
+  unicom: "è”é€š",
+  mobile: "ç§»åŠ¨",
+} as const;
+const goldRoutes = new Set(["CN2GIA", "CTGGIA", "9929", "CMIN2", "163PP"]);
+function displayReturnRoute(route: string): string {
+  return route.toUpperCase().replace(/[^A-Z0-9]/g, "") === "CMIN"
+    ? "CMI"
+    : route;
+}
+
+function ReturnRouteIcon({ premium }: { premium: boolean }) {
+  return (
+    <Lottie
+      animationData={premium ? premiumRouteAnimation : commonRouteAnimation}
+      aria-hidden="true"
+      className="route-badge-icon"
+      loop
+    />
+  );
+}
+
+function ReturnRouteBadges({
+  routes,
+  telecomPaidPeer,
+}: {
+  routes: ProbeReturnRoute[];
+  telecomPaidPeer?: boolean;
+}) {
+  const byCarrier = new Map(routes.map((route) => [route.carrier, route]));
+  return (
+    <div className="return-route-badges">
+      {(["telecom", "unicom", "mobile"] as const).map((carrier) => {
+        const route = byCarrier.get(carrier);
+        const detectedRouteType = displayReturnRoute(
+          route?.route_type || "Unknown",
+        );
+        const routeType =
+          carrier === "telecom" &&
+          telecomPaidPeer &&
+          detectedRouteType === "163"
+            ? "163 PP"
+            : detectedRouteType;
+        const premium = goldRoutes.has(
+          routeType.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+        );
+        return (
+          <div
+            className="route-badge"
+            key={carrier}
+            title={route?.region ? `${route.region} Â· ${routeType}` : routeType}
+          >
+            <div
+              className={
+                premium
+                  ? "route-badge-animation gold"
+                  : "route-badge-animation silver"
+              }
+            >
+              <ReturnRouteIcon premium={premium} />
+            </div>
+            <div
+              className={
+                premium ? "route-badge-text gold" : "route-badge-text silver"
+              }
+            >
+              <small>{routeCarrierLabels[carrier]}</small>
+              <strong>{routeType}</strong>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ServerCard({ server, index }: { server: ProbeServer; index: number }) {
+  const [trafficOpen, setTrafficOpen] = useState(false);
+  const name = server.name || `æœåŠ¡å™¨ ${index + 1}`;
+  const flag = regionFlag(server.region);
+  return (
+    <article className="server-card">
+      <div className="server-title">
+        <span className={server.online ? "status online" : "status"} />
+        <h2>
+          <Twemoji>
+            {flag && !hasLeadingFlag(name) ? `${flag} ${name}` : name}
+          </Twemoji>
+        </h2>
+        <span title={systemTitle(server)}>
+          <SystemIcon server={server} />
+        </span>
+      </div>
+      <div className="metrics">
+        {server.cpu_pct !== undefined && (
+          <Meter
+            icon={<Cpu size={14} />}
+            label="CPU"
+            value={`${server.cpu_pct.toFixed(1)}%`}
+            percent={server.cpu_pct}
+          />
+        )}
+        {server.mem_total !== undefined && (
+          <Meter
+            icon={<MemoryStick size={14} />}
+            label="å†…å­˜"
+            value={`${pct(server.mem_used, server.mem_total).toFixed(1)}%`}
+            percent={pct(server.mem_used, server.mem_total)}
+          />
+        )}
+        {server.disk_total !== undefined && (
+          <Meter
+            icon={<HardDrive size={14} />}
+            label="ç¡¬ç›˜"
+            value={`${pct(server.disk_used, server.disk_total).toFixed(1)}%`}
+            percent={pct(server.disk_used, server.disk_total)}
+          />
+        )}
+        {server.traffic_used !== undefined && (
+          <button
+            type="button"
+            className="metric metric-button"
+            onClick={() => setTrafficOpen(true)}
+          >
+            <div className="metric-head">
+              <span>
+                <PieChart size={14} />
+                æµé‡
+              </span>
+              <strong>
+                {server.traffic_limit
+                  ? `${bytes(server.traffic_used, false)} / ${bytes(server.traffic_limit, false)}`
+                  : bytes(server.traffic_used, false)}
+              </strong>
+            </div>
+            <div className="meter">
+              <i
+                style={{
+                  width: `${pct(server.traffic_used, server.traffic_limit)}%`,
+                }}
+              />
+            </div>
+          </button>
+        )}
+      </div>
+      {(server.upload_speed !== undefined ||
+        server.download_speed !== undefined) && (
+        <div className="speed">
+          <span className="download">
+            <ArrowDown size={16} />
+            {speed(server.download_speed)}
+          </span>
+          <span className="upload">
+            <ArrowUp size={16} />
+            {speed(server.upload_speed)}
+          </span>
+        </div>
+      )}
+      {!!server.ping?.length && (
+        <PingPanel ping={server.ping} serverIndex={index} />
+      )}
+      {!!server.return_routes?.length && (
+        <ReturnRouteBadges
+          routes={server.return_routes}
+          telecomPaidPeer={server.telecom_paid_peer}
+        />
+      )}
+      {(server.expires_at || server.renewal_price !== undefined) && (
+        <div className="server-meta">
+          {server.expires_at &&
+            (server.provider_url ? (
+              <a
+                href={server.provider_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={expiring(server) || expired(server) ? "warning" : ""}
+                title={
+                  server.provider_name
+                    ? `å‰å¾€ ${server.provider_name} ç»­è´¹`
+                    : "å‰å¾€æœåŠ¡å•†ç»­è´¹"
+                }
+              >
+                <CalendarClock size={13} />
+                {remainingDays(server.expires_at)}
+              </a>
+            ) : (
+              <span
+                className={expiring(server) || expired(server) ? "warning" : ""}
+              >
+                <CalendarClock size={13} />
+                {remainingDays(server.expires_at)}
+              </span>
+            ))}
+          {server.renewal_price !== undefined && (
+            <span>
+              <Wallet size={13} />
+              {server.renewal_price_cny !== undefined
+                ? `Â¥${server.renewal_price_cny.toFixed(2)}`
+                : `${server.renewal_currency || "CNY"} ${server.renewal_price}`}{" "}
+              / {cycleLabel[server.renewal_cycle || "month"]}
+              {server.renewal_price_cny !== undefined &&
+                server.renewal_currency !== "CNY" && (
+                  <small>
+                    ï¼ˆ{server.renewal_currency} {server.renewal_price}ï¼‰
+                  </small>
+                )}
+            </span>
+          )}
+        </div>
+      )}
+      {trafficOpen && (
+        <TrafficDialog server={server} close={() => setTrafficOpen(false)} />
+      )}
+    </article>
+  );
+}
+
+function TableMetric({ percent }: { percent?: number }) {
+  if (percent === undefined) return <span className="dash">â€”</span>;
+  return (
+    <div className="table-metric">
+      <span>{percent.toFixed(1)}%</span>
+      <div className="meter">
+        <i style={{ width: `${Math.min(100, Math.max(0, percent))}%` }} />
+      </div>
+    </div>
+  );
+}
+
+function TablePing({
+  ping,
+  serverIndex,
+}: {
+  ping?: ProbePingSeries[];
+  serverIndex: number;
+}) {
+  const [open, setOpen] = useState(false);
+  if (!ping?.length) return <span className="dash">â€”</span>;
+  const average = averagePing(ping);
+  const lines = [{ ...average, key: "__avg__" }, ...ping];
+  return (
+    <>
+      <button
+        className="table-ping"
+        type="button"
+        onClick={() => setOpen(true)}
+      >
+        <span>
+          <strong>
+            {average.current_ms < 0
+              ? "è¶…æ—¶"
+              : `${average.current_ms.toFixed(0)} ms`}
+          </strong>
+          <b>{average.loss_pct.toFixed(1)}%</b>
+        </span>
+        <em>
+          {average.buckets.map((bucket, index) => (
+            <i
+              key={index}
+              className={
+                bucket.ms < 0 && bucket.loss < 0
+                  ? "none"
+                  : bucket.ms < 0
+                    ? "bad"
+                    : bucket.ms >= 200
+                      ? "warn"
+                      : "good"
+              }
+            />
+          ))}
+        </em>
+      </button>
+      {open && (
+        <TrendDialog
+          serverIndex={serverIndex}
+          initial={lines}
+          targetKey="__avg__"
+          title="å¹³å‡"
+          mode="latency"
+          close={() => setOpen(false)}
+        />
+      )}
+    </>
+  );
+}
+
+function ServerTable({ servers }: { servers: ProbeServer[] }) {
+  return (
+    <section className="server-table-wrap">
+      <div className="table-scroll">
+        <table className="server-table">
+          <thead>
+            <tr>
+              <th>æœåŠ¡å™¨</th>
+              <th>çŠ¶æ€</th>
+              <th>CPU</th>
+              <th>å†…å­˜</th>
+              <th>ç¡¬ç›˜</th>
+              <th>ç½‘é€Ÿ</th>
+              <th>æµé‡</th>
+              <th>å»¶è¿Ÿ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {servers.map((server, index) => {
+              const memory = server.mem_total
+                ? pct(server.mem_used, server.mem_total)
+                : undefined;
+              const disk = server.disk_total
+                ? pct(server.disk_used, server.disk_total)
+                : undefined;
+              return (
+                <tr key={`${server.name}-${index}`}>
+                  <td className="table-name">
+                    <Twemoji>{server.name || `æœåŠ¡å™¨ ${index + 1}`}</Twemoji>
+                    {server.region && <small>{server.region}</small>}
+                    {server.expires_at &&
+                      (server.provider_url ? (
+                        <a
+                          href={server.provider_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={expiring(server) ? "warning" : ""}
+                          title={
+                            server.provider_name
+                              ? `å‰å¾€ ${server.provider_name} ç»­è´¹`
+                              : "å‰å¾€æœåŠ¡å•†ç»­è´¹"
+                          }
+                        >
+                          {server.expires_at}
+                        </a>
+                      ) : (
+                        <small className={expiring(server) ? "warning" : ""}>
+                          {server.expires_at}
+                        </small>
+                      ))}
+                  </td>
+                  <td>
+                    <span className="table-status">
+                      <i className={server.online ? "online" : ""} />
+                      {server.online ? "åœ¨çº¿" : "ç¦»çº¿"}
+                    </span>
+                  </td>
+                  <td>
+                    <TableMetric percent={server.cpu_pct} />
+                  </td>
+                  <td>
+                    <TableMetric percent={memory} />
+                  </td>
+                  <td>
+                    <TableMetric percent={disk} />
+                  </td>
+                  <td>
+                    <span className="table-speed">
+                      <span>
+                        <ArrowUp size={14} />
+                        {speed(server.upload_speed)}
+                      </span>
+                      <span>
+                        <ArrowDown size={14} />
+                        {speed(server.download_speed)}
+                      </span>
+                    </span>
+                  </td>
+                  <td>
+                    <div className="table-traffic">
+                      <span>
+                        {server.traffic_limit
+                          ? `${bytes(server.traffic_used, false)} / ${bytes(server.traffic_limit, false)}`
+                          : bytes(server.traffic_used, false)}
+                      </span>
+                      {!!server.traffic_limit && (
+                        <div className="meter">
+                          <i
+                            style={{
+                              width: `${pct(server.traffic_used, server.traffic_limit)}%`,
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td>
+                    <TablePing ping={server.ping} serverIndex={index} />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function ProbeLicenseNameplate({
+  name,
+  displayName,
+}: {
+  name?: string;
+  displayName?: string;
+}) {
+  const label = [name?.trim(), displayName?.trim()].filter(Boolean).join(" Â· ");
+  const plateRef = useRef<HTMLSpanElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const starsRef = useRef<HTMLSpanElement>(null);
+  const shineRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const plate = plateRef.current;
+    const text = textRef.current;
+    const stars = starsRef.current;
+    const shine = shineRef.current;
+    if (!plate || !text || !stars || !shine) return;
+
+    const palette = ["#f9a8d4", "#f472b6", "#ec4899", "#fbcfe8", "#ff8fc7"];
+    const random = (min: number, max: number) => min + Math.random() * (max - min);
+    const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+    const easeOutBack = (value: number) => {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
+    };
+    const easeInBack = (value: number) => {
+      const c1 = 1.70158;
+      return (c1 + 1) * value * value * value - c1 * value * value;
+    };
+
+    stars.innerHTML = "";
+    const height = stars.clientHeight || 24;
+    const makeStar = (topFor: (size: number) => number) => {
+      const star = document.createElement("i");
+      star.className = "spark";
+      star.style.color = palette[Math.floor(Math.random() * palette.length)];
+      const size = Math.round(random(8, 13));
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.round(topFor(size))}px`;
+      star.style.left = `${Math.round(random(0, 12))}px`;
+      stars.appendChild(star);
+    };
+    for (let index = 0; index < 5; index++) makeStar((size) => random(0, Math.max(0, height - size)));
+    makeStar((size) => -size * 0.6);
+    makeStar((size) => height - size * 0.4);
+
+    let width = plate.offsetWidth;
+    const updateWidth = () => { width = plate.offsetWidth; };
+    window.addEventListener("resize", updateWidth);
+    let frameID = 0;
+    const start = performance.now();
+    const frame = (now: number) => {
+      const progress = ((now - start) % 5500) / 5500;
+      const reveal = clamp(progress / 0.36, 0, 1);
+      let rotateX = 0;
+      let scale = 1;
+      let opacity = 1;
+      if (progress < 0.08) {
+        const amount = progress / 0.08;
+        const eased = easeOutBack(amount);
+        rotateX = -92 * (1 - eased);
+        scale = 0.86 + 0.14 * eased;
+        opacity = clamp(amount * 2.2, 0, 1);
+      } else if (progress > 0.85) {
+        const amount = (progress - 0.85) / 0.15;
+        const eased = easeInBack(amount);
+        rotateX = 84 * eased;
+        scale = 1 - 0.14 * eased;
+        opacity = clamp(1 - amount * 1.5, 0, 1);
+      }
+      const starOpacity = progress < 0.04 ? progress / 0.04 : progress < 0.32 ? 1 : progress < 0.37 ? clamp(1 - (progress - 0.32) / 0.05, 0, 1) : 0;
+      const shineProgress = clamp((progress - 0.42) / 0.28, 0, 1);
+      const shineActive = progress >= 0.42 && progress <= 0.7;
+      const shineOpacity = shineActive ? (shineProgress < 0.1 ? shineProgress / 0.1 : shineProgress > 0.85 ? clamp((1 - shineProgress) / 0.15, 0, 1) : 1) : 0;
+
+      plate.style.opacity = String(opacity);
+      plate.style.transform = `perspective(340px) rotateX(${rotateX.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+      text.style.clipPath = `inset(0 ${((1 - reveal) * 100).toFixed(2)}% 0 0)`;
+      stars.style.transform = `translateX(${(13 + reveal * (width - 26)).toFixed(1)}px)`;
+      stars.style.opacity = String(starOpacity);
+      shine.style.transform = `translateX(${(((-55 + shineProgress * 165) / 100) * width).toFixed(1)}px) skewX(-16deg)`;
+      shine.style.opacity = String(shineOpacity);
+      frameID = requestAnimationFrame(frame);
+    };
+    frameID = requestAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(frameID);
+      window.removeEventListener("resize", updateWidth);
+    };
+  }, []);
+
+  if (!label) return null;
+  return (
+    <span ref={plateRef} className="probe-license-nameplate">
+      <strong ref={textRef} className="probe-license-text">{label}</strong>
+      <span className="probe-license-shine-clip" aria-hidden="true">
+        <span ref={shineRef} className="probe-license-shine" />
+      </span>
+      <span ref={starsRef} className="probe-license-stars" aria-hidden="true" />
+    </span>
+  );
+}
+
+export function App() {
+  const { data, error } = useProbe();
+  const [view, setView] = useState<"card" | "list">(
+    () => (localStorage.getItem("probe-view") as "card" | "list") || "card",
+  );
+  const [filter, setFilter] = useState<
+    "all" | "online" | "offline" | "expiring" | "expired" | "renewal"
+  >("all");
+  const [region, setRegion] = useState("all");
+  const [globeOpen, setGlobeOpen] = useState(false);
+  const setMode = (next: "card" | "list") => {
+    setView(next);
+    localStorage.setItem("probe-view", next);
+  };
+  if (!data && !error)
+    return (
+      <main className="center">
+        <Activity className="pulse" />
+        æ­£åœ¨è¿æ¥ä¸»æ§â€¦
+      </main>
+    );
+  if (error && !data)
+    return (
+      <main className="center error">
+        ä¸»æ§æš‚æ—¶ä¸å¯ç”¨
+        <br />
+        <small>{error}</small>
+      </main>
+    );
+  if (!data?.enabled) return <main className="center">æ¢é’ˆå°šæœªå¯ç”¨</main>;
+  const title = data.title?.trim() || "æœåŠ¡å™¨çŠ¶æ€";
+  const servers = data.servers || [];
+  const onlineCount = servers.filter((server) => server.online).length;
+  const expiringCount = servers.filter(expiring).length;
+  const expiredCount = servers.filter(expired).length;
+  const renewalCount = servers.filter(
+    (server) => expiring(server) || expired(server),
+  ).length;
+  const regions = [
+    ...new Set(
+      servers
+        .map((server) => server.region?.trim())
+        .filter((value): value is string => !!value),
+    ),
+  ].sort((a, b) => a.localeCompare(b, "zh-CN"));
+  const hasExpiry = servers.some((server) => !!server.expires_at);
+  const visible = servers.filter((server) => {
+    const matchesStatus =
+      filter === "all" ||
+      (filter === "online" && server.online) ||
+      (filter === "offline" && !server.online) ||
+      (filter === "expiring" && expiring(server)) ||
+      (filter === "expired" && expired(server)) ||
+      (filter === "renewal" && (expiring(server) || expired(server)));
+    return (
+      matchesStatus && (region === "all" || server.region?.trim() === region)
+    );
+  });
+  const hasSpeed = servers.some(
+    (server) =>
+      server.upload_speed !== undefined || server.download_speed !== undefined,
+  );
+  const totalUpload = servers.reduce(
+    (sum, server) => sum + (server.upload_speed || 0),
+    0,
+  );
+  const totalDownload = servers.reduce(
+    (sum, server) => sum + (server.download_speed || 0),
+    0,
+  );
+  return (
+    <div
+      className={
+        data.license_badge ? "app-shell has-license-footer" : "app-shell"
+      }
+    >
+      <header className="topbar">
+        <div>
+          {data.logo && <img src={data.logo} alt="" />}
+          <h1>{title}</h1>
+        </div>
+        <nav>
+          <button
+            aria-label="å¡ç‰‡è§†å›¾"
+            title="å¡ç‰‡è§†å›¾"
+            className={view === "card" ? "active" : ""}
+            onClick={() => setMode("card")}
+          >
+            <LayoutGrid size={18} />
+          </button>
+          <button
+            aria-label="åˆ—è¡¨è§†å›¾"
+            title="åˆ—è¡¨è§†å›¾"
+            className={view === "list" ? "active" : ""}
+            onClick={() => setMode("list")}
+          >
+            <List size={18} />
+          </button>
+        </nav>
+      </header>
+      <section className="dashboard-summary">
+        <article className="summary-card">
+          <header>
+            <span>
+              <Server size={18} />
+              èŠ‚ç‚¹æƒ…å†µ
+            </span>
+            {hasExpiry && (
+              <button
+                className="expiry-shortcut"
+                onClick={() => setFilter("renewal")}
+              >
+                <CalendarClock size={14} />
+                å¾…ç»­è´¹ <b>{renewalCount}</b>
+              </button>
+            )}
+          </header>
+          <div className="node-stats">
+            <button onClick={() => setFilter("all")}>
+              <strong>{servers.length}</strong>
+              <span>
+                <Server size={14} />
+                æ€»èŠ‚ç‚¹
+              </span>
+            </button>
+            <button onClick={() => setFilter("online")} className="online">
+              <strong>{onlineCount}</strong>
+              <span>
+                <CheckCircle2 size={14} />
+                åœ¨çº¿èŠ‚ç‚¹
+              </span>
+            </button>
+            <button onClick={() => setFilter("offline")} className="offline">
+              <strong>{servers.length - onlineCount}</strong>
+              <span>
+                <XCircle size={14} />
+                ç¦»çº¿èŠ‚ç‚¹
+              </span>
+            </button>
+          </div>
+        </article>
+        {hasSpeed && (
+          <article className="summary-card">
+            <header>
+              <span>
+                <Gauge size={18} />
+                ç½‘ç»œæƒ…å†µ
+              </span>
+              <small>å®æ—¶æ±‡æ€»</small>
+            </header>
+            <div className="network-stats">
+              <SpeedSummary
+                label="æ€»ä¸‹è¡Œç½‘é€Ÿ"
+                value={totalDownload}
+                direction="down"
+              />
+              <SpeedSummary
+                label="æ€»ä¸Šè¡Œç½‘é€Ÿ"
+                value={totalUpload}
+                direction="up"
+              />
+            </div>
+          </article>
+        )}
+      </section>
+      {data.show_globe && regions.length > 0 && (
+        <section className={`globe-card ${globeOpen ? "open" : ""}`}>
+          <button
+            className="globe-toggle"
+            type="button"
+            aria-expanded={globeOpen}
+            onClick={() => setGlobeOpen((value) => !value)}
+          >
+            <span>
+              <Globe2 size={18} />
+              åœ°åŒºåˆ†å¸ƒ
+            </span>
+            <span>
+              {regions.length} ä¸ªåœ°åŒº
+              <ChevronDown size={17} />
+            </span>
+          </button>
+          {globeOpen && (
+            <Suspense
+              fallback={<div className="globe-loading">æ­£åœ¨åŠ è½½å›½ç•Œæ•°æ®â€¦</div>}
+            >
+              <RegionGlobe
+                regions={servers
+                  .map((server) => server.region || "")
+                  .filter(Boolean)}
+              />
+            </Suspense>
+          )}
+        </section>
+      )}
+      <section className="probe-toolbar">
+        <div className="filters">
+          <button
+            className={filter === "all" ? "active" : ""}
+            onClick={() => setFilter("all")}
+          >
+            å…¨éƒ¨ {servers.length}
+          </button>
+          <button
+            className={filter === "online" ? "active" : ""}
+            onClick={() => setFilter("online")}
+          >
+            åœ¨çº¿ {onlineCount}
+          </button>
+          <button
+            className={filter === "offline" ? "active" : ""}
+            onClick={() => setFilter("offline")}
+          >
+            ç¦»çº¿ {servers.length - onlineCount}
+          </button>
+          {hasExpiry && (
+            <>
+              <button
+                className={filter === "renewal" ? "active warning" : "warning"}
+                onClick={() => setFilter("renewal")}
+              >
+                å¾…ç»­è´¹ {renewalCount}
+              </button>
+              <button
+                className={filter === "expiring" ? "active warning" : "warning"}
+                onClick={() => setFilter("expiring")}
+              >
+                å³å°†åˆ°æœŸ {expiringCount}
+              </button>
+              <button
+                className={filter === "expired" ? "active danger" : "danger"}
+                onClick={() => setFilter("expired")}
+              >
+                å·²åˆ°æœŸ {expiredCount}
+              </button>
+            </>
+          )}
+          {regions.length > 0 && (
+            <label className="region-filter">
+              <MapPin size={14} />
+              <select
+                aria-label="åœ°åŒºç­›é€‰"
+                value={region}
+                onChange={(event) => setRegion(event.target.value)}
+              >
+                <option value="all">å…¨éƒ¨åœ°åŒº</option>
+                {regions.map((item) => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+      </section>
+      <main className={`servers ${view}`}>
+        {visible.length ? (
+          view === "card" ? (
+            visible.map((server) => (
+              <ServerCard
+                key={server.name}
+                server={server}
+                index={servers.indexOf(server)}
+              />
+            ))
+          ) : (
+            <ServerTable servers={visible} />
+          )
+        ) : (
+          <div className="empty">æš‚æ— ç¬¦åˆæ¡ä»¶çš„æœåŠ¡å™¨</div>
+        )}
+      </main>
+      <footer>
+        Powered by{" "}
+        <a
+          href="https://github.com/mmwx-group"
+          target="_blank"
+          rel="noreferrer"
+        >
+          MMWX Group
+        </a>
+      </footer>
+      {data.license_badge && (
+        <div className="probe-license-footer">
+          <ProbeLicenseNameplate
+            name={data.license_badge.name}
+            displayName={data.license_badge.display_name}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
