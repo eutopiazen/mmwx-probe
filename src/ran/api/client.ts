@@ -104,6 +104,21 @@ interface MmwxPingSeries {
   buckets: Array<{ ms: number; loss: number }>
 }
 
+interface MmwxMetricPoint {
+  t: number
+  value: number
+}
+
+interface MmwxSystemSeries {
+  cpu_pct?: MmwxMetricPoint[]
+  mem_used?: MmwxMetricPoint[]
+  mem_total?: MmwxMetricPoint[]
+  upload_speed?: MmwxMetricPoint[]
+  download_speed?: MmwxMetricPoint[]
+  cumulative_up?: MmwxMetricPoint[]
+  cumulative_down?: MmwxMetricPoint[]
+}
+
 export async function fetchPingHistory(hours = 1): Promise<PingHistory> {
   try {
     return await getJson<PingHistory>(`/api/records/ping?hours=${hours}`)
@@ -196,7 +211,49 @@ export interface LoadHistory {
 
 export async function fetchNodeLoadHistory(uuid: string, hours = 1): Promise<LoadHistory> {
   if (uuid.startsWith('mmwx-')) {
-    return { count: 0, records: [] }
+    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('ui')?.includes('snapshot')) {
+      return { count: 0, records: [] }
+    }
+    const server = Number(uuid.slice('mmwx-'.length))
+    if (!Number.isInteger(server) || server < 0) return { count: 0, records: [] }
+    const range = hours <= 1 ? '1h' : hours <= 6 ? '6h' : '24h'
+    try {
+      const payload = await getJson<{
+        success?: boolean
+        series?: MmwxSystemSeries
+      }>(`/api/series?server=${server}&range=${range}&metric=system`)
+      if (!payload.success || !payload.series) return { count: 0, records: [] }
+
+      const byTime = new Map<number, LoadRecord>()
+      const apply = (
+        points: MmwxMetricPoint[] | undefined,
+        key: keyof Omit<LoadRecord, 'time'>,
+      ) => {
+        for (const point of points ?? []) {
+          if (!Number.isFinite(point.t) || !Number.isFinite(point.value)) continue
+          const record = byTime.get(point.t) ?? { time: new Date(point.t * 1000).toISOString() }
+          record[key] = point.value
+          byTime.set(point.t, record)
+        }
+      }
+
+      apply(payload.series.cpu_pct, 'cpu')
+      apply(payload.series.mem_used, 'ram')
+      apply(payload.series.mem_total, 'ram_total')
+      // MMWX names these from the server's perspective: upload is outbound,
+      // download is inbound. Komari's chart model uses net_out / net_in.
+      apply(payload.series.upload_speed, 'net_out')
+      apply(payload.series.download_speed, 'net_in')
+      apply(payload.series.cumulative_up, 'net_total_up')
+      apply(payload.series.cumulative_down, 'net_total_down')
+
+      const records = [...byTime.entries()]
+        .sort(([a], [b]) => a - b)
+        .map(([, record]) => record)
+      return { count: records.length, records }
+    } catch {
+      return { count: 0, records: [] }
+    }
   }
   try {
     return await getJson<LoadHistory>(

@@ -431,7 +431,7 @@ export function OverviewPage({
                 <a
                   key={node.uuid}
                   href={hashFor({ name: 'nodes', uuid: node.uuid })}
-                  style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                  style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}
                 >
                   <NodeCardCompact
                     node={node}

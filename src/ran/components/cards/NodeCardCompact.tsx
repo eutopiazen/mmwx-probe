@@ -121,6 +121,8 @@ function NodeCardCompact_({ node, record, netSpark = [], pingSpark = [], pingLos
         padding: 12,
         display: 'flex',
         flexDirection: 'column',
+        height: '100%',
+        boxSizing: 'border-box',
         gap: 9,
         position: 'relative',
         overflow: 'hidden',

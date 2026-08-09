@@ -270,6 +270,7 @@ export function NodeDetailPage({
   const subtitle = `${node.region ?? '—'} · ${node.ip ?? '—'} · UP ${online ? formatUptime(record?.uptime) : '—'}`
 
   const haveLoadHistory = hasLoadData(history.load)
+  const haveDiskHistory = history.load.records.some((item) => item.disk != null)
   const cpuHist = buckets.cpu
   const memHist = buckets.ram
   const netUpHist = buckets.netOut
@@ -716,7 +717,7 @@ export function NodeDetailPage({
                   code="C · 03"
                   action={<Etch>USAGE %</Etch>}
                 >
-                  <ChartOrEmpty empty={!haveLoadHistory}>
+                  <ChartOrEmpty empty={!haveDiskHistory}>
                     <AreaChart
                       data={buckets.disk}
                       times={bucketTimes}
