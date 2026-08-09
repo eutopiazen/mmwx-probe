@@ -13,11 +13,21 @@ import type { LuminaServerModel, MetricModel } from '../model'
 import { formatSpeed } from '../model'
 import { Twemoji } from '../../Twemoji'
 
+type MetricTone = 'normal' | 'warn' | 'bad'
+
+function metricTone(metric: MetricModel): MetricTone {
+  if (metric.value === null) return 'normal'
+  if (metric.value >= 92) return 'bad'
+  if (metric.value >= 80) return 'warn'
+  return 'normal'
+}
+
 function Metric({ icon, label, metric }: { icon: React.ReactNode; label: string; metric: MetricModel }) {
+  const tone = metricTone(metric)
   return (
-    <div className="lumina-metric">
+    <div className="lumina-metric" data-tone={tone}>
       <div className="lumina-metric-label">
-        <span>{icon}{label}</span>
+        <span>{icon}{label}{tone !== 'normal' && <small>{tone === 'bad' ? '紧张' : '偏高'}</small>}</span>
         <strong>{metric.label}</strong>
       </div>
       <div className="lumina-meter" aria-hidden="true">
@@ -30,6 +40,8 @@ function Metric({ icon, label, metric }: { icon: React.ReactNode; label: string;
 export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOpen: () => void }) {
   const latencyLabel = server.latency === null ? '—' : `${Math.round(server.latency)} ms`
   const lossLabel = server.loss === null ? '—' : `${server.loss.toFixed(1)}%`
+  const latencyTone = server.latency !== null && server.latency >= 300 ? 'bad' : server.latency !== null && server.latency >= 150 ? 'warn' : 'normal'
+  const lossTone = server.loss !== null && server.loss >= 5 ? 'bad' : server.loss !== null && server.loss >= 1 ? 'warn' : 'normal'
   return (
     <article className="lumina-server-card" data-online={server.online} data-has-footer={Boolean(server.expiry || server.renewal)}>
       <header className="lumina-server-head">
@@ -68,8 +80,8 @@ export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOp
 
         <section className="lumina-ping" aria-label="平均延迟和丢包率">
           <div className="lumina-ping-values">
-            <span><Clock3 size={15} aria-hidden="true" />平均 <strong>{latencyLabel}</strong></span>
-            <span><Radio size={15} aria-hidden="true" />丢包率 <strong>{lossLabel}</strong></span>
+            <span data-tone={latencyTone}><Clock3 size={15} aria-hidden="true" />平均 <strong>{latencyLabel}</strong></span>
+            <span data-tone={lossTone}><Radio size={15} aria-hidden="true" />丢包率 <strong>{lossLabel}</strong></span>
           </div>
           {server.pingBuckets.length > 0 ? (
             <div className="lumina-ping-buckets" aria-hidden="true">

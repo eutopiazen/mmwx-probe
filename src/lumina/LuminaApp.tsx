@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Activity, ArrowDownAZ, ArrowLeft, LayoutGrid, MapPin, PanelTop, Rows3, Search, Server, Wifi } from 'lucide-react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { Activity, ArrowDownAZ, ArrowLeft, LayoutGrid, MapPin, Monitor, Moon, PanelTop, Rows3, Search, Server, Sun, Wifi } from 'lucide-react'
 import type { ProbePayload } from '../types'
 import { useProbe } from '../use-probe'
 import { Overview } from './components/Overview'
@@ -11,6 +11,31 @@ import './lumina.css'
 type StatusFilter = 'all' | 'online' | 'offline' | 'renewal'
 type SortOption = 'default' | 'name' | 'download' | 'traffic' | 'expiry'
 type ViewOption = 'compact' | 'roomy' | 'list'
+type ThemeOption = 'system' | 'light' | 'dark'
+
+const themeLabels: Record<ThemeOption, string> = {
+  system: '跟随系统',
+  light: '亮色',
+  dark: '暗色',
+}
+
+function readStoredView(): ViewOption {
+  try {
+    const value = window.localStorage.getItem('lumina-view')
+    return value === 'roomy' || value === 'list' ? value : 'compact'
+  } catch {
+    return 'compact'
+  }
+}
+
+function readStoredTheme(): ThemeOption {
+  try {
+    const value = window.localStorage.getItem('lumina-theme')
+    return value === 'light' || value === 'dark' ? value : 'system'
+  } catch {
+    return 'system'
+  }
+}
 
 function legacyHref() {
   const url = new URL(window.location.href)
@@ -26,7 +51,8 @@ export function LuminaApp() {
   const [region, setRegion] = useState('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortOption>('default')
-  const [view, setView] = useState<ViewOption>('compact')
+  const [view, setView] = useState<ViewOption>(readStoredView)
+  const [theme, setTheme] = useState<ThemeOption>(readStoredTheme)
   const [selectedServerId, setSelectedServerId] = useState<string | null>(null)
   const mockRequested = import.meta.env.DEV && new URLSearchParams(window.location.search).get('ui') === 'lumina-mock'
 
@@ -38,6 +64,31 @@ export function LuminaApp() {
     })
     return () => { active = false }
   }, [mockRequested])
+
+  useLayoutEffect(() => {
+    const root = document.documentElement
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const previousTheme = root.getAttribute('data-lumina-resolved')
+    const previousColorScheme = root.style.colorScheme
+    const applyTheme = () => {
+      const resolved = theme === 'system' ? (media.matches ? 'dark' : 'light') : theme
+      root.setAttribute('data-lumina-resolved', resolved)
+      root.style.colorScheme = resolved
+    }
+    applyTheme()
+    if (theme === 'system') media.addEventListener('change', applyTheme)
+    try { window.localStorage.setItem('lumina-theme', theme) } catch { /* Storage can be unavailable in private contexts. */ }
+    return () => {
+      if (theme === 'system') media.removeEventListener('change', applyTheme)
+      if (previousTheme === null) root.removeAttribute('data-lumina-resolved')
+      else root.setAttribute('data-lumina-resolved', previousTheme)
+      root.style.colorScheme = previousColorScheme
+    }
+  }, [theme])
+
+  useEffect(() => {
+    try { window.localStorage.setItem('lumina-view', view) } catch { /* Keep the in-memory preference. */ }
+  }, [view])
 
   const payload = mockRequested ? mockPayload : probe.data
   const dashboard = useMemo(() => payload ? buildDashboardModel(payload) : null, [payload])
@@ -53,7 +104,7 @@ export function LuminaApp() {
         || (status === 'online' && server.online)
         || (status === 'offline' && !server.online)
         || (status === 'renewal' && Boolean(server.expiry && server.expiry.days <= 30))
-      const matchesQuery = !normalizedQuery || [server.name, server.region, server.regionDetail, server.os, server.providerName]
+      const matchesQuery = !normalizedQuery || [server.name, server.region, server.regionDetail, server.regionOriginal, server.os, server.providerName]
         .some((value) => value?.toLocaleLowerCase('zh-CN').includes(normalizedQuery))
       return matchesStatus && matchesQuery && (region === 'all' || server.region === region)
     })
@@ -71,6 +122,7 @@ export function LuminaApp() {
     [dashboard?.servers, selectedServerId],
   )
   const closeDetails = useCallback(() => setSelectedServerId(null), [])
+  const cycleTheme = () => setTheme((current) => current === 'system' ? 'light' : current === 'light' ? 'dark' : 'system')
   const resetFilters = () => {
     setStatus('all')
     setRegion('all')
@@ -90,7 +142,7 @@ export function LuminaApp() {
 
   const title = payload.title?.trim() || '服务器状态'
   return (
-    <div className="lumina-app">
+    <div className="lumina-app" data-theme={theme}>
       <a className="lumina-skip-link" href="#lumina-content">跳到节点列表</a>
       <header className="lumina-topbar">
         <div className="lumina-brand">
@@ -101,6 +153,20 @@ export function LuminaApp() {
           <span className={`lumina-live-status${mockRequested ? ' is-preview' : probe.error ? ' is-warn' : ''}`} role="status">
             <Wifi size={15} aria-hidden="true" />{mockRequested ? '模拟数据' : probe.error ? '连接波动' : '实时更新'}
           </span>
+          <button
+            className="lumina-theme-switch"
+            type="button"
+            onClick={cycleTheme}
+            aria-label={`界面主题：${themeLabels[theme]}，点击切换`}
+            title={`界面主题：${themeLabels[theme]}`}
+          >
+            <span className="lumina-theme-icons" aria-hidden="true">
+              <Monitor data-active={theme === 'system'} />
+              <Sun data-active={theme === 'light'} />
+              <Moon data-active={theme === 'dark'} />
+            </span>
+            <span>{themeLabels[theme]}</span>
+          </button>
           <a className="lumina-legacy-link" href={legacyHref()}>
             <ArrowLeft size={15} aria-hidden="true" />返回原界面
           </a>

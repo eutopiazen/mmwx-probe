@@ -62,6 +62,7 @@ export interface LuminaServerModel {
   name: string
   region: string
   regionDetail: string
+  regionOriginal: string
   flag: string
   online: boolean
   os: string
@@ -105,6 +106,45 @@ const cycleLabels: Record<NonNullable<ProbeServer['renewal_cycle']>, string> = {
   quarter: '季',
   half_year: '半年',
   year: '年',
+}
+
+const placeLabels: Record<string, string> = {
+  California: '加利福尼亚州',
+  'Los Angeles': '洛杉矶',
+  Tokyo: '东京',
+  Hesse: '黑森州',
+  'Frankfurt am Main': '法兰克福',
+  'Hong Kong': '香港',
+  'New York': '纽约州',
+  Buffalo: '布法罗',
+  Quebec: '魁北克省',
+  Montréal: '蒙特利尔',
+}
+
+function buildRegion(server: ProbeServer) {
+  const originalParts = [server.region_name, server.region_city]
+    .map((item) => item?.trim())
+    .filter((item, index, items): item is string => Boolean(item) && items.indexOf(item) === index)
+  const original = originalParts.join(' · ')
+  const localized = originalParts.map((item) => placeLabels[item] || item).join(' · ')
+  if (localized) return { localized, original }
+
+  const sourceRegion = server.region?.trim()
+  if (sourceRegion && !/^\p{Regional_Indicator}{2}$/u.test(sourceRegion)) {
+    return { localized: sourceRegion, original: sourceRegion }
+  }
+
+  const country = server.region_country?.trim().toUpperCase()
+  if (country) {
+    try {
+      const countryLabel = new Intl.DisplayNames(['zh-CN'], { type: 'region' }).of(country)
+      if (countryLabel) return { localized: countryLabel, original: country }
+    } catch {
+      // Fall through to the source region below.
+    }
+  }
+  const fallback = sourceRegion || '未分组'
+  return { localized: fallback, original: fallback }
 }
 
 function clampPercent(value: number) {
@@ -233,16 +273,14 @@ export function buildServerModel(server: ProbeServer, sourceIndex: number): Lumi
   const trafficLimit = server.traffic_limit && server.traffic_limit > 0 ? server.traffic_limit : null
   const ping = buildPing(server)
   const renewal = buildRenewal(server)
-  const regionDetail = [server.region_name, server.region_city]
-    .map((item) => item?.trim())
-    .filter((item, index, items): item is string => Boolean(item) && items.indexOf(item) === index)
-    .join(' · ')
+  const region = buildRegion(server)
   return {
     id: `${sourceIndex}:${server.name || 'server'}`,
     sourceIndex,
     name,
-    region: regionDetail || server.region_name?.trim() || server.region?.trim() || '未分组',
-    regionDetail: regionDetail || server.region?.trim() || '未提供详细地区',
+    region: region.localized,
+    regionDetail: region.localized,
+    regionOriginal: region.original,
     flag: hasLeadingFlag ? '' : regionFlag(server.region, server.region_country),
     online: server.online,
     os: server.os?.trim() || '未知系统',
