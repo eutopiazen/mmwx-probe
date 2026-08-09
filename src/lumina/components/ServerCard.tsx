@@ -3,6 +3,7 @@ import {
   ArrowUp,
   Clock3,
   Cpu,
+  ExternalLink,
   HardDrive,
   MemoryStick,
   PanelRightOpen,
@@ -14,6 +15,7 @@ import { formatSpeed } from '../model'
 import { Twemoji } from '../../Twemoji'
 
 type MetricTone = 'normal' | 'warn' | 'bad'
+type MetricKind = 'cpu' | 'memory' | 'disk' | 'traffic'
 
 function metricTone(metric: MetricModel): MetricTone {
   if (metric.value === null) return 'normal'
@@ -22,10 +24,10 @@ function metricTone(metric: MetricModel): MetricTone {
   return 'normal'
 }
 
-function Metric({ icon, label, metric }: { icon: React.ReactNode; label: string; metric: MetricModel }) {
+function Metric({ icon, label, metric, kind }: { icon: React.ReactNode; label: string; metric: MetricModel; kind: MetricKind }) {
   const tone = metricTone(metric)
   return (
-    <div className="lumina-metric" data-tone={tone}>
+    <div className="lumina-metric" data-tone={tone} data-kind={kind}>
       <div className="lumina-metric-label">
         <span>{icon}{label}{tone !== 'normal' && <small>{tone === 'bad' ? '紧张' : '偏高'}</small>}</span>
         <strong>{metric.label}</strong>
@@ -59,10 +61,10 @@ export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOp
 
       <div className="lumina-card-body">
         <section className="lumina-resource-grid" aria-label="资源使用率">
-          <Metric icon={<Cpu size={15} aria-hidden="true" />} label="CPU" metric={server.cpu} />
-          <Metric icon={<MemoryStick size={15} aria-hidden="true" />} label="内存" metric={server.memory} />
-          <Metric icon={<HardDrive size={15} aria-hidden="true" />} label="硬盘" metric={server.disk} />
-          <Metric icon={<Radio size={15} aria-hidden="true" />} label="流量" metric={server.traffic} />
+          <Metric icon={<Cpu size={15} aria-hidden="true" />} label="CPU" metric={server.cpu} kind="cpu" />
+          <Metric icon={<MemoryStick size={15} aria-hidden="true" />} label="内存" metric={server.memory} kind="memory" />
+          <Metric icon={<HardDrive size={15} aria-hidden="true" />} label="硬盘" metric={server.disk} kind="disk" />
+          <Metric icon={<Radio size={15} aria-hidden="true" />} label="流量" metric={server.traffic} kind="traffic" />
         </section>
 
         <section className="lumina-speed-row" aria-label="实时网络速度">
@@ -97,7 +99,18 @@ export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOp
 
       {(server.expiry || server.renewal) && (
         <footer className="lumina-server-footer">
-          {server.expiry ? (
+          {server.expiry ? server.providerUrl ? (
+            <a
+              className="lumina-provider-link"
+              data-tone={server.expiry.tone}
+              href={server.providerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={server.providerName ? `前往 ${server.providerName} 官网或续费` : '前往服务商官网或续费'}
+            >
+              <Clock3 size={15} aria-hidden="true" />{server.expiry.label}<ExternalLink size={12} aria-hidden="true" />
+            </a>
+          ) : (
             <span data-tone={server.expiry.tone} title={`到期日：${server.expiry.date}`}>
               <Clock3 size={15} aria-hidden="true" />{server.expiry.label}
             </span>

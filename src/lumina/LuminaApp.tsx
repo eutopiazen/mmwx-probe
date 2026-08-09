@@ -150,9 +150,11 @@ export function LuminaApp() {
           <div><h1>{title}</h1><p>{mockRequested ? '本地设计预览' : '实时运行状态'}</p></div>
         </div>
         <nav className="lumina-top-actions" aria-label="页面状态与界面操作">
-          <span className={`lumina-live-status${mockRequested ? ' is-preview' : probe.error ? ' is-warn' : ''}`} role="status">
-            <Wifi size={15} aria-hidden="true" />{mockRequested ? '模拟数据' : probe.error ? '连接波动' : '实时更新'}
-          </span>
+          {(mockRequested || probe.error) && (
+            <span className={`lumina-live-status${mockRequested ? ' is-preview' : ' is-warn'}`} role="status">
+              <Wifi size={15} aria-hidden="true" />{mockRequested ? '模拟数据' : '连接波动'}
+            </span>
+          )}
           <button
             className="lumina-theme-switch"
             type="button"

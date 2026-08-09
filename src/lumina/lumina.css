@@ -1,54 +1,65 @@
 .lumina-app {
-  --lumina-bg: #f4f6f9;
-  --lumina-canvas-glow: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.07), transparent 36rem);
+  --lumina-bg: #f5f6f8;
+  --lumina-canvas-glow: radial-gradient(circle at 18% 0%, rgba(71, 119, 230, 0.055), transparent 30rem), radial-gradient(circle at 88% 4%, rgba(132, 103, 232, 0.035), transparent 28rem);
   --lumina-surface: #ffffff;
   --lumina-surface-raised: #ffffff;
   --lumina-surface-muted: #f7f8fa;
-  --lumina-border: rgba(15, 23, 42, 0.09);
-  --lumina-border-strong: rgba(15, 23, 42, 0.15);
-  --lumina-text: #182033;
-  --lumina-text-secondary: #596579;
-  --lumina-text-tertiary: #667386;
-  --lumina-accent: #2563d4;
-  --lumina-accent-soft: rgba(53, 115, 232, 0.11);
-  --lumina-success: #187a3d;
-  --lumina-success-soft: rgba(53, 168, 95, 0.12);
-  --lumina-warning: #a95a06;
-  --lumina-warning-soft: rgba(223, 134, 36, 0.13);
-  --lumina-danger: #c53131;
-  --lumina-danger-soft: rgba(217, 75, 75, 0.12);
-  --lumina-track: #e9edf3;
-  --lumina-shadow: 0 1px 2px rgba(15, 23, 42, 0.03), 0 16px 36px -28px rgba(15, 23, 42, 0.32);
+  --lumina-border: rgba(20, 27, 44, 0.08);
+  --lumina-border-strong: rgba(20, 27, 44, 0.14);
+  --lumina-text: #171a21;
+  --lumina-text-secondary: #5f6673;
+  --lumina-text-tertiary: #858e9d;
+  --lumina-accent: #4777e6;
+  --lumina-accent-soft: rgba(71, 119, 230, 0.1);
+  --lumina-success: #3d9861;
+  --lumina-success-soft: rgba(61, 152, 97, 0.11);
+  --lumina-warning: #c77a25;
+  --lumina-warning-soft: rgba(199, 122, 37, 0.11);
+  --lumina-danger: #d15454;
+  --lumina-danger-soft: rgba(209, 84, 84, 0.11);
+  --lumina-cpu: #5b82ed;
+  --lumina-memory: #9174df;
+  --lumina-disk: #e4854b;
+  --lumina-traffic: #53a879;
+  --lumina-track: #eceff3;
+  --lumina-shadow: 0 1px 2px rgba(15, 23, 42, 0.025), 0 12px 32px -26px rgba(15, 23, 42, 0.24);
   min-block-size: 100vh;
   background: var(--lumina-canvas-glow), var(--lumina-bg);
   color: var(--lumina-text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Inter, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :root[data-lumina-resolved="dark"] .lumina-app {
-  --lumina-bg: #151a21;
-  --lumina-canvas-glow: radial-gradient(circle at 50% 0%, rgba(83, 155, 245, 0.09), transparent 38rem);
-  --lumina-surface: #222832;
-  --lumina-surface-raised: #282f3a;
-  --lumina-surface-muted: #1b2129;
-  --lumina-border: rgba(255, 255, 255, 0.09);
-  --lumina-border-strong: rgba(255, 255, 255, 0.16);
-  --lumina-text: #e7ebf1;
-  --lumina-text-secondary: #b8c0cc;
-  --lumina-text-tertiary: #8e98a7;
-  --lumina-accent: #6aa9f8;
-  --lumina-accent-soft: rgba(106, 169, 248, 0.14);
-  --lumina-success: #62bd76;
-  --lumina-success-soft: rgba(98, 189, 118, 0.15);
-  --lumina-warning: #e7a74e;
-  --lumina-warning-soft: rgba(231, 167, 78, 0.15);
-  --lumina-danger: #f07972;
-  --lumina-danger-soft: rgba(240, 121, 114, 0.15);
-  --lumina-track: #343c48;
-  --lumina-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 18px 42px -30px rgba(0, 0, 0, 0.72);
+  --lumina-bg: #161a20;
+  --lumina-canvas-glow: radial-gradient(circle at 18% 0%, rgba(99, 151, 236, 0.08), transparent 32rem), radial-gradient(circle at 86% 4%, rgba(146, 118, 232, 0.045), transparent 30rem);
+  --lumina-surface: #20252d;
+  --lumina-surface-raised: #252b34;
+  --lumina-surface-muted: #1b2027;
+  --lumina-border: rgba(255, 255, 255, 0.075);
+  --lumina-border-strong: rgba(255, 255, 255, 0.14);
+  --lumina-text: #f1f3f6;
+  --lumina-text-secondary: #bbc2cd;
+  --lumina-text-tertiary: #8b95a4;
+  --lumina-accent: #75a7f6;
+  --lumina-accent-soft: rgba(117, 167, 246, 0.13);
+  --lumina-success: #68c183;
+  --lumina-success-soft: rgba(104, 193, 131, 0.14);
+  --lumina-warning: #ecad5a;
+  --lumina-warning-soft: rgba(236, 173, 90, 0.14);
+  --lumina-danger: #ee7d78;
+  --lumina-danger-soft: rgba(238, 125, 120, 0.14);
+  --lumina-cpu: #7ba4f5;
+  --lumina-memory: #ad91ef;
+  --lumina-disk: #f0a06b;
+  --lumina-traffic: #72c292;
+  --lumina-track: #343b45;
+  --lumina-shadow: 0 1px 2px rgba(0, 0, 0, 0.14), 0 16px 38px -30px rgba(0, 0, 0, 0.64);
 }
 
 .lumina-app button,
@@ -76,7 +87,7 @@
 .lumina-topbar {
   width: min(1520px, calc(100% - 40px));
   margin-inline: auto;
-  padding-block: max(22px, env(safe-area-inset-top, 0px)) 14px;
+  padding-block: max(24px, env(safe-area-inset-top, 0px)) 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,7 +127,7 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .lumina-live-status {
@@ -148,12 +159,13 @@
   align-items: center;
   gap: 7px;
   border: 1px solid var(--lumina-border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--lumina-surface);
   box-shadow: var(--lumina-shadow);
   color: var(--lumina-text-secondary);
   padding-inline: 11px;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -188,9 +200,10 @@
 .lumina-brand h1 {
   overflow: hidden;
   color: var(--lumina-text);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  line-height: 1.2;
-  letter-spacing: -0.018em;
+  font-size: clamp(1.12rem, 2vw, 1.38rem);
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -198,7 +211,7 @@
 .lumina-brand p {
   margin-block-start: 4px;
   color: var(--lumina-text-tertiary);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
 }
 
 .lumina-legacy-link {
@@ -208,7 +221,7 @@
   align-items: center;
   gap: 7px;
   border: 1px solid var(--lumina-border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--lumina-surface);
   box-shadow: var(--lumina-shadow);
   color: var(--lumina-text-secondary);
@@ -225,7 +238,7 @@
 .lumina-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .lumina-overview-card,
@@ -238,9 +251,9 @@
 }
 
 .lumina-overview-card {
-  min-block-size: 154px;
-  border-radius: 16px;
-  padding: 17px;
+  min-block-size: 150px;
+  border-radius: 20px;
+  padding: 19px;
 }
 
 .lumina-overview-card header,
@@ -255,8 +268,8 @@
   justify-content: space-between;
   gap: 12px;
   color: var(--lumina-text-secondary);
-  font-size: 0.83rem;
-  font-weight: 650;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .lumina-overview-card header > span {
@@ -282,7 +295,8 @@
 
 .lumina-overview-primary strong {
   color: var(--lumina-text);
-  font-size: 2rem;
+  font-size: 1.9rem;
+  font-weight: 650;
   line-height: 1;
 }
 
@@ -339,14 +353,15 @@
 
 .lumina-overview-speeds strong {
   color: var(--lumina-text);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
 .lumina-toolbar {
-  margin-block-start: 18px;
+  margin-block-start: 20px;
   min-block-size: 58px;
-  border-radius: 14px;
-  padding: 8px;
+  border-radius: 18px;
+  padding: 9px;
   display: grid;
   gap: 8px;
 }
@@ -376,7 +391,7 @@
   align-items: center;
   gap: 8px;
   border: 1px solid var(--lumina-border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--lumina-surface-muted);
   color: var(--lumina-text-tertiary);
   padding-inline: 11px;
@@ -394,7 +409,7 @@
   outline: 0;
   background: transparent;
   color: var(--lumina-text);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
 }
 
 .lumina-search input::placeholder {
@@ -412,7 +427,7 @@
 .lumina-sort-filter {
   min-block-size: 40px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 12px;
   color: var(--lumina-text-secondary);
 }
 
@@ -431,7 +446,7 @@
   border-color: color-mix(in srgb, var(--lumina-accent) 24%, transparent);
   background: var(--lumina-accent-soft);
   color: var(--lumina-accent);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .lumina-region-filter,
@@ -468,7 +483,7 @@
   align-items: center;
   gap: 3px;
   border: 1px solid var(--lumina-border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--lumina-surface-muted);
   padding: 3px;
 }
@@ -487,7 +502,7 @@
 
 .lumina-view-switch button[aria-pressed="true"] {
   background: var(--lumina-surface-raised);
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.09);
   color: var(--lumina-accent);
 }
 
@@ -512,7 +527,7 @@
 .lumina-server-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .lumina-server-grid[data-view="roomy"] {
@@ -527,7 +542,7 @@
   container-type: inline-size;
   min-inline-size: 0;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
 .lumina-server-card[data-online="false"] {
@@ -569,6 +584,8 @@
     padding: 0 18px;
     border-block: 0;
     border-inline: 1px solid var(--lumina-border);
+    border-radius: 0;
+    background: transparent;
   }
 
   .lumina-server-grid[data-view="list"] .lumina-ping {
@@ -600,8 +617,8 @@
 }
 
 .lumina-server-head {
-  min-block-size: 68px;
-  padding: 13px 15px;
+  min-block-size: 72px;
+  padding: 15px 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -613,22 +630,22 @@
   min-inline-size: 0;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 11px;
 }
 
 .lumina-status-dot {
-  inline-size: 10px;
-  block-size: 10px;
+  inline-size: 9px;
+  block-size: 9px;
   flex: 0 0 auto;
   margin-block-start: 5px;
   border-radius: 50%;
   background: var(--lumina-danger);
-  box-shadow: 0 0 0 6px var(--lumina-danger-soft);
+  box-shadow: 0 0 0 5px var(--lumina-danger-soft);
 }
 
 .lumina-server-card[data-online="true"] .lumina-status-dot {
   background: var(--lumina-success);
-  box-shadow: 0 0 0 6px var(--lumina-success-soft);
+  box-shadow: 0 0 0 5px var(--lumina-success-soft);
 }
 
 .lumina-server-identity h2,
@@ -639,9 +656,10 @@
 .lumina-server-identity h2 {
   overflow: hidden;
   color: var(--lumina-text);
-  font-size: 0.98rem;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.014em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -652,7 +670,7 @@
   align-items: center;
   gap: 5px;
   color: var(--lumina-text-tertiary);
-  font-size: 0.7rem;
+  font-size: 0.73rem;
 }
 
 .lumina-server-identity p .is-online { color: var(--lumina-success); }
@@ -660,9 +678,9 @@
 
 .lumina-detail-button,
 .lumina-icon-button {
-  inline-size: 40px;
-  block-size: 40px;
-  flex: 0 0 40px;
+  inline-size: 38px;
+  block-size: 38px;
+  flex: 0 0 38px;
   display: grid;
   place-items: center;
   border: 1px solid transparent;
@@ -679,18 +697,24 @@
 }
 
 .lumina-card-body {
-  padding: 14px 15px 13px;
+  padding: 16px 17px 15px;
 }
 
 .lumina-resource-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 15px 22px;
+  gap: 16px 22px;
 }
 
 .lumina-metric {
   min-inline-size: 0;
+  --lumina-metric-color: var(--lumina-accent);
 }
+
+.lumina-metric[data-kind="cpu"] { --lumina-metric-color: var(--lumina-cpu); }
+.lumina-metric[data-kind="memory"] { --lumina-metric-color: var(--lumina-memory); }
+.lumina-metric[data-kind="disk"] { --lumina-metric-color: var(--lumina-disk); }
+.lumina-metric[data-kind="traffic"] { --lumina-metric-color: var(--lumina-traffic); }
 
 .lumina-metric-label {
   min-inline-size: 0;
@@ -699,7 +723,7 @@
   justify-content: space-between;
   gap: 10px;
   color: var(--lumina-text-secondary);
-  font-size: 0.77rem;
+  font-size: 0.75rem;
 }
 
 .lumina-metric-label span {
@@ -711,7 +735,7 @@
 }
 
 .lumina-metric-label svg {
-  color: var(--lumina-text-tertiary);
+  color: var(--lumina-metric-color);
 }
 
 .lumina-metric-label strong {
@@ -738,8 +762,8 @@
 }
 
 .lumina-meter {
-  block-size: 7px;
-  margin-block-start: 8px;
+  block-size: 6px;
+  margin-block-start: 7px;
   overflow: hidden;
   border-radius: 999px;
   background: var(--lumina-track);
@@ -749,6 +773,10 @@
   display: block;
   block-size: 100%;
   border-radius: inherit;
+  background: var(--lumina-metric-color);
+}
+
+.lumina-metric[data-tone="warn"] .lumina-meter span {
   background: var(--lumina-warning);
 }
 
@@ -757,12 +785,14 @@
 }
 
 .lumina-speed-row {
-  margin-block-start: 17px;
-  padding-block: 14px;
+  margin-block-start: 18px;
+  padding: 11px 12px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  border-block: 1px solid var(--lumina-border);
+  gap: 14px;
+  border: 1px solid var(--lumina-border);
+  border-radius: 12px;
+  background: var(--lumina-surface-muted);
 }
 
 .lumina-speed-row > div {
@@ -771,7 +801,7 @@
   grid-template-columns: auto auto minmax(0, 1fr);
   align-items: center;
   gap: 6px;
-  font-size: 0.73rem;
+  font-size: 0.75rem;
 }
 
 .lumina-speed-row span {
@@ -783,6 +813,7 @@
   text-align: end;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .lumina-speed-row .is-download {
@@ -794,7 +825,7 @@
 }
 
 .lumina-ping {
-  padding-block-start: 13px;
+  padding-block-start: 15px;
 }
 
 .lumina-ping-values {
@@ -810,7 +841,7 @@
   align-items: center;
   gap: 6px;
   color: var(--lumina-text-secondary);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
 }
 
 .lumina-ping-values svg {
@@ -823,27 +854,28 @@
   text-align: end;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .lumina-ping-values > span[data-tone="warn"] strong { color: var(--lumina-warning); }
 .lumina-ping-values > span[data-tone="bad"] strong { color: var(--lumina-danger); }
 
 .lumina-ping-buckets {
-  margin-block-start: 11px;
+  margin-block-start: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9px, 1fr));
   gap: 3px;
 }
 
 .lumina-ping-buckets i {
-  block-size: 18px;
-  border-radius: 3px;
+  block-size: 14px;
+  border-radius: 4px;
   background: var(--lumina-track);
 }
 
-.lumina-ping-buckets i[data-tone="good"] { background: #58bf6a; }
-.lumina-ping-buckets i[data-tone="warn"] { background: #efa63d; }
-.lumina-ping-buckets i[data-tone="bad"] { background: #df5b56; }
+.lumina-ping-buckets i[data-tone="good"] { background: #65bd79; }
+.lumina-ping-buckets i[data-tone="warn"] { background: #e7a04a; }
+.lumina-ping-buckets i[data-tone="bad"] { background: #dc6761; }
 
 .lumina-no-history {
   margin: 11px 0 0;
@@ -852,27 +884,41 @@
 }
 
 .lumina-server-footer {
-  min-block-size: 50px;
-  padding: 12px 15px;
+  min-block-size: 52px;
+  padding: 13px 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
   border-block-start: 1px solid var(--lumina-border);
-  background: color-mix(in srgb, var(--lumina-surface-muted) 66%, var(--lumina-surface));
+  background: color-mix(in srgb, var(--lumina-surface-muted) 52%, var(--lumina-surface));
 }
 
-.lumina-server-footer > span {
+.lumina-server-footer > :is(span, a) {
   min-inline-size: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: var(--lumina-text-secondary);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
 }
 
-.lumina-server-footer > span[data-tone="warn"] { color: var(--lumina-warning); }
-.lumina-server-footer > span[data-tone="bad"] { color: var(--lumina-danger); }
+.lumina-server-footer > :is(span, a)[data-tone="warn"] { color: var(--lumina-warning); }
+.lumina-server-footer > :is(span, a)[data-tone="bad"] { color: var(--lumina-danger); }
+
+.lumina-provider-link {
+  text-decoration: none;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 3px;
+}
+
+.lumina-provider-link:hover {
+  text-decoration: underline;
+}
+
+.lumina-provider-link svg:last-child {
+  opacity: 0.58;
+}
 
 .lumina-renewal {
   justify-content: flex-end;
