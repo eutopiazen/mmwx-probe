@@ -4,20 +4,6 @@
   "main": "worker/index.ts",
   "compatibility_date": "2026-07-31",
   "keep_vars": true,
-  "unsafe": {
-    "bindings": [
-      {
-        "name": "MMWX_ORIGIN",
-        "type": "inherit",
-        "version_id": "5d7d439f-6cae-436c-bfe0-0b989d720431"
-      },
-      {
-        "name": "PROBE_TOKEN",
-        "type": "inherit",
-        "version_id": "5d7d439f-6cae-436c-bfe0-0b989d720431"
-      }
-    ]
-  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

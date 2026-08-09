@@ -10,6 +10,20 @@ const routes: Record<string, string> = {
   '/api/stream': '/api/public/probe-ws',
 }
 
+// Workers Builds preview versions do not receive the production runtime
+// bindings. Relay only API traffic through the last immutable preview that
+// has them; static assets still come from the newly built version.
+const boundPreviewOrigin = 'https://5d7d439f-mmwx-probe.eutopiazen.workers.dev'
+
+function previewRelayURL(request: Request): URL | null {
+  const incoming = new URL(request.url)
+  if (!routes[incoming.pathname]) return null
+  if (!incoming.hostname.endsWith('.workers.dev') || !incoming.hostname.includes('-mmwx-probe.')) {
+    return null
+  }
+  return new URL(`${incoming.pathname}${incoming.search}`, boundPreviewOrigin)
+}
+
 function upstreamURL(request: Request, env: Env): URL | null {
   const incoming = new URL(request.url)
   const path = routes[incoming.pathname]
@@ -26,21 +40,32 @@ function upstreamURL(request: Request, env: Env): URL | null {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const target = upstreamURL(request, env)
-    if (!target) return env.ASSETS.fetch(request)
+    const incoming = new URL(request.url)
+    if (!routes[incoming.pathname]) return env.ASSETS.fetch(request)
     if (request.method !== 'GET') return new Response('Method not allowed', { status: 405 })
-    if (!env.PROBE_TOKEN) {
+
+    if (!env.MMWX_ORIGIN || !env.PROBE_TOKEN) {
+      const relayTarget = previewRelayURL(request)
+      if (relayTarget) {
+        const relayHeaders = new Headers(request.headers)
+        relayHeaders.delete('cookie')
+        relayHeaders.delete('authorization')
+        return fetch(new Request(relayTarget, { method: 'GET', headers: relayHeaders }))
+      }
       return new Response('Probe access secret is not configured', { status: 503 })
     }
+
+    const target = upstreamURL(request, env)
+    if (!target) return env.ASSETS.fetch(request)
 
     const headers = new Headers(request.headers)
     headers.delete('cookie')
     headers.delete('authorization')
-    headers.set('X-Forwarded-Host', new URL(request.url).host)
+    headers.set('X-Forwarded-Host', incoming.host)
     headers.set('X-MMwx-Probe-Token', env.PROBE_TOKEN)
 
     const upstream = await fetch(new Request(target, { method: 'GET', headers }))
-    // WebSocket 的 101 Response 必须原样返回，不能重新构造 body/headers。
+    // A WebSocket 101 response must be returned unchanged.
     if (upstream.status === 101 || upstream.webSocket) return upstream
 
     const responseHeaders = new Headers(upstream.headers)
