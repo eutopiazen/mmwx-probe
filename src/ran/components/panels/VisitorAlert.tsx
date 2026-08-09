@@ -138,6 +138,7 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
 
   const tier = useMemo(() => {
     if (!data) return 'unknown' as const
+    if (data.risk === null || data.proxy === 'unknown') return 'unscored' as const
     if (data.risk > 50) return 'bad' as const
     if (data.risk > 20 || data.proxy === 'yes') return 'warn' as const
     return 'good' as const
@@ -147,6 +148,7 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
     good: 'TIER I · CLEAN',
     warn: 'TIER II · OBSERVE',
     bad: 'TIER III · BLOCK',
+    unscored: 'LOCAL · UNSCORED',
     unknown: 'PROBING …',
   }[tier]
 
@@ -154,6 +156,7 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
     good: 'VERIFIED',
     warn: data?.proxy === 'yes' ? 'RELAYED' : 'FLAGGED',
     bad: 'ELEVATED',
+    unscored: 'OBSERVED',
     unknown: '— — —',
   }[tier]
 
@@ -164,7 +167,9 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
         ? 'var(--signal-warn)'
         : tier === 'bad'
           ? 'var(--signal-bad)'
-          : 'var(--accent)'
+          : tier === 'unscored'
+            ? 'var(--signal-info)'
+            : 'var(--accent)'
 
   const remainSec = Math.max(
     0,
@@ -180,8 +185,8 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
         ? '— / —'
         : '—'
   const isp = data?.isp || (loading ? 'querying …' : '—')
-  const linkType = !data ? '—' : data.proxy === 'yes' ? 'RELAYED' : 'DIRECT'
-  const routeZh = !data ? '—' : tier === 'good' ? '直连验证' : data.proxy === 'yes' ? '链路异常' : '已标记'
+  const linkType = !data ? '—' : data.proxy === 'yes' ? 'RELAYED' : data.proxy === 'no' ? 'DIRECT' : 'UNSCORED'
+  const routeZh = !data ? '—' : tier === 'good' ? '直连验证' : data.proxy === 'yes' ? '链路异常' : tier === 'unscored' ? '本地识别' : '已标记'
   const ipv4Tag = data?.ip && data.ip.includes(':') ? 'IPv6' : data?.ip ? 'IPv4' : '—'
 
   return (
@@ -570,10 +575,10 @@ function VisitorAlertInner({ onDismiss }: { onDismiss: () => void }) {
               marginTop: 2,
             }}
           >
-            <ReadCell label="TIER" value={tier === 'unknown' ? '—' : tier === 'good' ? 'I' : tier === 'warn' ? 'II' : 'III'} valueColor={accent} />
+            <ReadCell label="TIER" value={tier === 'good' ? 'I' : tier === 'warn' ? 'II' : tier === 'bad' ? 'III' : '—'} valueColor={accent} />
             <ReadCell
               label="RISK"
-              value={data ? `${data.risk}` : '—'}
+              value={data?.risk !== null && data?.risk !== undefined ? `${data.risk}` : '—'}
               border
               valueColor={accent}
             />
@@ -760,3 +765,4 @@ function ReadCell({
 function formatTime(d: Date): string {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`
 }
+
