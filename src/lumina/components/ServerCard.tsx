@@ -5,7 +5,7 @@ import {
   Cpu,
   HardDrive,
   MemoryStick,
-  MonitorCog,
+  PanelRightOpen,
   Radio,
   WalletCards,
 } from 'lucide-react'
@@ -27,22 +27,22 @@ function Metric({ icon, label, metric }: { icon: React.ReactNode; label: string;
   )
 }
 
-export function ServerCard({ server }: { server: LuminaServerModel }) {
+export function ServerCard({ server, onOpen }: { server: LuminaServerModel; onOpen: () => void }) {
   const latencyLabel = server.latency === null ? '—' : `${Math.round(server.latency)} ms`
   const lossLabel = server.loss === null ? '—' : `${server.loss.toFixed(1)}%`
   return (
-    <article className="lumina-server-card" data-online={server.online}>
+    <article className="lumina-server-card" data-online={server.online} data-has-footer={Boolean(server.expiry || server.renewal)}>
       <header className="lumina-server-head">
         <div className="lumina-server-identity">
           <span className="lumina-status-dot" aria-hidden="true" />
           <div>
             <h2><Twemoji>{`${server.flag ? `${server.flag} ` : ''}${server.name}`}</Twemoji></h2>
-            <p>{server.region}</p>
+            <p><span className={server.online ? 'is-online' : 'is-offline'}>{server.online ? '在线' : '离线'}</span><span aria-hidden="true">·</span>{server.region}</p>
           </div>
         </div>
-        <span className="lumina-os" title={server.os} aria-label={`操作系统：${server.os}`}>
-          <MonitorCog size={17} strokeWidth={1.8} aria-hidden="true" />
-        </span>
+        <button className="lumina-detail-button" type="button" onClick={onOpen} aria-label={`查看 ${server.name} 的详细信息`} title={`查看详情 · ${server.os}`}>
+          <PanelRightOpen size={18} strokeWidth={1.8} aria-hidden="true" />
+        </button>
       </header>
 
       <div className="lumina-card-body">
@@ -101,3 +101,4 @@ export function ServerCard({ server }: { server: LuminaServerModel }) {
     </article>
   )
 }
+

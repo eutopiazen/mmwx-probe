@@ -12,6 +12,43 @@ export interface PingBucketModel {
   label: string
 }
 
+export interface PingLineModel {
+  key: string
+  label: string
+  isp: string | null
+  latency: number | null
+  loss: number | null
+  buckets: PingBucketModel[]
+}
+
+export interface DailyTrafficModel {
+  date: string
+  uplink: number
+  downlink: number
+  total: number
+}
+
+export interface ReturnRouteModel {
+  carrier: 'telecom' | 'unicom' | 'mobile'
+  region: string | null
+  routeType: string
+  testedAt: string | null
+}
+
+export interface ServerSystemModel {
+  cpuModel: string | null
+  cpuCores: number | null
+  cpuThreads: number | null
+  loadAverage: string | null
+  memoryUsed: number | null
+  memoryTotal: number | null
+  diskUsed: number | null
+  diskTotal: number | null
+  uptime: number | null
+  kernel: string | null
+  arch: string | null
+}
+
 export interface ExpiryModel {
   date: string
   days: number
@@ -24,9 +61,12 @@ export interface LuminaServerModel {
   sourceIndex: number
   name: string
   region: string
+  regionDetail: string
   flag: string
   online: boolean
   os: string
+  providerName: string | null
+  providerUrl: string | null
   cpu: MetricModel
   memory: MetricModel
   disk: MetricModel
@@ -36,6 +76,13 @@ export interface LuminaServerModel {
   latency: number | null
   loss: number | null
   pingBuckets: PingBucketModel[]
+  pingLines: PingLineModel[]
+  system: ServerSystemModel
+  cumulativeUp: number | null
+  cumulativeDown: number | null
+  dailyTraffic: DailyTrafficModel[]
+  returnRoutes: ReturnRouteModel[]
+  telecomPaidPeer: boolean
   expiry: ExpiryModel | null
   renewal: string | null
   renewalOriginal: string | null
@@ -128,6 +175,13 @@ function healthTone(ms: number, loss: number): HealthTone {
   return 'good'
 }
 
+function buildBucket(ms: number, loss: number): PingBucketModel {
+  return {
+    tone: healthTone(ms, loss),
+    label: ms < 0 ? '无数据' : `${Math.round(ms)} ms · ${loss < 0 ? '—' : `${loss.toFixed(1)}% 丢包`}`,
+  }
+}
+
 function buildPing(server: ProbeServer) {
   const lines = server.ping ?? []
   const validLatency = lines.map((line) => line.current_ms).filter((value) => value >= 0)
@@ -143,12 +197,31 @@ function buildPing(server: ProbeServer) {
     const lossValues = samples.map((sample) => sample.loss).filter((value) => value >= 0)
     const ms = msValues.length ? msValues.reduce((sum, value) => sum + value, 0) / msValues.length : -1
     const bucketLoss = lossValues.length ? lossValues.reduce((sum, value) => sum + value, 0) / lossValues.length : -1
+    return buildBucket(ms, bucketLoss)
+  })
+  const pingLines: PingLineModel[] = lines.map((line, index) => {
+    const lineLatency = line.current_ms >= 0 ? line.current_ms : null
+    const lineLoss = line.loss_pct >= 0 ? line.loss_pct : null
     return {
-      tone: healthTone(ms, bucketLoss),
-      label: ms < 0 ? '无数据' : `${Math.round(ms)} ms · ${bucketLoss < 0 ? '—' : `${bucketLoss.toFixed(1)}% 丢包`}`,
+      key: line.key || `${index}:${line.label}`,
+      label: line.label || `线路 ${index + 1}`,
+      isp: line.isp?.trim() || null,
+      latency: lineLatency,
+      loss: lineLoss,
+      buckets: line.buckets.map((bucket) => buildBucket(bucket.ms, bucket.loss)),
     }
   })
-  return { latency, loss, pingBuckets }
+  return { latency, loss, pingBuckets, pingLines }
+}
+
+function safeProviderUrl(value?: string) {
+  if (!value) return null
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.toString() : null
+  } catch {
+    return null
+  }
 }
 
 export function buildServerModel(server: ProbeServer, sourceIndex: number): LuminaServerModel {
@@ -160,14 +233,21 @@ export function buildServerModel(server: ProbeServer, sourceIndex: number): Lumi
   const trafficLimit = server.traffic_limit && server.traffic_limit > 0 ? server.traffic_limit : null
   const ping = buildPing(server)
   const renewal = buildRenewal(server)
+  const regionDetail = [server.region_name, server.region_city]
+    .map((item) => item?.trim())
+    .filter((item, index, items): item is string => Boolean(item) && items.indexOf(item) === index)
+    .join(' · ')
   return {
     id: `${sourceIndex}:${server.name || 'server'}`,
     sourceIndex,
     name,
     region: server.region?.trim() || server.region_name?.trim() || '未分组',
+    regionDetail: regionDetail || server.region?.trim() || '未提供详细地区',
     flag: hasLeadingFlag ? '' : regionFlag(server.region, server.region_country),
     online: server.online,
     os: server.os?.trim() || '未知系统',
+    providerName: server.provider_name?.trim() || null,
+    providerUrl: safeProviderUrl(server.provider_url),
     cpu: percentMetric(server.cpu_pct),
     memory,
     disk,
@@ -182,6 +262,30 @@ export function buildServerModel(server: ProbeServer, sourceIndex: number): Lumi
     latency: ping.latency,
     loss: ping.loss,
     pingBuckets: ping.pingBuckets,
+    pingLines: ping.pingLines,
+    system: {
+      cpuModel: server.cpu_model?.trim() || null,
+      cpuCores: server.cpu_cores ?? null,
+      cpuThreads: server.cpu_threads ?? null,
+      loadAverage: server.loadavg?.trim() || null,
+      memoryUsed: server.mem_used ?? null,
+      memoryTotal: server.mem_total ?? null,
+      diskUsed: server.disk_used ?? null,
+      diskTotal: server.disk_total ?? null,
+      uptime: server.uptime ?? null,
+      kernel: server.kernel?.trim() || null,
+      arch: server.arch?.trim() || null,
+    },
+    cumulativeUp: server.cumulative_up ?? null,
+    cumulativeDown: server.cumulative_down ?? null,
+    dailyTraffic: [...(server.daily_traffic ?? [])].sort((a, b) => a.date.localeCompare(b.date)),
+    returnRoutes: (server.return_routes ?? []).map((route) => ({
+      carrier: route.carrier,
+      region: route.region?.trim() || null,
+      routeType: route.route_type,
+      testedAt: route.tested_at || null,
+    })),
+    telecomPaidPeer: Boolean(server.telecom_paid_peer),
     expiry: buildExpiry(server.expires_at),
     renewal: renewal.renewal,
     renewalOriginal: renewal.renewalOriginal,
@@ -235,3 +339,14 @@ export function formatBytes(value: number) {
 export function formatSpeed(value: number) {
   return `${formatBytes(value)}/s`
 }
+
+export function formatDuration(value: number | null) {
+  if (value === null || value < 0) return '—'
+  const days = Math.floor(value / 86_400)
+  const hours = Math.floor((value % 86_400) / 3_600)
+  const minutes = Math.floor((value % 3_600) / 60)
+  if (days > 0) return `${days} 天 ${hours} 小时`
+  if (hours > 0) return `${hours} 小时 ${minutes} 分钟`
+  return `${minutes} 分钟`
+}
+
