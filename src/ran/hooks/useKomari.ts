@@ -41,11 +41,11 @@ function countryCode(server: ProbeServer) {
   return source && /^[A-Z]{2}$/.test(source) ? source : undefined
 }
 
-function regionLabel(server: ProbeServer) {
-  const values = [countryCode(server), server.region_name, server.region_city]
-    .map((value) => value?.trim())
-    .filter((value, index, all): value is string => Boolean(value) && all.indexOf(value) === index)
-  return values.join(' · ') || server.region?.trim() || countryCode(server) || '未分组'
+function compactRegion(server: ProbeServer) {
+  // RAN components treat `region` as a compact grouping/display key
+  // (for example US, JP or HK). Full mmwx location text is retained in
+  // region_name/region_city; putting it here breaks fixed table columns.
+  return countryCode(server) || server.region?.trim() || '未分组'
 }
 
 function currencySymbol(code?: string) {
@@ -66,7 +66,7 @@ function toNode(server: ProbeServer, index: number): KomariNode {
     cpu_model: server.cpu_model,
     cpu_cores: server.cpu_cores,
     arch: server.arch,
-    region: regionLabel(server),
+    region: compactRegion(server),
     region_country: countryCode(server),
     region_name: server.region_name,
     region_city: server.region_city,
@@ -187,7 +187,7 @@ export function useKomari(): KomariState {
       theme_settings: {
         default_view: 'v2',
         default_theme: 'ran-mist',
-        visitor_alert: 'off',
+        visitor_alert: 'on',
         bps_unit: 'auto',
         version_tag: 'UTOPIA',
       },
