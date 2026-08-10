@@ -4,6 +4,12 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/mmwx-group/mmwx-probe)
 
+## 界面来源与致谢
+
+当前 `utopia-ui` 分支的 RAN / UTOPIA 界面设计与部分前端实现参考并适配自 [岚 (Ran) · Komari Probe Theme](https://github.com/saladinxp/komari-ran-theme)，原主题由 [Miuler（saladinxp）](https://github.com/saladinxp) 开发。感谢原作者的开源设计与实现。
+
+本项目在此基础上保留并适配了 mmwx-probe 的 Worker 同源代理、接口鉴权、实时 WebSocket 和探针数据映射；它不是原主题项目的官方发行版本。
+
 ## 功能
 
 - 卡片和列表两种服务器视图
