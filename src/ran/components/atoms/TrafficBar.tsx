@@ -44,7 +44,7 @@ function TrafficBar_({ quota, variant = 'grid' }: { quota: TrafficQuota; variant
               padding: '0 3px',
             }}
           >
-            {quota.mode === 'sum' ? '求和' : '取最大'}
+            {quota.mode === 'reported' ? '主控口径' : quota.mode === 'sum' ? '求和' : '取最大'}
           </span>
           <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--fg-2)' }}>
             {usedText}

@@ -1,11 +1,10 @@
 /**
  * Traffic quota — derived purely from Komari's own fields.
  *
- * Komari owns the entire traffic pipeline; the theme only renders it:
- *   - the agent accumulates `network_total_up/down` and resets them on the
- *     day configured by its `--month-rotate` flag,
- *   - the admin sets a per-node threshold (`traffic_limit`, in bytes) and a
- *     comparison mode (`traffic_limit_type`).
+ * MMWX owns the entire traffic pipeline; the theme only renders it. The
+ * authoritative `traffic_used` value has already been calculated using the
+ * server's configured accounting mode. Cumulative NIC counters are a separate
+ * metric and must never be substituted for billing-period usage.
  *
  * We invent nothing: no parsing of the free-text `tags` label (users may
  * write anything there — it is decoration, not data), no local accumulation,
@@ -23,11 +22,11 @@ export interface TrafficQuota {
   ratio: number
   /** Uncapped percentage — may exceed 100 when over quota. */
   percent: number
-  /** Comparison mode actually applied. */
-  mode: 'max' | 'sum'
-  /** Raw cumulative counters, shown alongside the bar. */
-  up: number
-  down: number
+  /** Whether usage came pre-calculated by MMWX or from the legacy fallback. */
+  mode: 'reported' | 'max' | 'sum'
+  /** Current-period split, when the API reports it. */
+  up?: number
+  down?: number
   /** Severity band, drives bar color. */
   level: 'ok' | 'warn' | 'crit'
 }
@@ -44,20 +43,39 @@ export function computeTrafficQuota(
   const limit = node.traffic_limit ?? 0
   if (!Number.isFinite(limit) || limit <= 0) return undefined
 
-  const up = record?.network_total_up
-  const down = record?.network_total_down
-  if (up == null && down == null) return undefined
+  const reported = node.traffic_used
+  let mode: TrafficQuota['mode']
+  let used: number
+  let up: number | undefined
+  let down: number | undefined
 
-  const u = up ?? 0
-  const d = down ?? 0
-  const mode: 'max' | 'sum' = node.traffic_limit_type === 'sum' ? 'sum' : 'max'
-  const used = mode === 'sum' ? u + d : Math.max(u, d)
+  if (typeof reported === 'number' && Number.isFinite(reported) && reported >= 0) {
+    mode = 'reported'
+    used = reported
+    up = typeof node.traffic_used_up === 'number' && Number.isFinite(node.traffic_used_up)
+      ? node.traffic_used_up
+      : undefined
+    down = typeof node.traffic_used_down === 'number' && Number.isFinite(node.traffic_used_down)
+      ? node.traffic_used_down
+      : undefined
+  } else {
+    const cumulativeUp = record?.network_total_up
+    const cumulativeDown = record?.network_total_down
+    if (
+      typeof cumulativeUp !== 'number' || !Number.isFinite(cumulativeUp) ||
+      typeof cumulativeDown !== 'number' || !Number.isFinite(cumulativeDown)
+    ) return undefined
+    up = cumulativeUp
+    down = cumulativeDown
+    mode = node.traffic_limit_type === 'sum' ? 'sum' : 'max'
+    used = mode === 'sum' ? cumulativeUp + cumulativeDown : Math.max(cumulativeUp, cumulativeDown)
+  }
 
   const percent = (used / limit) * 100
   const ratio = Math.min(1, Math.max(0, used / limit))
   const level: TrafficQuota['level'] = percent >= 85 ? 'crit' : percent >= 60 ? 'warn' : 'ok'
 
-  return { used, limit, ratio, percent, mode, up: u, down: d, level }
+  return { used, limit, ratio, percent, mode, up, down, level }
 }
 
 /** Bar fill color for a severity band. */

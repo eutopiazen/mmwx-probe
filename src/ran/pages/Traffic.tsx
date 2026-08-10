@@ -76,6 +76,22 @@ function bytesShort(bytes: number): string {
   return `${v.toFixed(idx === 0 ? 0 : 1)}${units[idx]}`
 }
 
+function finiteBytes(value: number | undefined): number | undefined {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : undefined
+}
+
+function sumComplete(values: Array<number | undefined>): number | undefined {
+  return values.length > 0 && values.every((value) => value !== undefined)
+    ? (values as number[]).reduce((sum, value) => sum + value, 0)
+    : undefined
+}
+
+function metricParts(value: number | undefined): [string, string] {
+  if (value === undefined) return ['—', '']
+  const [amount = '0', unit = 'B'] = formatBytes(value).split(' ')
+  return [amount, unit]
+}
+
 interface Props {
   nodes: KomariNode[]
   records: Record<string, KomariRecord>
@@ -92,14 +108,15 @@ interface Props {
 interface NodeTraffic {
   node: KomariNode
   record?: KomariRecord
-  /** Cumulative since-boot tx bytes */
-  tx: number
-  /** Cumulative since-boot rx bytes */
-  rx: number
-  total: number
-  hasSplit: boolean
+  /** Current reset/billing period traffic. */
+  tx?: number
+  rx?: number
+  total?: number
+  /** System NIC cumulative counters, kept separate from period traffic. */
+  cumulativeTx?: number
+  cumulativeRx?: number
   /** Live throughput bytes/s */
-  liveBps: number
+  liveBps?: number
   online: boolean
 }
 
@@ -146,21 +163,28 @@ export function TrafficPage({
   const effectiveHistory: GlobalHistoryState | undefined =
     activeKey === '1h' ? history : ownHistory
 
-  // Per-node traffic snapshot — pulled straight from live records.
+  // Period usage comes from the MMWX accounting fields. System cumulative
+  // counters are intentionally kept separate: their reset semantics differ.
   const nodeTraffic: NodeTraffic[] = useMemo(() => {
     return nodes.map((n) => {
       const r = records[n.uuid]
-      const tx = r?.network_total_up ?? 0
-      const rx = r?.network_total_down ?? 0
-      const hasSplit = r?.network_total_up !== undefined || r?.network_total_down !== undefined
+      const tx = finiteBytes(n.traffic_used_up)
+      const rx = finiteBytes(n.traffic_used_down)
+      const reportedTotal = finiteBytes(n.traffic_used_total)
+      const total = reportedTotal ?? (tx !== undefined && rx !== undefined
+        ? tx + rx
+        : finiteBytes(n.traffic_used))
+      const liveTx = finiteBytes(r?.network_tx)
+      const liveRx = finiteBytes(r?.network_rx)
       return {
         node: n,
         record: r,
         tx,
         rx,
-        total: hasSplit ? tx + rx : (n.traffic_used ?? 0),
-        hasSplit,
-        liveBps: (r?.network_tx ?? 0) + (r?.network_rx ?? 0),
+        total,
+        cumulativeTx: finiteBytes(r?.network_total_up),
+        cumulativeRx: finiteBytes(r?.network_total_down),
+        liveBps: liveTx !== undefined && liveRx !== undefined ? liveTx + liveRx : undefined,
         online: r?.online === true,
       }
     })
@@ -168,32 +192,42 @@ export function TrafficPage({
 
   // Top talkers — sorted, top 10
   const topTalkers = useMemo(() => {
+    const numeric = (value: number | undefined) => value ?? Number.NEGATIVE_INFINITY
     const sortFn: Record<SortBy, (a: NodeTraffic, b: NodeTraffic) => number> = {
-      total: (a, b) => b.total - a.total,
-      tx: (a, b) => b.tx - a.tx,
-      rx: (a, b) => b.rx - a.rx,
-      live: (a, b) => b.liveBps - a.liveBps,
+      total: (a, b) => numeric(b.total) - numeric(a.total),
+      tx: (a, b) => numeric(b.tx) - numeric(a.tx),
+      rx: (a, b) => numeric(b.rx) - numeric(a.rx),
+      live: (a, b) => numeric(b.liveBps) - numeric(a.liveBps),
     }
     return [...nodeTraffic].sort(sortFn[sortBy]).slice(0, 10)
   }, [nodeTraffic, sortBy])
 
   // Aggregate stats
   const stats = useMemo(() => {
-    let totalTx = 0
-    let totalRx = 0
-    let liveBps = 0
     let online = 0
     for (const t of nodeTraffic) {
-      totalTx += t.tx
-      totalRx += t.rx
-      liveBps += t.liveBps
       if (t.online) online++
     }
-    const total = nodeTraffic.reduce((sum, item) => sum + item.total, 0)
-    const splitKnown = nodeTraffic.length > 0 && nodeTraffic.every((item) => item.hasSplit)
-    const avgBps = online > 0 ? liveBps / online : 0
-    return { total, totalTx, totalRx, liveBps, avgBps, online, splitKnown }
+    const total = sumComplete(nodeTraffic.map((item) => item.total))
+    const totalTx = sumComplete(nodeTraffic.map((item) => item.tx))
+    const totalRx = sumComplete(nodeTraffic.map((item) => item.rx))
+    const cumulativeTx = sumComplete(nodeTraffic.map((item) => item.cumulativeTx))
+    const cumulativeRx = sumComplete(nodeTraffic.map((item) => item.cumulativeRx))
+    const liveBps = sumComplete(nodeTraffic.map((item) => item.liveBps))
+    const avgBps = liveBps !== undefined && online > 0 ? liveBps / online : undefined
+    return { total, totalTx, totalRx, cumulativeTx, cumulativeRx, liveBps, avgBps, online }
   }, [nodeTraffic])
+
+  const periodLabel = useMemo(() => {
+    const periods = new Set(
+      nodes
+        .filter((node) => node.period_start && node.period_end)
+        .map((node) => `${node.period_start} — ${node.period_end}`),
+    )
+    if (periods.size === 0) return '周期边界未提供'
+    if (periods.size === 1) return [...periods][0]
+    return '各节点独立周期'
+  }, [nodes])
 
   // MMWX exposes real per-day traffic for the current reset cycle. Aggregate
   // by date across nodes; do not derive it from instantaneous throughput.
@@ -202,17 +236,17 @@ export function TrafficPage({
     for (const node of nodes) {
       for (const day of node.daily_traffic ?? []) {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(day.date)) continue
+        if (![day.uplink, day.downlink, day.total].every(Number.isFinite)) continue
         const current = byDate.get(day.date) ?? { uplink: 0, downlink: 0, total: 0 }
-        current.uplink += Number.isFinite(day.uplink) ? day.uplink : 0
-        current.downlink += Number.isFinite(day.downlink) ? day.downlink : 0
-        current.total += Number.isFinite(day.total) ? day.total : 0
+        current.uplink += day.uplink
+        current.downlink += day.downlink
+        current.total += day.total
         byDate.set(day.date, current)
       }
     }
     return [...byDate.entries()]
       .map(([date, values]) => ({ date, ...values }))
       .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(-31)
   }, [nodes])
 
   const dailyTrafficTotals = useMemo(
@@ -230,44 +264,44 @@ export function TrafficPage({
 
   // Hero stats — sparklines are derived from the global 1H history aggregate.
   const heroStats = useMemo(() => {
-    const totalStr = formatBytes(stats.total).split(' ')
-    const txStr = formatBytes(stats.totalTx).split(' ')
-    const rxStr = formatBytes(stats.totalRx).split(' ')
-    const liveStr = formatBps(stats.liveBps).split(' ')
+    const totalStr = metricParts(stats.total)
+    const txStr = metricParts(stats.totalTx)
+    const rxStr = metricParts(stats.totalRx)
+    const liveStr = stats.liveBps === undefined ? ['—', ''] : formatBps(stats.liveBps).split(' ')
     const agg = effectiveHistory?.aggregate
     const txSpark = agg?.netOut ?? []
     const rxSpark = agg?.netIn ?? []
     const totalSpark = agg ? agg.netOut.map((v, i) => v + (agg.netIn[i] ?? 0)) : []
     return [
       {
-        label: 'CUMULATIVE TOTAL',
+        label: 'PERIOD TOTAL',
         code: 'T01',
-        value: totalStr[0] || '0',
-        unit: totalStr[1] || 'B',
+        value: totalStr[0],
+        unit: totalStr[1],
         spark: totalSpark,
         sparkColor: 'var(--accent)',
       },
       {
         label: 'UPLOAD ↑',
         code: 'T02',
-        value: stats.splitKnown ? (txStr[0] || '0') : '—',
-        unit: stats.splitKnown ? (txStr[1] || 'B') : '',
+        value: txStr[0],
+        unit: txStr[1],
         spark: txSpark,
         sparkColor: 'var(--accent-bright)',
       },
       {
         label: 'DOWNLOAD ↓',
         code: 'T03',
-        value: stats.splitKnown ? (rxStr[0] || '0') : '—',
-        unit: stats.splitKnown ? (rxStr[1] || 'B') : '',
+        value: rxStr[0],
+        unit: rxStr[1],
         spark: rxSpark,
         sparkColor: 'var(--signal-good)',
       },
       {
         label: 'LIVE THROUGHPUT',
         code: 'T04',
-        value: liveStr[0] || '0',
-        unit: liveStr[1] ? liveStr[1].replace('/s', '') : 'B',
+        value: liveStr[0] || '—',
+        unit: liveStr[1] ? liveStr[1].replace('/s', '') : '',
         spark: totalSpark,
         sparkColor: 'var(--signal-info)',
       },
@@ -291,14 +325,15 @@ export function TrafficPage({
   }, [win.hours])
 
   const subtitle = useMemo(() => {
-    return `${nodes.length} PROBES · ${formatBytes(stats.total)} CUMULATIVE`
+    const total = stats.total === undefined ? 'PERIOD N/A' : `${formatBytes(stats.total)} PERIOD`
+    return `${nodes.length} PROBES · ${total}`
   }, [nodes.length, stats.total])
 
   // Topbar online count
   const globalOnline = stats.online
 
   // Max for top-talker bar scale
-  const topMax = topTalkers.length > 0 ? topTalkers[0].total || 1 : 1
+  const topMax = Math.max(1, ...topTalkers.map((item) => item.total ?? 0))
 
   return (
     <div
@@ -349,11 +384,36 @@ export function TrafficPage({
                 Traffic
               </h2>
               <SerialPlate>NETWORK · WIDE</SerialPlate>
-              <Etch>SINCE BOOT · UPDATED LIVE</Etch>
+              <Etch>BILLING PERIOD · UPDATED LIVE</Etch>
             </div>
+            <Etch>{periodLabel}</Etch>
           </div>
 
           <HeroStats stats={heroStats} />
+
+          {(stats.cumulativeTx !== undefined || stats.cumulativeRx !== undefined) && (
+            <CardFrame title="网卡累计流量" code="T · 05" action={<Etch>SYSTEM COUNTERS · NOT BILLING</Etch>}>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: 10,
+                }}
+              >
+                <TrafficSummary label="累计上传" value={stats.cumulativeTx} color="var(--accent-bright)" />
+                <TrafficSummary label="累计下载" value={stats.cumulativeRx} color="var(--signal-good)" />
+                <TrafficSummary
+                  label="累计合计"
+                  value={
+                    stats.cumulativeTx !== undefined && stats.cumulativeRx !== undefined
+                      ? stats.cumulativeTx + stats.cumulativeRx
+                      : undefined
+                  }
+                  color="var(--signal-info)"
+                />
+              </div>
+            </CardFrame>
+          )}
 
           {/* Trend — windowed aggregate from per-node history */}
           <CardFrame
@@ -558,7 +618,7 @@ export function TrafficPage({
                         fontSize: contentFs(12),
                       }}
                     >
-                      {t.hasSplit ? formatBytes(t.tx) : '—'}
+                      {t.tx === undefined ? '—' : formatBytes(t.tx)}
                     </span>
                     <span
                       className="mono tnum traffic-col-rx"
@@ -568,10 +628,10 @@ export function TrafficPage({
                         fontSize: contentFs(12),
                       }}
                     >
-                      {t.hasSplit ? formatBytes(t.rx) : '—'}
+                      {t.rx === undefined ? '—' : formatBytes(t.rx)}
                     </span>
                     <span className="traffic-col-share">
-                      <ShareBar tx={t.tx} rx={t.rx} total={t.total} max={topMax} hasSplit={t.hasSplit} />
+                      <ShareBar tx={t.tx} rx={t.rx} total={t.total} max={topMax} />
                     </span>
                   </a>
                 ))}
@@ -589,7 +649,7 @@ export function TrafficPage({
   )
 }
 
-function TrafficSummary({ label, value, color }: { label: string; value: number; color: string }) {
+function TrafficSummary({ label, value, color }: { label: string; value?: number; color: string }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       <Etch>{label}</Etch>
@@ -597,16 +657,20 @@ function TrafficSummary({ label, value, color }: { label: string; value: number;
         className="mono tnum"
         style={{ color, fontSize: contentFs(15), fontWeight: 600, letterSpacing: '-0.02em' }}
       >
-        {formatBytes(value)}
+        {value === undefined ? '—' : formatBytes(value)}
       </span>
     </div>
   )
 }
 
 /** Single bar showing TX (accent) + RX (good) stacked, normalized to max. */
-function ShareBar({ tx, rx, total, max, hasSplit }: { tx: number; rx: number; total: number; max: number; hasSplit: boolean }) {
+function ShareBar({ tx, rx, total, max }: { tx?: number; rx?: number; total?: number; max: number }) {
+  if (total === undefined) {
+    return <div style={{ height: 8, background: 'var(--bg-inset)', border: '1px solid var(--edge-engrave)', borderRadius: 1 }} />
+  }
+  const hasSplit = tx !== undefined && rx !== undefined
   const totalPct = max > 0 ? (total / max) * 100 : 0
-  const txRatio = total > 0 ? tx / total : 0
+  const txRatio = total > 0 && tx !== undefined ? tx / total : 0
   return (
     <div
       style={{
@@ -649,6 +713,7 @@ function RegionDistribution({ traffic }: { traffic: NodeTraffic[] }) {
   const byRegion = useMemo(() => {
     const map = new Map<string, { total: number; nodes: number }>()
     for (const t of traffic) {
+      if (t.total === undefined) continue
       const key = t.node.region?.split('-')[0]?.toUpperCase() ?? '—'
       const ex = map.get(key) ?? { total: 0, nodes: 0 }
       ex.total += t.total

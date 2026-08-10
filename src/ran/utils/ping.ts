@@ -75,7 +75,9 @@ export function aggregatePingByTarget(
 
 /** Quickly check if a PingHistory contains any data we can plot. */
 export function hasPingData(h: PingHistory): boolean {
-  return (h?.tasks?.length ?? 0) > 0 && (h?.records?.length ?? 0) > 0
+  return (h?.tasks?.length ?? 0) > 0 && (h?.records ?? []).some(
+    (record) => record.value >= 0 || (record.loss != null && record.loss >= 0),
+  )
 }
 
 // Local re-export so callers can import only from here

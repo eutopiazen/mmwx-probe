@@ -348,6 +348,7 @@ export function useGlobalHistory(
           pingLossByNode[uuid] = primaryLive.map((r) => {
             const l = lossAt.get(r.time)
             if (l != null) return l
+            if (lossAt.has(r.time)) return -1
             // No loss datum for this probe: a non-positive latency is the
             // failure sentinel, anything else succeeded.
             return r.value > 0 ? 0 : 100

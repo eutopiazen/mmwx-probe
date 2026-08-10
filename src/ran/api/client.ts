@@ -86,6 +86,8 @@ export interface PingTask {
   total?: number
   /** Probe type: usually 'icmp' or 'tcp'. */
   type?: string
+  /** ISP label supplied by the MMWX probe target. */
+  isp?: string
 }
 
 export interface PingRecord {
@@ -94,6 +96,8 @@ export interface PingRecord {
   time: string
   /** Latency in ms */
   value: number
+  /** Bucket loss percentage; null means the bucket has no data. */
+  loss?: number | null
   /** Optional uuid — present when fetched without uuid filter */
   client?: string
 }
@@ -104,9 +108,10 @@ export interface PingHistory {
   records: PingRecord[]
 }
 
-interface MmwxPingSeries {
+export interface MmwxPingSeries {
   key?: string
   label: string
+  isp?: string
   current_ms: number
   loss_pct: number
   buckets: Array<{ ms: number; loss: number }>
@@ -166,12 +171,14 @@ export async function fetchNodePingHistory(uuid: string, hours = 1): Promise<Pin
           interval: bucketSec,
           loss: line.loss_pct,
           avg: line.current_ms >= 0 ? line.current_ms : undefined,
+          isp: line.isp,
         })
         line.buckets.forEach((bucket, bucketIndex) => {
           records.push({
             task_id: taskId,
             time: new Date((generatedAt - (line.buckets.length - 1 - bucketIndex) * bucketSec) * 1000).toISOString(),
             value: bucket.ms,
+            loss: bucket.loss < 0 ? null : bucket.loss,
             client: uuid,
           })
         })

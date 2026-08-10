@@ -69,6 +69,15 @@ const EMPTY: PingHistoryPlus = {
   fromMetricStore: false,
 }
 
+function lossByTaskFromRecords(records: PingHistory['records']): Record<number, LossPoint[]> {
+  const result: Record<number, LossPoint[]> = {}
+  for (const record of records) {
+    if (record.loss === undefined) continue
+    ;(result[record.task_id] ??= []).push({ time: record.time, loss: record.loss })
+  }
+  return result
+}
+
 /**
  * Fetch ping history for one node over `hours`.
  *
@@ -106,11 +115,12 @@ export async function fetchNodePing(
   // Legacy REST returns raw per-probe records, so they serve both consumers —
   // that grain is exactly what the live meter wants.
   const legacy = await fetchNodePingHistory(uuid, hours)
+  const lossByTask = lossByTaskFromRecords(legacy.records)
   return {
     ...legacy,
-    lossByTask: {},
+    lossByTask,
     liveRecords: legacy.records,
-    liveLossByTask: {},
+    liveLossByTask: lossByTask,
     fromMetricStore: false,
   }
 }

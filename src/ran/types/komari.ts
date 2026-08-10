@@ -26,6 +26,8 @@ export interface KomariNode {
   cpu_name?: string
   cpu_model?: string
   cpu_cores?: number
+  cpu_threads?: number
+  kernel?: string
   arch?: string
   ip?: string
   region?: string
@@ -54,6 +56,13 @@ export interface KomariNode {
   traffic_limit?: number
   /** Total traffic usage supplied by mmwx when cumulative TX/RX are not split. */
   traffic_used?: number
+  /** Actual traffic split for the current reset/billing period. */
+  traffic_used_up?: number
+  traffic_used_down?: number
+  traffic_used_total?: number
+  /** Current reset period, start inclusive and end exclusive. */
+  period_start?: string
+  period_end?: string
   /**
    * How usage is measured against `traffic_limit`:
    *   'max' (取最大) — compare max(up, down) against the limit
